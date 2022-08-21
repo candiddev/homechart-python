@@ -1,0 +1,7 @@
+.envrc
+.venv
+build
+dist
+*.egg-info
+swagger.yaml
+
