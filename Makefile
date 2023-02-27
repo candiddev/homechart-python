@@ -4,8 +4,8 @@ VAULT_TOKEN ?= $(shell cat ~/.vault-token 2> /dev/null)
 export BUILD_TAG := $(shell git describe --tags --abbrev=0)
 
 ifneq ($(VAULT_TOKEN),)
-export TWINE_PASSWORD := $(shell curl -H 'x-vault-token: $(VAULT_TOKEN)' $(VAULT_ADDR)$(VAULT_PATH) | jq -r .data.data.password)
-export TWINE_USERNAME := $(shell curl -H 'x-vault-token: $(VAULT_TOKEN)' $(VAULT_ADDR)$(VAULT_PATH) | jq -r .data.data.username)
+export TWINE_PASSWORD := $(shell curl -H 'x-vault-token: $(VAULT_TOKEN)' $(VAULT_ADDR)$(VAULT_PATH) | jq -r .data.password)
+export TWINE_USERNAME := $(shell curl -H 'x-vault-token: $(VAULT_TOKEN)' $(VAULT_ADDR)$(VAULT_PATH) | jq -r .data.username)
 endif
 
 .PHONY: build

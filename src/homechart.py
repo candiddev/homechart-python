@@ -73,6 +73,9 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == AuthAccountPreferencesNotificationsHousehold:
         return auth_account_preferences_notifications_household_from_obj(obj, path=path)
 
+    if exp == AuthAccountPrivateKey:
+        return auth_account_private_key_from_obj(obj, path=path)
+
     if exp == AuthHousehold:
         return auth_household_from_obj(obj, path=path)
 
@@ -187,6 +190,15 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == RewardCard:
         return reward_card_from_obj(obj, path=path)
 
+    if exp == SecretsValue:
+        return secrets_value_from_obj(obj, path=path)
+
+    if exp == SecretsVault:
+        return secrets_vault_from_obj(obj, path=path)
+
+    if exp == SecretsVaultKey:
+        return secrets_vault_key_from_obj(obj, path=path)
+
     if exp == ShopCategory:
         return shop_category_from_obj(obj, path=path)
 
@@ -198,6 +210,12 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
 
     if exp == TableNotify:
         return table_notify_from_obj(obj, path=path)
+
+    if exp == EncryptionEncryptedValue:
+        return encryption_encrypted_value_from_obj(obj, path=path)
+
+    if exp == ModelsCalendarICalendar:
+        return models_calendar_i_calendar_from_obj(obj, path=path)
 
     if exp == UuidNullUUID:
         return uuid_null_u_u_id_from_obj(obj, path=path)
@@ -276,6 +294,10 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
     if exp == AuthAccountPreferencesNotificationsHousehold:
         assert isinstance(obj, AuthAccountPreferencesNotificationsHousehold)
         return auth_account_preferences_notifications_household_to_jsonable(obj, path=path)
+
+    if exp == AuthAccountPrivateKey:
+        assert isinstance(obj, AuthAccountPrivateKey)
+        return auth_account_private_key_to_jsonable(obj, path=path)
 
     if exp == AuthHousehold:
         assert isinstance(obj, AuthHousehold)
@@ -429,6 +451,18 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
         assert isinstance(obj, RewardCard)
         return reward_card_to_jsonable(obj, path=path)
 
+    if exp == SecretsValue:
+        assert isinstance(obj, SecretsValue)
+        return secrets_value_to_jsonable(obj, path=path)
+
+    if exp == SecretsVault:
+        assert isinstance(obj, SecretsVault)
+        return secrets_vault_to_jsonable(obj, path=path)
+
+    if exp == SecretsVaultKey:
+        assert isinstance(obj, SecretsVaultKey)
+        return secrets_vault_key_to_jsonable(obj, path=path)
+
     if exp == ShopCategory:
         assert isinstance(obj, ShopCategory)
         return shop_category_to_jsonable(obj, path=path)
@@ -444,6 +478,14 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
     if exp == TableNotify:
         assert isinstance(obj, TableNotify)
         return table_notify_to_jsonable(obj, path=path)
+
+    if exp == EncryptionEncryptedValue:
+        assert isinstance(obj, EncryptionEncryptedValue)
+        return encryption_encrypted_value_to_jsonable(obj, path=path)
+
+    if exp == ModelsCalendarICalendar:
+        assert isinstance(obj, ModelsCalendarICalendar)
+        return models_calendar_i_calendar_to_jsonable(obj, path=path)
 
     if exp == UuidNullUUID:
         assert isinstance(obj, UuidNullUUID)
@@ -463,22 +505,25 @@ class AuthAccount:
             daily_agenda_next: Optional[str] = None,
             daily_agenda_time: Optional[str] = None,
             email_address: Optional[str] = None,
-            ical_id: Optional['UuidNullUUID'] = None,
+            hide_calendar_i_calendars: Optional[List[str]] = None,
+            icalendar_id: Optional[Any] = None,
             id: Optional[str] = None,
             last_activity: Optional[str] = None,
             name: Optional[str] = None,
             oidc_code: Optional[str] = None,
-            oidc_provider_source: Optional[int] = None,
-            oidc_provider_type: Optional[int] = None,
+            oidc_provider_source: Optional[Any] = None,
+            oidc_provider_type: Optional[Any] = None,
             password: Optional[str] = None,
-            password_reset_token: Optional['UuidNullUUID'] = None,
-            permissions_account: Optional['Permissions'] = None,
+            password_reset_token: Optional[Any] = None,
+            permissions_account: Optional[Any] = None,
             permissions_households: Optional[List['AuthHouseholdPermissions']] = None,
-            platform: Optional[int] = None,
-            preferences: Optional['AuthAccountPreferences'] = None,
-            primary_auth_household_id: Optional['UuidNullUUID'] = None,
+            platform: Optional[Any] = None,
+            preferences: Optional[Any] = None,
+            primary_auth_household_id: Optional[Any] = None,
+            private_keys: Optional[List['AuthAccountPrivateKey']] = None,
+            public_key: Optional[str] = None,
             remember_me: Optional[bool] = None,
-            self_hosted_id: Optional['UuidNullUUID'] = None,
+            self_hosted_id: Optional[Any] = None,
             setup: Optional[bool] = None,
             subscription_referrer_code: Optional[str] = None,
             time_zone: Optional[str] = None,
@@ -491,75 +536,118 @@ class AuthAccount:
             updated: Optional[str] = None,
             verified: Optional[bool] = None) -> None:
         """Initializes with the given values."""
+        # Restricts account settings.
         self.child = child
 
+        # A list of IDs to collapse.
         self.collapsed_notes_pages = collapsed_notes_pages
 
+        # A list of IDs to collapse.
         self.collapsed_plan_projects = collapsed_plan_projects
 
+        # A list of IDs to collapse.
         self.collapsed_plan_tasks = collapsed_plan_tasks
 
+        # Timestamp account was created.
         self.created = created
 
+        # The next timestamp for the agenda.
         self.daily_agenda_next = daily_agenda_next
 
+        # When to send the daily agenda.
         self.daily_agenda_time = daily_agenda_time
 
+        # Primary email address of user.
         self.email_address = email_address
 
-        self.ical_id = ical_id
+        # A list of iCalendar IDs to hide.
+        self.hide_calendar_i_calendars = hide_calendar_i_calendars
 
+        # ICalendarID for the account.
+        self.icalendar_id = icalendar_id
+
+        # ID of the account.
         self.id = id
 
+        # Timestamp of the last time the account signed in.
         self.last_activity = last_activity
 
+        # Name of the AuthAccount user.
         self.name = name
 
+        # Code from OIDC provider to check during sign in/up.
         self.oidc_code = oidc_code
 
+        # Used to determine which OIDC provider to use.
         self.oidc_provider_source = oidc_provider_source
 
+        # Used to determine which OIDC provider to use.
         self.oidc_provider_type = oidc_provider_type
 
+        # Password to use for sign in/up.
         self.password = password
 
+        # Password reset token, used for password resets.
         self.password_reset_token = password_reset_token
 
+        # Permissions for the account when creating a new session.
         self.permissions_account = permissions_account
 
+        # Permissions for the households when creating a new session.
         self.permissions_households = permissions_households
 
+        # Sets the platform for the initial session after account creation.
         self.platform = platform
 
+        # Preferences for the account.
         self.preferences = preferences
 
+        # The primary AuthHouseholdID, used by short links.
         self.primary_auth_household_id = primary_auth_household_id
 
+        # PrivateKeys for decrypting secrets.
+        self.private_keys = private_keys
+
+        # PublicKey for encrypting secrets.
+        self.public_key = public_key
+
+        # Sets a longer timeout for the AuthSession.
         self.remember_me = remember_me
 
+        # SelfHosted ID of the account, used when creating CloudHouseholds.
         self.self_hosted_id = self_hosted_id
 
+        # Whether the account has gone through setup.
         self.setup = setup
 
+        # Subscription referrer when account was setup.
         self.subscription_referrer_code = subscription_referrer_code
 
+        # Used by notifications and UI to determine local times.
         self.time_zone = time_zone
 
+        # ToS must be accepted to use the app.
         self.tos_accepted = tos_accepted
 
+        # Backup code to recover TOTP.
         self.totp_backup = totp_backup
 
+        # Code from the TOTP generator.
         self.totp_code = totp_code
 
+        # Will check for TOTP code during sign in.
         self.totp_enabled = totp_enabled
 
-        # nolint: tagliatelle
+        # QR Code version of the TOTPSecret.
         self.totp_q_r = totp_q_r
 
+        # Secret to setup a TOTP generator.
         self.totp_secret = totp_secret
 
+        # Timestamp for when account was last updated.
         self.updated = updated
 
+        # Accounts must be verified to receive email notifications.
         self.verified = verified
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
@@ -664,14 +752,16 @@ def auth_account_from_obj(obj: Any, path: str = "") -> AuthAccount:
     else:
         email_address_from_obj = None
 
-    obj_ical_id = obj.get('icalID', None)
-    if obj_ical_id is not None:
-        ical_id_from_obj = from_obj(
-            obj_ical_id,
-            expected=[UuidNullUUID],
-            path=path + '.icalID')  # type: Optional['UuidNullUUID']
+    obj_hide_calendar_i_calendars = obj.get('hideCalendarICalendars', None)
+    if obj_hide_calendar_i_calendars is not None:
+        hide_calendar_i_calendars_from_obj = from_obj(
+            obj_hide_calendar_i_calendars,
+            expected=[list, str],
+            path=path + '.hideCalendarICalendars')  # type: Optional[List[str]]
     else:
-        ical_id_from_obj = None
+        hide_calendar_i_calendars_from_obj = None
+
+    icalendar_id_from_obj = obj.get('icalendarID', None)
 
     obj_id = obj.get('id', None)
     if obj_id is not None:
@@ -709,23 +799,9 @@ def auth_account_from_obj(obj: Any, path: str = "") -> AuthAccount:
     else:
         oidc_code_from_obj = None
 
-    obj_oidc_provider_source = obj.get('oidcProviderSource', None)
-    if obj_oidc_provider_source is not None:
-        oidc_provider_source_from_obj = from_obj(
-            obj_oidc_provider_source,
-            expected=[int],
-            path=path + '.oidcProviderSource')  # type: Optional[int]
-    else:
-        oidc_provider_source_from_obj = None
+    oidc_provider_source_from_obj = obj.get('oidcProviderSource', None)
 
-    obj_oidc_provider_type = obj.get('oidcProviderType', None)
-    if obj_oidc_provider_type is not None:
-        oidc_provider_type_from_obj = from_obj(
-            obj_oidc_provider_type,
-            expected=[int],
-            path=path + '.oidcProviderType')  # type: Optional[int]
-    else:
-        oidc_provider_type_from_obj = None
+    oidc_provider_type_from_obj = obj.get('oidcProviderType', None)
 
     obj_password = obj.get('password', None)
     if obj_password is not None:
@@ -736,23 +812,9 @@ def auth_account_from_obj(obj: Any, path: str = "") -> AuthAccount:
     else:
         password_from_obj = None
 
-    obj_password_reset_token = obj.get('passwordResetToken', None)
-    if obj_password_reset_token is not None:
-        password_reset_token_from_obj = from_obj(
-            obj_password_reset_token,
-            expected=[UuidNullUUID],
-            path=path + '.passwordResetToken')  # type: Optional['UuidNullUUID']
-    else:
-        password_reset_token_from_obj = None
+    password_reset_token_from_obj = obj.get('passwordResetToken', None)
 
-    obj_permissions_account = obj.get('permissionsAccount', None)
-    if obj_permissions_account is not None:
-        permissions_account_from_obj = from_obj(
-            obj_permissions_account,
-            expected=[Permissions],
-            path=path + '.permissionsAccount')  # type: Optional['Permissions']
-    else:
-        permissions_account_from_obj = None
+    permissions_account_from_obj = obj.get('permissionsAccount', None)
 
     obj_permissions_households = obj.get('permissionsHouseholds', None)
     if obj_permissions_households is not None:
@@ -763,32 +825,29 @@ def auth_account_from_obj(obj: Any, path: str = "") -> AuthAccount:
     else:
         permissions_households_from_obj = None
 
-    obj_platform = obj.get('platform', None)
-    if obj_platform is not None:
-        platform_from_obj = from_obj(
-            obj_platform,
-            expected=[int],
-            path=path + '.platform')  # type: Optional[int]
-    else:
-        platform_from_obj = None
+    platform_from_obj = obj.get('platform', None)
 
-    obj_preferences = obj.get('preferences', None)
-    if obj_preferences is not None:
-        preferences_from_obj = from_obj(
-            obj_preferences,
-            expected=[AuthAccountPreferences],
-            path=path + '.preferences')  # type: Optional['AuthAccountPreferences']
-    else:
-        preferences_from_obj = None
+    preferences_from_obj = obj.get('preferences', None)
 
-    obj_primary_auth_household_id = obj.get('primaryAuthHouseholdID', None)
-    if obj_primary_auth_household_id is not None:
-        primary_auth_household_id_from_obj = from_obj(
-            obj_primary_auth_household_id,
-            expected=[UuidNullUUID],
-            path=path + '.primaryAuthHouseholdID')  # type: Optional['UuidNullUUID']
+    primary_auth_household_id_from_obj = obj.get('primaryAuthHouseholdID', None)
+
+    obj_private_keys = obj.get('privateKeys', None)
+    if obj_private_keys is not None:
+        private_keys_from_obj = from_obj(
+            obj_private_keys,
+            expected=[list, AuthAccountPrivateKey],
+            path=path + '.privateKeys')  # type: Optional[List['AuthAccountPrivateKey']]
     else:
-        primary_auth_household_id_from_obj = None
+        private_keys_from_obj = None
+
+    obj_public_key = obj.get('publicKey', None)
+    if obj_public_key is not None:
+        public_key_from_obj = from_obj(
+            obj_public_key,
+            expected=[str],
+            path=path + '.publicKey')  # type: Optional[str]
+    else:
+        public_key_from_obj = None
 
     obj_remember_me = obj.get('rememberMe', None)
     if obj_remember_me is not None:
@@ -799,14 +858,7 @@ def auth_account_from_obj(obj: Any, path: str = "") -> AuthAccount:
     else:
         remember_me_from_obj = None
 
-    obj_self_hosted_id = obj.get('selfHostedID', None)
-    if obj_self_hosted_id is not None:
-        self_hosted_id_from_obj = from_obj(
-            obj_self_hosted_id,
-            expected=[UuidNullUUID],
-            path=path + '.selfHostedID')  # type: Optional['UuidNullUUID']
-    else:
-        self_hosted_id_from_obj = None
+    self_hosted_id_from_obj = obj.get('selfHostedID', None)
 
     obj_setup = obj.get('setup', None)
     if obj_setup is not None:
@@ -916,7 +968,8 @@ def auth_account_from_obj(obj: Any, path: str = "") -> AuthAccount:
         daily_agenda_next=daily_agenda_next_from_obj,
         daily_agenda_time=daily_agenda_time_from_obj,
         email_address=email_address_from_obj,
-        ical_id=ical_id_from_obj,
+        hide_calendar_i_calendars=hide_calendar_i_calendars_from_obj,
+        icalendar_id=icalendar_id_from_obj,
         id=id_from_obj,
         last_activity=last_activity_from_obj,
         name=name_from_obj,
@@ -930,6 +983,8 @@ def auth_account_from_obj(obj: Any, path: str = "") -> AuthAccount:
         platform=platform_from_obj,
         preferences=preferences_from_obj,
         primary_auth_household_id=primary_auth_household_id_from_obj,
+        private_keys=private_keys_from_obj,
+        public_key=public_key_from_obj,
         remember_me=remember_me_from_obj,
         self_hosted_id=self_hosted_id_from_obj,
         setup=setup_from_obj,
@@ -990,11 +1045,14 @@ def auth_account_to_jsonable(
     if auth_account.email_address is not None:
         res['emailAddress'] = auth_account.email_address
 
-    if auth_account.ical_id is not None:
-        res['icalID'] = to_jsonable(
-        auth_account.ical_id,
-        expected=[UuidNullUUID],
-        path='{}.icalID'.format(path))
+    if auth_account.hide_calendar_i_calendars is not None:
+        res['hideCalendarICalendars'] = to_jsonable(
+        auth_account.hide_calendar_i_calendars,
+        expected=[list, str],
+        path='{}.hideCalendarICalendars'.format(path))
+
+    if auth_account.icalendar_id is not None:
+        res['icalendarID'] = auth_account.icalendar_id
 
     if auth_account.id is not None:
         res['id'] = auth_account.id
@@ -1018,16 +1076,10 @@ def auth_account_to_jsonable(
         res['password'] = auth_account.password
 
     if auth_account.password_reset_token is not None:
-        res['passwordResetToken'] = to_jsonable(
-        auth_account.password_reset_token,
-        expected=[UuidNullUUID],
-        path='{}.passwordResetToken'.format(path))
+        res['passwordResetToken'] = auth_account.password_reset_token
 
     if auth_account.permissions_account is not None:
-        res['permissionsAccount'] = to_jsonable(
-        auth_account.permissions_account,
-        expected=[Permissions],
-        path='{}.permissionsAccount'.format(path))
+        res['permissionsAccount'] = auth_account.permissions_account
 
     if auth_account.permissions_households is not None:
         res['permissionsHouseholds'] = to_jsonable(
@@ -1039,25 +1091,25 @@ def auth_account_to_jsonable(
         res['platform'] = auth_account.platform
 
     if auth_account.preferences is not None:
-        res['preferences'] = to_jsonable(
-        auth_account.preferences,
-        expected=[AuthAccountPreferences],
-        path='{}.preferences'.format(path))
+        res['preferences'] = auth_account.preferences
 
     if auth_account.primary_auth_household_id is not None:
-        res['primaryAuthHouseholdID'] = to_jsonable(
-        auth_account.primary_auth_household_id,
-        expected=[UuidNullUUID],
-        path='{}.primaryAuthHouseholdID'.format(path))
+        res['primaryAuthHouseholdID'] = auth_account.primary_auth_household_id
+
+    if auth_account.private_keys is not None:
+        res['privateKeys'] = to_jsonable(
+        auth_account.private_keys,
+        expected=[list, AuthAccountPrivateKey],
+        path='{}.privateKeys'.format(path))
+
+    if auth_account.public_key is not None:
+        res['publicKey'] = auth_account.public_key
 
     if auth_account.remember_me is not None:
         res['rememberMe'] = auth_account.remember_me
 
     if auth_account.self_hosted_id is not None:
-        res['selfHostedID'] = to_jsonable(
-        auth_account.self_hosted_id,
-        expected=[UuidNullUUID],
-        path='{}.selfHostedID'.format(path))
+        res['selfHostedID'] = auth_account.self_hosted_id
 
     if auth_account.setup is not None:
         res['setup'] = auth_account.setup
@@ -1108,11 +1160,11 @@ class AuthAccountPreferences:
             format_date_separator: Optional[int] = None,
             format_time24: Optional[bool] = None,
             format_week8601: Optional[bool] = None,
-            hide_calendar_event_logs: Optional[List[str]] = None,
-            hide_calendar_event_meals: Optional[bool] = None,
-            hide_calendar_event_tasks: Optional[bool] = None,
-            hide_calendar_event_transactions: Optional[bool] = None,
+            hide_calendar_budget_recurrences: Optional[bool] = None,
+            hide_calendar_cook_meal_plans: Optional[bool] = None,
             hide_calendar_events: Optional[bool] = None,
+            hide_calendar_health_logs: Optional[List[str]] = None,
+            hide_calendar_plan_tasks: Optional[bool] = None,
             hide_components: Optional[List[str]] = None,
             ignore_device_calendar_event: Optional[bool] = None,
             ignore_device_plan_task: Optional[bool] = None,
@@ -1121,6 +1173,8 @@ class AuthAccountPreferences:
             ignore_email_plan_task: Optional[bool] = None,
             notifications_households: Optional[List['AuthAccountPreferencesNotificationsHousehold']] = None,
             show_calendar_event_astronomy: Optional[bool] = None,
+            show_calendar_event_holidays_c_a: Optional[bool] = None,
+            show_calendar_event_holidays_u_k: Optional[bool] = None,
             show_calendar_event_holidays_u_s: Optional[bool] = None) -> None:
         """Initializes with the given values."""
         self.color_accent = color_accent
@@ -1143,15 +1197,15 @@ class AuthAccountPreferences:
 
         self.format_week8601 = format_week8601
 
-        self.hide_calendar_event_logs = hide_calendar_event_logs
+        self.hide_calendar_budget_recurrences = hide_calendar_budget_recurrences
 
-        self.hide_calendar_event_meals = hide_calendar_event_meals
-
-        self.hide_calendar_event_tasks = hide_calendar_event_tasks
-
-        self.hide_calendar_event_transactions = hide_calendar_event_transactions
+        self.hide_calendar_cook_meal_plans = hide_calendar_cook_meal_plans
 
         self.hide_calendar_events = hide_calendar_events
+
+        self.hide_calendar_health_logs = hide_calendar_health_logs
+
+        self.hide_calendar_plan_tasks = hide_calendar_plan_tasks
 
         self.hide_components = hide_components
 
@@ -1168,6 +1222,12 @@ class AuthAccountPreferences:
         self.notifications_households = notifications_households
 
         self.show_calendar_event_astronomy = show_calendar_event_astronomy
+
+        # nolint: tagliatelle
+        self.show_calendar_event_holidays_c_a = show_calendar_event_holidays_c_a
+
+        # nolint: tagliatelle
+        self.show_calendar_event_holidays_u_k = show_calendar_event_holidays_u_k
 
         # nolint: tagliatelle
         self.show_calendar_event_holidays_u_s = show_calendar_event_holidays_u_s
@@ -1292,41 +1352,23 @@ def auth_account_preferences_from_obj(obj: Any, path: str = "") -> AuthAccountPr
     else:
         format_week8601_from_obj = None
 
-    obj_hide_calendar_event_logs = obj.get('hideCalendarEventLogs', None)
-    if obj_hide_calendar_event_logs is not None:
-        hide_calendar_event_logs_from_obj = from_obj(
-            obj_hide_calendar_event_logs,
-            expected=[list, str],
-            path=path + '.hideCalendarEventLogs')  # type: Optional[List[str]]
-    else:
-        hide_calendar_event_logs_from_obj = None
-
-    obj_hide_calendar_event_meals = obj.get('hideCalendarEventMeals', None)
-    if obj_hide_calendar_event_meals is not None:
-        hide_calendar_event_meals_from_obj = from_obj(
-            obj_hide_calendar_event_meals,
+    obj_hide_calendar_budget_recurrences = obj.get('hideCalendarBudgetRecurrences', None)
+    if obj_hide_calendar_budget_recurrences is not None:
+        hide_calendar_budget_recurrences_from_obj = from_obj(
+            obj_hide_calendar_budget_recurrences,
             expected=[bool],
-            path=path + '.hideCalendarEventMeals')  # type: Optional[bool]
+            path=path + '.hideCalendarBudgetRecurrences')  # type: Optional[bool]
     else:
-        hide_calendar_event_meals_from_obj = None
+        hide_calendar_budget_recurrences_from_obj = None
 
-    obj_hide_calendar_event_tasks = obj.get('hideCalendarEventTasks', None)
-    if obj_hide_calendar_event_tasks is not None:
-        hide_calendar_event_tasks_from_obj = from_obj(
-            obj_hide_calendar_event_tasks,
+    obj_hide_calendar_cook_meal_plans = obj.get('hideCalendarCookMealPlans', None)
+    if obj_hide_calendar_cook_meal_plans is not None:
+        hide_calendar_cook_meal_plans_from_obj = from_obj(
+            obj_hide_calendar_cook_meal_plans,
             expected=[bool],
-            path=path + '.hideCalendarEventTasks')  # type: Optional[bool]
+            path=path + '.hideCalendarCookMealPlans')  # type: Optional[bool]
     else:
-        hide_calendar_event_tasks_from_obj = None
-
-    obj_hide_calendar_event_transactions = obj.get('hideCalendarEventTransactions', None)
-    if obj_hide_calendar_event_transactions is not None:
-        hide_calendar_event_transactions_from_obj = from_obj(
-            obj_hide_calendar_event_transactions,
-            expected=[bool],
-            path=path + '.hideCalendarEventTransactions')  # type: Optional[bool]
-    else:
-        hide_calendar_event_transactions_from_obj = None
+        hide_calendar_cook_meal_plans_from_obj = None
 
     obj_hide_calendar_events = obj.get('hideCalendarEvents', None)
     if obj_hide_calendar_events is not None:
@@ -1336,6 +1378,24 @@ def auth_account_preferences_from_obj(obj: Any, path: str = "") -> AuthAccountPr
             path=path + '.hideCalendarEvents')  # type: Optional[bool]
     else:
         hide_calendar_events_from_obj = None
+
+    obj_hide_calendar_health_logs = obj.get('hideCalendarHealthLogs', None)
+    if obj_hide_calendar_health_logs is not None:
+        hide_calendar_health_logs_from_obj = from_obj(
+            obj_hide_calendar_health_logs,
+            expected=[list, str],
+            path=path + '.hideCalendarHealthLogs')  # type: Optional[List[str]]
+    else:
+        hide_calendar_health_logs_from_obj = None
+
+    obj_hide_calendar_plan_tasks = obj.get('hideCalendarPlanTasks', None)
+    if obj_hide_calendar_plan_tasks is not None:
+        hide_calendar_plan_tasks_from_obj = from_obj(
+            obj_hide_calendar_plan_tasks,
+            expected=[bool],
+            path=path + '.hideCalendarPlanTasks')  # type: Optional[bool]
+    else:
+        hide_calendar_plan_tasks_from_obj = None
 
     obj_hide_components = obj.get('hideComponents', None)
     if obj_hide_components is not None:
@@ -1409,6 +1469,24 @@ def auth_account_preferences_from_obj(obj: Any, path: str = "") -> AuthAccountPr
     else:
         show_calendar_event_astronomy_from_obj = None
 
+    obj_show_calendar_event_holidays_c_a = obj.get('showCalendarEventHolidaysCA', None)
+    if obj_show_calendar_event_holidays_c_a is not None:
+        show_calendar_event_holidays_c_a_from_obj = from_obj(
+            obj_show_calendar_event_holidays_c_a,
+            expected=[bool],
+            path=path + '.showCalendarEventHolidaysCA')  # type: Optional[bool]
+    else:
+        show_calendar_event_holidays_c_a_from_obj = None
+
+    obj_show_calendar_event_holidays_u_k = obj.get('showCalendarEventHolidaysUK', None)
+    if obj_show_calendar_event_holidays_u_k is not None:
+        show_calendar_event_holidays_u_k_from_obj = from_obj(
+            obj_show_calendar_event_holidays_u_k,
+            expected=[bool],
+            path=path + '.showCalendarEventHolidaysUK')  # type: Optional[bool]
+    else:
+        show_calendar_event_holidays_u_k_from_obj = None
+
     obj_show_calendar_event_holidays_u_s = obj.get('showCalendarEventHolidaysUS', None)
     if obj_show_calendar_event_holidays_u_s is not None:
         show_calendar_event_holidays_u_s_from_obj = from_obj(
@@ -1429,11 +1507,11 @@ def auth_account_preferences_from_obj(obj: Any, path: str = "") -> AuthAccountPr
         format_date_separator=format_date_separator_from_obj,
         format_time24=format_time24_from_obj,
         format_week8601=format_week8601_from_obj,
-        hide_calendar_event_logs=hide_calendar_event_logs_from_obj,
-        hide_calendar_event_meals=hide_calendar_event_meals_from_obj,
-        hide_calendar_event_tasks=hide_calendar_event_tasks_from_obj,
-        hide_calendar_event_transactions=hide_calendar_event_transactions_from_obj,
+        hide_calendar_budget_recurrences=hide_calendar_budget_recurrences_from_obj,
+        hide_calendar_cook_meal_plans=hide_calendar_cook_meal_plans_from_obj,
         hide_calendar_events=hide_calendar_events_from_obj,
+        hide_calendar_health_logs=hide_calendar_health_logs_from_obj,
+        hide_calendar_plan_tasks=hide_calendar_plan_tasks_from_obj,
         hide_components=hide_components_from_obj,
         ignore_device_calendar_event=ignore_device_calendar_event_from_obj,
         ignore_device_plan_task=ignore_device_plan_task_from_obj,
@@ -1442,6 +1520,8 @@ def auth_account_preferences_from_obj(obj: Any, path: str = "") -> AuthAccountPr
         ignore_email_plan_task=ignore_email_plan_task_from_obj,
         notifications_households=notifications_households_from_obj,
         show_calendar_event_astronomy=show_calendar_event_astronomy_from_obj,
+        show_calendar_event_holidays_c_a=show_calendar_event_holidays_c_a_from_obj,
+        show_calendar_event_holidays_u_k=show_calendar_event_holidays_u_k_from_obj,
         show_calendar_event_holidays_u_s=show_calendar_event_holidays_u_s_from_obj)
 
 
@@ -1487,23 +1567,23 @@ def auth_account_preferences_to_jsonable(
     if auth_account_preferences.format_week8601 is not None:
         res['formatWeek8601'] = auth_account_preferences.format_week8601
 
-    if auth_account_preferences.hide_calendar_event_logs is not None:
-        res['hideCalendarEventLogs'] = to_jsonable(
-        auth_account_preferences.hide_calendar_event_logs,
-        expected=[list, str],
-        path='{}.hideCalendarEventLogs'.format(path))
+    if auth_account_preferences.hide_calendar_budget_recurrences is not None:
+        res['hideCalendarBudgetRecurrences'] = auth_account_preferences.hide_calendar_budget_recurrences
 
-    if auth_account_preferences.hide_calendar_event_meals is not None:
-        res['hideCalendarEventMeals'] = auth_account_preferences.hide_calendar_event_meals
-
-    if auth_account_preferences.hide_calendar_event_tasks is not None:
-        res['hideCalendarEventTasks'] = auth_account_preferences.hide_calendar_event_tasks
-
-    if auth_account_preferences.hide_calendar_event_transactions is not None:
-        res['hideCalendarEventTransactions'] = auth_account_preferences.hide_calendar_event_transactions
+    if auth_account_preferences.hide_calendar_cook_meal_plans is not None:
+        res['hideCalendarCookMealPlans'] = auth_account_preferences.hide_calendar_cook_meal_plans
 
     if auth_account_preferences.hide_calendar_events is not None:
         res['hideCalendarEvents'] = auth_account_preferences.hide_calendar_events
+
+    if auth_account_preferences.hide_calendar_health_logs is not None:
+        res['hideCalendarHealthLogs'] = to_jsonable(
+        auth_account_preferences.hide_calendar_health_logs,
+        expected=[list, str],
+        path='{}.hideCalendarHealthLogs'.format(path))
+
+    if auth_account_preferences.hide_calendar_plan_tasks is not None:
+        res['hideCalendarPlanTasks'] = auth_account_preferences.hide_calendar_plan_tasks
 
     if auth_account_preferences.hide_components is not None:
         res['hideComponents'] = to_jsonable(
@@ -1534,6 +1614,12 @@ def auth_account_preferences_to_jsonable(
 
     if auth_account_preferences.show_calendar_event_astronomy is not None:
         res['showCalendarEventAstronomy'] = auth_account_preferences.show_calendar_event_astronomy
+
+    if auth_account_preferences.show_calendar_event_holidays_c_a is not None:
+        res['showCalendarEventHolidaysCA'] = auth_account_preferences.show_calendar_event_holidays_c_a
+
+    if auth_account_preferences.show_calendar_event_holidays_u_k is not None:
+        res['showCalendarEventHolidaysUK'] = auth_account_preferences.show_calendar_event_holidays_u_k
 
     if auth_account_preferences.show_calendar_event_holidays_u_s is not None:
         res['showCalendarEventHolidaysUS'] = auth_account_preferences.show_calendar_event_holidays_u_s
@@ -1749,6 +1835,109 @@ def auth_account_preferences_notifications_household_to_jsonable(
 
     if auth_account_preferences_notifications_household.ignore_email_plan_task is not None:
         res['ignoreEmailPlanTask'] = auth_account_preferences_notifications_household.ignore_email_plan_task
+
+    return res
+
+
+class AuthAccountPrivateKey:
+    def __init__(
+            self,
+            key: Optional['EncryptionEncryptedValue'] = None,
+            name: Optional[str] = None,
+            provider: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.key = key
+
+        self.name = name
+
+        self.provider = provider
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to auth_account_private_key_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return auth_account_private_key_to_jsonable(self)
+
+
+def new_auth_account_private_key() -> AuthAccountPrivateKey:
+    """Generates an instance of AuthAccountPrivateKey with default values."""
+    return AuthAccountPrivateKey()
+
+
+def auth_account_private_key_from_obj(obj: Any, path: str = "") -> AuthAccountPrivateKey:
+    """
+    Generates an instance of AuthAccountPrivateKey from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of AuthAccountPrivateKey
+    :param path: path to the object used for debugging
+    :return: parsed instance of AuthAccountPrivateKey
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_key = obj.get('key', None)
+    if obj_key is not None:
+        key_from_obj = from_obj(
+            obj_key,
+            expected=[EncryptionEncryptedValue],
+            path=path + '.key')  # type: Optional['EncryptionEncryptedValue']
+    else:
+        key_from_obj = None
+
+    obj_name = obj.get('name', None)
+    if obj_name is not None:
+        name_from_obj = from_obj(
+            obj_name,
+            expected=[str],
+            path=path + '.name')  # type: Optional[str]
+    else:
+        name_from_obj = None
+
+    obj_provider = obj.get('provider', None)
+    if obj_provider is not None:
+        provider_from_obj = from_obj(
+            obj_provider,
+            expected=[str],
+            path=path + '.provider')  # type: Optional[str]
+    else:
+        provider_from_obj = None
+
+    return AuthAccountPrivateKey(
+        key=key_from_obj,
+        name=name_from_obj,
+        provider=provider_from_obj)
+
+
+def auth_account_private_key_to_jsonable(
+        auth_account_private_key: AuthAccountPrivateKey,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of AuthAccountPrivateKey.
+
+    :param auth_account_private_key: instance of AuthAccountPrivateKey to be JSON-ized
+    :param path: path to the auth_account_private_key used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if auth_account_private_key.key is not None:
+        res['key'] = to_jsonable(
+        auth_account_private_key.key,
+        expected=[EncryptionEncryptedValue],
+        path='{}.key'.format(path))
+
+    if auth_account_private_key.name is not None:
+        res['name'] = auth_account_private_key.name
+
+    if auth_account_private_key.provider is not None:
+        res['provider'] = auth_account_private_key.provider
 
     return res
 
@@ -2263,7 +2452,8 @@ class AuthHouseholdMember:
             id: Optional[str] = None,
             invite_token: Optional[str] = None,
             name: Optional[str] = None,
-            permissions: Optional['Permissions'] = None) -> None:
+            permissions: Optional['Permissions'] = None,
+            public_key: Optional[str] = None) -> None:
         """Initializes with the given values."""
         self.auth_household_id = auth_household_id
 
@@ -2280,6 +2470,8 @@ class AuthHouseholdMember:
         self.name = name
 
         self.permissions = permissions
+
+        self.public_key = public_key
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -2383,6 +2575,15 @@ def auth_household_member_from_obj(obj: Any, path: str = "") -> AuthHouseholdMem
     else:
         permissions_from_obj = None
 
+    obj_public_key = obj.get('publicKey', None)
+    if obj_public_key is not None:
+        public_key_from_obj = from_obj(
+            obj_public_key,
+            expected=[str],
+            path=path + '.publicKey')  # type: Optional[str]
+    else:
+        public_key_from_obj = None
+
     return AuthHouseholdMember(
         auth_household_id=auth_household_id_from_obj,
         child=child_from_obj,
@@ -2391,7 +2592,8 @@ def auth_household_member_from_obj(obj: Any, path: str = "") -> AuthHouseholdMem
         id=id_from_obj,
         invite_token=invite_token_from_obj,
         name=name_from_obj,
-        permissions=permissions_from_obj)
+        permissions=permissions_from_obj,
+        public_key=public_key_from_obj)
 
 
 def auth_household_member_to_jsonable(
@@ -2432,6 +2634,9 @@ def auth_household_member_to_jsonable(
         auth_household_member.permissions,
         expected=[Permissions],
         path='{}.permissions'.format(path))
+
+    if auth_household_member.public_key is not None:
+        res['publicKey'] = auth_household_member.public_key
 
     return res
 
@@ -2936,7 +3141,8 @@ class Bookmark:
             id: Optional[str] = None,
             link: Optional[str] = None,
             name: Optional[str] = None,
-            short_id: Optional[int] = None,
+            new_window: Optional[bool] = None,
+            short_id: Optional[str] = None,
             tags: Optional[List[str]] = None,
             updated: Optional[str] = None,
             updated_by: Optional['UuidNullUUID'] = None) -> None:
@@ -2958,6 +3164,8 @@ class Bookmark:
         self.link = link
 
         self.name = name
+
+        self.new_window = new_window
 
         self.short_id = short_id
 
@@ -3078,12 +3286,21 @@ def bookmark_from_obj(obj: Any, path: str = "") -> Bookmark:
     else:
         name_from_obj = None
 
+    obj_new_window = obj.get('newWindow', None)
+    if obj_new_window is not None:
+        new_window_from_obj = from_obj(
+            obj_new_window,
+            expected=[bool],
+            path=path + '.newWindow')  # type: Optional[bool]
+    else:
+        new_window_from_obj = None
+
     obj_short_id = obj.get('shortID', None)
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -3124,6 +3341,7 @@ def bookmark_from_obj(obj: Any, path: str = "") -> Bookmark:
         id=id_from_obj,
         link=link_from_obj,
         name=name_from_obj,
+        new_window=new_window_from_obj,
         short_id=short_id_from_obj,
         tags=tags_from_obj,
         updated=updated_from_obj,
@@ -3169,6 +3387,9 @@ def bookmark_to_jsonable(
     if bookmark.name is not None:
         res['name'] = bookmark.name
 
+    if bookmark.new_window is not None:
+        res['newWindow'] = bookmark.new_window
+
     if bookmark.short_id is not None:
         res['shortID'] = bookmark.short_id
 
@@ -3202,7 +3423,7 @@ class BudgetAccount:
             icon: Optional[str] = None,
             id: Optional[str] = None,
             name: Optional[str] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
         self.auth_household_id = auth_household_id
@@ -3342,8 +3563,8 @@ def budget_account_from_obj(obj: Any, path: str = "") -> BudgetAccount:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -3429,7 +3650,7 @@ class BudgetCategory:
             id: Optional[str] = None,
             income: Optional[bool] = None,
             name: Optional[str] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             target_amount: Optional[int] = None,
             target_month: Optional[int] = None,
             target_year: Optional[int] = None,
@@ -3567,8 +3788,8 @@ def budget_category_from_obj(obj: Any, path: str = "") -> BudgetCategory:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -4024,7 +4245,7 @@ class BudgetPayee:
             id: Optional[str] = None,
             name: Optional[str] = None,
             shop_store: Optional[bool] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
         self.address = address
@@ -4164,8 +4385,8 @@ def budget_payee_from_obj(obj: Any, path: str = "") -> BudgetPayee:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -5243,6 +5464,7 @@ class CalendarEvent:
             self,
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
+            calendar_i_calendar_id: Optional[str] = None,
             color: Optional[int] = None,
             created: Optional[str] = None,
             date_end: Optional[str] = None,
@@ -5266,6 +5488,8 @@ class CalendarEvent:
         self.auth_account_id = auth_account_id
 
         self.auth_household_id = auth_household_id
+
+        self.calendar_i_calendar_id = calendar_i_calendar_id
 
         self.color = color
 
@@ -5356,6 +5580,15 @@ def calendar_event_from_obj(obj: Any, path: str = "") -> CalendarEvent:
             path=path + '.authHouseholdID')  # type: Optional[str]
     else:
         auth_household_id_from_obj = None
+
+    obj_calendar_i_calendar_id = obj.get('calendarICalendarID', None)
+    if obj_calendar_i_calendar_id is not None:
+        calendar_i_calendar_id_from_obj = from_obj(
+            obj_calendar_i_calendar_id,
+            expected=[str],
+            path=path + '.calendarICalendarID')  # type: Optional[str]
+    else:
+        calendar_i_calendar_id_from_obj = None
 
     obj_color = obj.get('color', None)
     if obj_color is not None:
@@ -5531,6 +5764,7 @@ def calendar_event_from_obj(obj: Any, path: str = "") -> CalendarEvent:
     return CalendarEvent(
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
+        calendar_i_calendar_id=calendar_i_calendar_id_from_obj,
         color=color_from_obj,
         created=created_from_obj,
         date_end=date_end_from_obj,
@@ -5569,6 +5803,9 @@ def calendar_event_to_jsonable(
 
     if calendar_event.auth_household_id is not None:
         res['authHouseholdID'] = calendar_event.auth_household_id
+
+    if calendar_event.calendar_i_calendar_id is not None:
+        res['calendarICalendarID'] = calendar_event.calendar_i_calendar_id
 
     if calendar_event.color is not None:
         res['color'] = calendar_event.color
@@ -6345,7 +6582,7 @@ class CookRecipe:
             public: Optional[bool] = None,
             rating: Optional[int] = None,
             servings: Optional[str] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             source: Optional[str] = None,
             tags: Optional[List[str]] = None,
             time_cook: Optional[int] = None,
@@ -6563,8 +6800,8 @@ def cook_recipe_from_obj(obj: Any, path: str = "") -> CookRecipe:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -6724,7 +6961,7 @@ def cook_recipe_to_jsonable(
 class CookRecipeNote:
     def __init__(
             self,
-            date: Optional['CivilDate'] = None,
+            date: Optional[Any] = None,
             difficulty: Optional[int] = None,
             note: Optional[str] = None,
             rating: Optional[int] = None) -> None:
@@ -6767,14 +7004,7 @@ def cook_recipe_note_from_obj(obj: Any, path: str = "") -> CookRecipeNote:
             raise ValueError(
                 'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
 
-    obj_date = obj.get('date', None)
-    if obj_date is not None:
-        date_from_obj = from_obj(
-            obj_date,
-            expected=[CivilDate],
-            path=path + '.date')  # type: Optional['CivilDate']
-    else:
-        date_from_obj = None
+    date_from_obj = obj.get('date', None)
 
     obj_difficulty = obj.get('difficulty', None)
     if obj_difficulty is not None:
@@ -6823,10 +7053,7 @@ def cook_recipe_note_to_jsonable(
     res = dict()  # type: Dict[str, Any]
 
     if cook_recipe_note.date is not None:
-        res['date'] = to_jsonable(
-        cook_recipe_note.date,
-        expected=[CivilDate],
-        path='{}.date'.format(path))
+        res['date'] = cook_recipe_note.date
 
     if cook_recipe_note.difficulty is not None:
         res['difficulty'] = cook_recipe_note.difficulty
@@ -7284,7 +7511,7 @@ class InventoryCollection:
             icon: Optional[str] = None,
             id: Optional[str] = None,
             name: Optional[str] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             sort: Optional['InventoryCollectionSort'] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
@@ -7405,8 +7632,8 @@ def inventory_collection_from_obj(obj: Any, path: str = "") -> InventoryCollecti
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -7587,7 +7814,7 @@ class InventoryItem:
             name: Optional[str] = None,
             properties: Optional[Dict[str, str]] = None,
             quantity: Optional[int] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             upc: Optional[str] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
@@ -7719,8 +7946,8 @@ def inventory_item_from_obj(obj: Any, path: str = "") -> InventoryItem:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -7819,7 +8046,7 @@ class NotesPage:
             id: Optional[str] = None,
             name: Optional[str] = None,
             parent_id: Optional[str] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             tags: Optional[List[str]] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
@@ -7962,8 +8189,8 @@ def notes_page_from_obj(obj: Any, path: str = "") -> NotesPage:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -8199,6 +8426,7 @@ class Permissions:
             notes: Optional[int] = None,
             plan: Optional[int] = None,
             reward: Optional[int] = None,
+            secrets: Optional[int] = None,
             shop: Optional[int] = None) -> None:
         """Initializes with the given values."""
         self.auth = auth
@@ -8218,6 +8446,8 @@ class Permissions:
         self.plan = plan
 
         self.reward = reward
+
+        self.secrets = secrets
 
         self.shop = shop
 
@@ -8332,6 +8562,15 @@ def permissions_from_obj(obj: Any, path: str = "") -> Permissions:
     else:
         reward_from_obj = None
 
+    obj_secrets = obj.get('secrets', None)
+    if obj_secrets is not None:
+        secrets_from_obj = from_obj(
+            obj_secrets,
+            expected=[int],
+            path=path + '.secrets')  # type: Optional[int]
+    else:
+        secrets_from_obj = None
+
     obj_shop = obj.get('shop', None)
     if obj_shop is not None:
         shop_from_obj = from_obj(
@@ -8351,6 +8590,7 @@ def permissions_from_obj(obj: Any, path: str = "") -> Permissions:
         notes=notes_from_obj,
         plan=plan_from_obj,
         reward=reward_from_obj,
+        secrets=secrets_from_obj,
         shop=shop_from_obj)
 
 
@@ -8393,6 +8633,9 @@ def permissions_to_jsonable(
     if permissions.reward is not None:
         res['reward'] = permissions.reward
 
+    if permissions.secrets is not None:
+        res['secrets'] = permissions.secrets
+
     if permissions.shop is not None:
         res['shop'] = permissions.shop
 
@@ -8414,7 +8657,7 @@ class PlanProject:
             plan_task_count: Optional[int] = None,
             position: Optional[str] = None,
             shop_item_count: Optional[int] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             tags: Optional[List[str]] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
@@ -8590,8 +8833,8 @@ def plan_project_from_obj(obj: Any, path: str = "") -> PlanProject:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -8718,7 +8961,7 @@ class PlanTask:
             position: Optional[str] = None,
             recur_on_done: Optional[bool] = None,
             recurrence: Optional['Recurrence'] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             tags: Optional[List[str]] = None,
             template: Optional[bool] = None,
             updated: Optional[str] = None) -> None:
@@ -8997,8 +9240,8 @@ def plan_task_from_obj(obj: Any, path: str = "") -> PlanTask:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -9524,7 +9767,7 @@ class RewardCard:
             recipients: Optional[List[str]] = None,
             reward: Optional[str] = None,
             senders: Optional[List[str]] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             stamp_count: Optional[int] = None,
             stamp_goal: Optional[int] = None,
             updated: Optional[str] = None) -> None:
@@ -9670,8 +9913,8 @@ def reward_card_from_obj(obj: Any, path: str = "") -> RewardCard:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -9774,6 +10017,513 @@ def reward_card_to_jsonable(
 
     if reward_card.updated is not None:
         res['updated'] = reward_card.updated
+
+    return res
+
+
+class SecretsValue:
+    def __init__(
+            self,
+            auth_account_id: Optional[str] = None,
+            auth_household_id: Optional[str] = None,
+            data_encrypted: Optional[List['EncryptionEncryptedValue']] = None,
+            deleted: Optional[str] = None,
+            id: Optional[str] = None,
+            name_encrypted: Optional['EncryptionEncryptedValue'] = None,
+            secrets_vault_id: Optional[str] = None,
+            short_id: Optional[str] = None,
+            tags_encrypted: Optional['EncryptionEncryptedValue'] = None,
+            updated: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.auth_account_id = auth_account_id
+
+        self.auth_household_id = auth_household_id
+
+        self.data_encrypted = data_encrypted
+
+        self.deleted = deleted
+
+        self.id = id
+
+        self.name_encrypted = name_encrypted
+
+        self.secrets_vault_id = secrets_vault_id
+
+        self.short_id = short_id
+
+        self.tags_encrypted = tags_encrypted
+
+        self.updated = updated
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to secrets_value_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return secrets_value_to_jsonable(self)
+
+
+def new_secrets_value() -> SecretsValue:
+    """Generates an instance of SecretsValue with default values."""
+    return SecretsValue()
+
+
+def secrets_value_from_obj(obj: Any, path: str = "") -> SecretsValue:
+    """
+    Generates an instance of SecretsValue from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of SecretsValue
+    :param path: path to the object used for debugging
+    :return: parsed instance of SecretsValue
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_auth_account_id = obj.get('authAccountID', None)
+    if obj_auth_account_id is not None:
+        auth_account_id_from_obj = from_obj(
+            obj_auth_account_id,
+            expected=[str],
+            path=path + '.authAccountID')  # type: Optional[str]
+    else:
+        auth_account_id_from_obj = None
+
+    obj_auth_household_id = obj.get('authHouseholdID', None)
+    if obj_auth_household_id is not None:
+        auth_household_id_from_obj = from_obj(
+            obj_auth_household_id,
+            expected=[str],
+            path=path + '.authHouseholdID')  # type: Optional[str]
+    else:
+        auth_household_id_from_obj = None
+
+    obj_data_encrypted = obj.get('dataEncrypted', None)
+    if obj_data_encrypted is not None:
+        data_encrypted_from_obj = from_obj(
+            obj_data_encrypted,
+            expected=[list, EncryptionEncryptedValue],
+            path=path + '.dataEncrypted')  # type: Optional[List['EncryptionEncryptedValue']]
+    else:
+        data_encrypted_from_obj = None
+
+    obj_deleted = obj.get('deleted', None)
+    if obj_deleted is not None:
+        deleted_from_obj = from_obj(
+            obj_deleted,
+            expected=[str],
+            path=path + '.deleted')  # type: Optional[str]
+    else:
+        deleted_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    obj_name_encrypted = obj.get('nameEncrypted', None)
+    if obj_name_encrypted is not None:
+        name_encrypted_from_obj = from_obj(
+            obj_name_encrypted,
+            expected=[EncryptionEncryptedValue],
+            path=path + '.nameEncrypted')  # type: Optional['EncryptionEncryptedValue']
+    else:
+        name_encrypted_from_obj = None
+
+    obj_secrets_vault_id = obj.get('secretsVaultID', None)
+    if obj_secrets_vault_id is not None:
+        secrets_vault_id_from_obj = from_obj(
+            obj_secrets_vault_id,
+            expected=[str],
+            path=path + '.secretsVaultID')  # type: Optional[str]
+    else:
+        secrets_vault_id_from_obj = None
+
+    obj_short_id = obj.get('shortID', None)
+    if obj_short_id is not None:
+        short_id_from_obj = from_obj(
+            obj_short_id,
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
+    else:
+        short_id_from_obj = None
+
+    obj_tags_encrypted = obj.get('tagsEncrypted', None)
+    if obj_tags_encrypted is not None:
+        tags_encrypted_from_obj = from_obj(
+            obj_tags_encrypted,
+            expected=[EncryptionEncryptedValue],
+            path=path + '.tagsEncrypted')  # type: Optional['EncryptionEncryptedValue']
+    else:
+        tags_encrypted_from_obj = None
+
+    obj_updated = obj.get('updated', None)
+    if obj_updated is not None:
+        updated_from_obj = from_obj(
+            obj_updated,
+            expected=[str],
+            path=path + '.updated')  # type: Optional[str]
+    else:
+        updated_from_obj = None
+
+    return SecretsValue(
+        auth_account_id=auth_account_id_from_obj,
+        auth_household_id=auth_household_id_from_obj,
+        data_encrypted=data_encrypted_from_obj,
+        deleted=deleted_from_obj,
+        id=id_from_obj,
+        name_encrypted=name_encrypted_from_obj,
+        secrets_vault_id=secrets_vault_id_from_obj,
+        short_id=short_id_from_obj,
+        tags_encrypted=tags_encrypted_from_obj,
+        updated=updated_from_obj)
+
+
+def secrets_value_to_jsonable(
+        secrets_value: SecretsValue,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of SecretsValue.
+
+    :param secrets_value: instance of SecretsValue to be JSON-ized
+    :param path: path to the secrets_value used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if secrets_value.auth_account_id is not None:
+        res['authAccountID'] = secrets_value.auth_account_id
+
+    if secrets_value.auth_household_id is not None:
+        res['authHouseholdID'] = secrets_value.auth_household_id
+
+    if secrets_value.data_encrypted is not None:
+        res['dataEncrypted'] = to_jsonable(
+        secrets_value.data_encrypted,
+        expected=[list, EncryptionEncryptedValue],
+        path='{}.dataEncrypted'.format(path))
+
+    if secrets_value.deleted is not None:
+        res['deleted'] = secrets_value.deleted
+
+    if secrets_value.id is not None:
+        res['id'] = secrets_value.id
+
+    if secrets_value.name_encrypted is not None:
+        res['nameEncrypted'] = to_jsonable(
+        secrets_value.name_encrypted,
+        expected=[EncryptionEncryptedValue],
+        path='{}.nameEncrypted'.format(path))
+
+    if secrets_value.secrets_vault_id is not None:
+        res['secretsVaultID'] = secrets_value.secrets_vault_id
+
+    if secrets_value.short_id is not None:
+        res['shortID'] = secrets_value.short_id
+
+    if secrets_value.tags_encrypted is not None:
+        res['tagsEncrypted'] = to_jsonable(
+        secrets_value.tags_encrypted,
+        expected=[EncryptionEncryptedValue],
+        path='{}.tagsEncrypted'.format(path))
+
+    if secrets_value.updated is not None:
+        res['updated'] = secrets_value.updated
+
+    return res
+
+
+class SecretsVault:
+    def __init__(
+            self,
+            auth_account_id: Optional[str] = None,
+            auth_household_id: Optional[str] = None,
+            created: Optional[str] = None,
+            icon: Optional[str] = None,
+            id: Optional[str] = None,
+            keys: Optional[List['SecretsVaultKey']] = None,
+            name: Optional[str] = None,
+            short_id: Optional[str] = None,
+            updated: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.auth_account_id = auth_account_id
+
+        self.auth_household_id = auth_household_id
+
+        self.created = created
+
+        self.icon = icon
+
+        self.id = id
+
+        self.keys = keys
+
+        self.name = name
+
+        self.short_id = short_id
+
+        self.updated = updated
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to secrets_vault_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return secrets_vault_to_jsonable(self)
+
+
+def new_secrets_vault() -> SecretsVault:
+    """Generates an instance of SecretsVault with default values."""
+    return SecretsVault()
+
+
+def secrets_vault_from_obj(obj: Any, path: str = "") -> SecretsVault:
+    """
+    Generates an instance of SecretsVault from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of SecretsVault
+    :param path: path to the object used for debugging
+    :return: parsed instance of SecretsVault
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_auth_account_id = obj.get('authAccountID', None)
+    if obj_auth_account_id is not None:
+        auth_account_id_from_obj = from_obj(
+            obj_auth_account_id,
+            expected=[str],
+            path=path + '.authAccountID')  # type: Optional[str]
+    else:
+        auth_account_id_from_obj = None
+
+    obj_auth_household_id = obj.get('authHouseholdID', None)
+    if obj_auth_household_id is not None:
+        auth_household_id_from_obj = from_obj(
+            obj_auth_household_id,
+            expected=[str],
+            path=path + '.authHouseholdID')  # type: Optional[str]
+    else:
+        auth_household_id_from_obj = None
+
+    obj_created = obj.get('created', None)
+    if obj_created is not None:
+        created_from_obj = from_obj(
+            obj_created,
+            expected=[str],
+            path=path + '.created')  # type: Optional[str]
+    else:
+        created_from_obj = None
+
+    obj_icon = obj.get('icon', None)
+    if obj_icon is not None:
+        icon_from_obj = from_obj(
+            obj_icon,
+            expected=[str],
+            path=path + '.icon')  # type: Optional[str]
+    else:
+        icon_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    obj_keys = obj.get('keys', None)
+    if obj_keys is not None:
+        keys_from_obj = from_obj(
+            obj_keys,
+            expected=[list, SecretsVaultKey],
+            path=path + '.keys')  # type: Optional[List['SecretsVaultKey']]
+    else:
+        keys_from_obj = None
+
+    obj_name = obj.get('name', None)
+    if obj_name is not None:
+        name_from_obj = from_obj(
+            obj_name,
+            expected=[str],
+            path=path + '.name')  # type: Optional[str]
+    else:
+        name_from_obj = None
+
+    obj_short_id = obj.get('shortID', None)
+    if obj_short_id is not None:
+        short_id_from_obj = from_obj(
+            obj_short_id,
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
+    else:
+        short_id_from_obj = None
+
+    obj_updated = obj.get('updated', None)
+    if obj_updated is not None:
+        updated_from_obj = from_obj(
+            obj_updated,
+            expected=[str],
+            path=path + '.updated')  # type: Optional[str]
+    else:
+        updated_from_obj = None
+
+    return SecretsVault(
+        auth_account_id=auth_account_id_from_obj,
+        auth_household_id=auth_household_id_from_obj,
+        created=created_from_obj,
+        icon=icon_from_obj,
+        id=id_from_obj,
+        keys=keys_from_obj,
+        name=name_from_obj,
+        short_id=short_id_from_obj,
+        updated=updated_from_obj)
+
+
+def secrets_vault_to_jsonable(
+        secrets_vault: SecretsVault,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of SecretsVault.
+
+    :param secrets_vault: instance of SecretsVault to be JSON-ized
+    :param path: path to the secrets_vault used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if secrets_vault.auth_account_id is not None:
+        res['authAccountID'] = secrets_vault.auth_account_id
+
+    if secrets_vault.auth_household_id is not None:
+        res['authHouseholdID'] = secrets_vault.auth_household_id
+
+    if secrets_vault.created is not None:
+        res['created'] = secrets_vault.created
+
+    if secrets_vault.icon is not None:
+        res['icon'] = secrets_vault.icon
+
+    if secrets_vault.id is not None:
+        res['id'] = secrets_vault.id
+
+    if secrets_vault.keys is not None:
+        res['keys'] = to_jsonable(
+        secrets_vault.keys,
+        expected=[list, SecretsVaultKey],
+        path='{}.keys'.format(path))
+
+    if secrets_vault.name is not None:
+        res['name'] = secrets_vault.name
+
+    if secrets_vault.short_id is not None:
+        res['shortID'] = secrets_vault.short_id
+
+    if secrets_vault.updated is not None:
+        res['updated'] = secrets_vault.updated
+
+    return res
+
+
+class SecretsVaultKey:
+    def __init__(
+            self,
+            auth_account_id: Optional[str] = None,
+            key: Optional['EncryptionEncryptedValue'] = None) -> None:
+        """Initializes with the given values."""
+        self.auth_account_id = auth_account_id
+
+        self.key = key
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to secrets_vault_key_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return secrets_vault_key_to_jsonable(self)
+
+
+def new_secrets_vault_key() -> SecretsVaultKey:
+    """Generates an instance of SecretsVaultKey with default values."""
+    return SecretsVaultKey()
+
+
+def secrets_vault_key_from_obj(obj: Any, path: str = "") -> SecretsVaultKey:
+    """
+    Generates an instance of SecretsVaultKey from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of SecretsVaultKey
+    :param path: path to the object used for debugging
+    :return: parsed instance of SecretsVaultKey
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_auth_account_id = obj.get('authAccountID', None)
+    if obj_auth_account_id is not None:
+        auth_account_id_from_obj = from_obj(
+            obj_auth_account_id,
+            expected=[str],
+            path=path + '.authAccountID')  # type: Optional[str]
+    else:
+        auth_account_id_from_obj = None
+
+    obj_key = obj.get('key', None)
+    if obj_key is not None:
+        key_from_obj = from_obj(
+            obj_key,
+            expected=[EncryptionEncryptedValue],
+            path=path + '.key')  # type: Optional['EncryptionEncryptedValue']
+    else:
+        key_from_obj = None
+
+    return SecretsVaultKey(
+        auth_account_id=auth_account_id_from_obj,
+        key=key_from_obj)
+
+
+def secrets_vault_key_to_jsonable(
+        secrets_vault_key: SecretsVaultKey,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of SecretsVaultKey.
+
+    :param secrets_vault_key: instance of SecretsVaultKey to be JSON-ized
+    :param path: path to the secrets_vault_key used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if secrets_vault_key.auth_account_id is not None:
+        res['authAccountID'] = secrets_vault_key.auth_account_id
+
+    if secrets_vault_key.key is not None:
+        res['key'] = to_jsonable(
+        secrets_vault_key.key,
+        expected=[EncryptionEncryptedValue],
+        path='{}.key'.format(path))
 
     return res
 
@@ -9947,6 +10697,7 @@ class ShopItem:
             self,
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
+            budget_category_id: Optional[str] = None,
             budget_payee_id: Optional[str] = None,
             cook_meal_plan_id: Optional[str] = None,
             cook_recipe_id: Optional[str] = None,
@@ -9956,6 +10707,8 @@ class ShopItem:
             name: Optional[str] = None,
             next_date: Optional[str] = None,
             plan_project_id: Optional[str] = None,
+            position: Optional[str] = None,
+            price: Optional[int] = None,
             recurrence: Optional['Recurrence'] = None,
             shop_category_id: Optional[str] = None,
             shop_list_id: Optional[str] = None,
@@ -9964,6 +10717,8 @@ class ShopItem:
         self.auth_account_id = auth_account_id
 
         self.auth_household_id = auth_household_id
+
+        self.budget_category_id = budget_category_id
 
         self.budget_payee_id = budget_payee_id
 
@@ -9982,6 +10737,10 @@ class ShopItem:
         self.next_date = next_date
 
         self.plan_project_id = plan_project_id
+
+        self.position = position
+
+        self.price = price
 
         self.recurrence = recurrence
 
@@ -10038,6 +10797,15 @@ def shop_item_from_obj(obj: Any, path: str = "") -> ShopItem:
             path=path + '.authHouseholdID')  # type: Optional[str]
     else:
         auth_household_id_from_obj = None
+
+    obj_budget_category_id = obj.get('budgetCategoryID', None)
+    if obj_budget_category_id is not None:
+        budget_category_id_from_obj = from_obj(
+            obj_budget_category_id,
+            expected=[str],
+            path=path + '.budgetCategoryID')  # type: Optional[str]
+    else:
+        budget_category_id_from_obj = None
 
     obj_budget_payee_id = obj.get('budgetPayeeID', None)
     if obj_budget_payee_id is not None:
@@ -10120,6 +10888,24 @@ def shop_item_from_obj(obj: Any, path: str = "") -> ShopItem:
     else:
         plan_project_id_from_obj = None
 
+    obj_position = obj.get('position', None)
+    if obj_position is not None:
+        position_from_obj = from_obj(
+            obj_position,
+            expected=[str],
+            path=path + '.position')  # type: Optional[str]
+    else:
+        position_from_obj = None
+
+    obj_price = obj.get('price', None)
+    if obj_price is not None:
+        price_from_obj = from_obj(
+            obj_price,
+            expected=[int],
+            path=path + '.price')  # type: Optional[int]
+    else:
+        price_from_obj = None
+
     obj_recurrence = obj.get('recurrence', None)
     if obj_recurrence is not None:
         recurrence_from_obj = from_obj(
@@ -10159,6 +10945,7 @@ def shop_item_from_obj(obj: Any, path: str = "") -> ShopItem:
     return ShopItem(
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
+        budget_category_id=budget_category_id_from_obj,
         budget_payee_id=budget_payee_id_from_obj,
         cook_meal_plan_id=cook_meal_plan_id_from_obj,
         cook_recipe_id=cook_recipe_id_from_obj,
@@ -10168,6 +10955,8 @@ def shop_item_from_obj(obj: Any, path: str = "") -> ShopItem:
         name=name_from_obj,
         next_date=next_date_from_obj,
         plan_project_id=plan_project_id_from_obj,
+        position=position_from_obj,
+        price=price_from_obj,
         recurrence=recurrence_from_obj,
         shop_category_id=shop_category_id_from_obj,
         shop_list_id=shop_list_id_from_obj,
@@ -10191,6 +10980,9 @@ def shop_item_to_jsonable(
 
     if shop_item.auth_household_id is not None:
         res['authHouseholdID'] = shop_item.auth_household_id
+
+    if shop_item.budget_category_id is not None:
+        res['budgetCategoryID'] = shop_item.budget_category_id
 
     if shop_item.budget_payee_id is not None:
         res['budgetPayeeID'] = shop_item.budget_payee_id
@@ -10219,6 +11011,12 @@ def shop_item_to_jsonable(
     if shop_item.plan_project_id is not None:
         res['planProjectID'] = shop_item.plan_project_id
 
+    if shop_item.position is not None:
+        res['position'] = shop_item.position
+
+    if shop_item.price is not None:
+        res['price'] = shop_item.price
+
     if shop_item.recurrence is not None:
         res['recurrence'] = to_jsonable(
         shop_item.recurrence,
@@ -10242,17 +11040,20 @@ class ShopList:
             self,
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
+            budget_category_id: Optional[str] = None,
             created: Optional[str] = None,
             icon: Optional[str] = None,
             id: Optional[str] = None,
             name: Optional[str] = None,
             shop_item_count: Optional[int] = None,
-            short_id: Optional[int] = None,
+            short_id: Optional[str] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
         self.auth_account_id = auth_account_id
 
         self.auth_household_id = auth_household_id
+
+        self.budget_category_id = budget_category_id
 
         self.created = created
 
@@ -10316,6 +11117,15 @@ def shop_list_from_obj(obj: Any, path: str = "") -> ShopList:
     else:
         auth_household_id_from_obj = None
 
+    obj_budget_category_id = obj.get('budgetCategoryID', None)
+    if obj_budget_category_id is not None:
+        budget_category_id_from_obj = from_obj(
+            obj_budget_category_id,
+            expected=[str],
+            path=path + '.budgetCategoryID')  # type: Optional[str]
+    else:
+        budget_category_id_from_obj = None
+
     obj_created = obj.get('created', None)
     if obj_created is not None:
         created_from_obj = from_obj(
@@ -10365,8 +11175,8 @@ def shop_list_from_obj(obj: Any, path: str = "") -> ShopList:
     if obj_short_id is not None:
         short_id_from_obj = from_obj(
             obj_short_id,
-            expected=[int],
-            path=path + '.shortID')  # type: Optional[int]
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
     else:
         short_id_from_obj = None
 
@@ -10382,6 +11192,7 @@ def shop_list_from_obj(obj: Any, path: str = "") -> ShopList:
     return ShopList(
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
+        budget_category_id=budget_category_id_from_obj,
         created=created_from_obj,
         icon=icon_from_obj,
         id=id_from_obj,
@@ -10408,6 +11219,9 @@ def shop_list_to_jsonable(
 
     if shop_list.auth_household_id is not None:
         res['authHouseholdID'] = shop_list.auth_household_id
+
+    if shop_list.budget_category_id is not None:
+        res['budgetCategoryID'] = shop_list.budget_category_id
 
     if shop_list.created is not None:
         res['created'] = shop_list.created
@@ -10578,6 +11392,271 @@ def table_notify_to_jsonable(
 
     if table_notify.updated is not None:
         res['updated'] = table_notify.updated
+
+    return res
+
+
+class EncryptionEncryptedValue:
+    def __init__(
+            self,
+            ciphertext: Optional[str] = None,
+            encryption: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.ciphertext = ciphertext
+
+        self.encryption = encryption
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to encryption_encrypted_value_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return encryption_encrypted_value_to_jsonable(self)
+
+
+def new_encryption_encrypted_value() -> EncryptionEncryptedValue:
+    """Generates an instance of EncryptionEncryptedValue with default values."""
+    return EncryptionEncryptedValue()
+
+
+def encryption_encrypted_value_from_obj(obj: Any, path: str = "") -> EncryptionEncryptedValue:
+    """
+    Generates an instance of EncryptionEncryptedValue from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of EncryptionEncryptedValue
+    :param path: path to the object used for debugging
+    :return: parsed instance of EncryptionEncryptedValue
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_ciphertext = obj.get('ciphertext', None)
+    if obj_ciphertext is not None:
+        ciphertext_from_obj = from_obj(
+            obj_ciphertext,
+            expected=[str],
+            path=path + '.ciphertext')  # type: Optional[str]
+    else:
+        ciphertext_from_obj = None
+
+    obj_encryption = obj.get('encryption', None)
+    if obj_encryption is not None:
+        encryption_from_obj = from_obj(
+            obj_encryption,
+            expected=[str],
+            path=path + '.encryption')  # type: Optional[str]
+    else:
+        encryption_from_obj = None
+
+    return EncryptionEncryptedValue(
+        ciphertext=ciphertext_from_obj,
+        encryption=encryption_from_obj)
+
+
+def encryption_encrypted_value_to_jsonable(
+        encryption_encrypted_value: EncryptionEncryptedValue,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of EncryptionEncryptedValue.
+
+    :param encryption_encrypted_value: instance of EncryptionEncryptedValue to be JSON-ized
+    :param path: path to the encryption_encrypted_value used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if encryption_encrypted_value.ciphertext is not None:
+        res['ciphertext'] = encryption_encrypted_value.ciphertext
+
+    if encryption_encrypted_value.encryption is not None:
+        res['encryption'] = encryption_encrypted_value.encryption
+
+    return res
+
+
+class ModelsCalendarICalendar:
+    def __init__(
+            self,
+            auth_account_id: Optional[str] = None,
+            auth_household_id: Optional[str] = None,
+            created: Optional[str] = None,
+            ics: Optional[str] = None,
+            id: Optional[str] = None,
+            name: Optional[str] = None,
+            updated: Optional[str] = None,
+            url: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.auth_account_id = auth_account_id
+
+        self.auth_household_id = auth_household_id
+
+        self.created = created
+
+        self.ics = ics
+
+        self.id = id
+
+        # * If name is not specified, the ICS will be parsed, CalendarEvents created, but no CalendarICalendar will be created/associated with them.
+        self.name = name
+
+        self.updated = updated
+
+        self.url = url
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to models_calendar_i_calendar_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return models_calendar_i_calendar_to_jsonable(self)
+
+
+def new_models_calendar_i_calendar() -> ModelsCalendarICalendar:
+    """Generates an instance of ModelsCalendarICalendar with default values."""
+    return ModelsCalendarICalendar()
+
+
+def models_calendar_i_calendar_from_obj(obj: Any, path: str = "") -> ModelsCalendarICalendar:
+    """
+    Generates an instance of ModelsCalendarICalendar from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of ModelsCalendarICalendar
+    :param path: path to the object used for debugging
+    :return: parsed instance of ModelsCalendarICalendar
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_auth_account_id = obj.get('authAccountID', None)
+    if obj_auth_account_id is not None:
+        auth_account_id_from_obj = from_obj(
+            obj_auth_account_id,
+            expected=[str],
+            path=path + '.authAccountID')  # type: Optional[str]
+    else:
+        auth_account_id_from_obj = None
+
+    obj_auth_household_id = obj.get('authHouseholdID', None)
+    if obj_auth_household_id is not None:
+        auth_household_id_from_obj = from_obj(
+            obj_auth_household_id,
+            expected=[str],
+            path=path + '.authHouseholdID')  # type: Optional[str]
+    else:
+        auth_household_id_from_obj = None
+
+    obj_created = obj.get('created', None)
+    if obj_created is not None:
+        created_from_obj = from_obj(
+            obj_created,
+            expected=[str],
+            path=path + '.created')  # type: Optional[str]
+    else:
+        created_from_obj = None
+
+    obj_ics = obj.get('ics', None)
+    if obj_ics is not None:
+        ics_from_obj = from_obj(
+            obj_ics,
+            expected=[str],
+            path=path + '.ics')  # type: Optional[str]
+    else:
+        ics_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    obj_name = obj.get('name', None)
+    if obj_name is not None:
+        name_from_obj = from_obj(
+            obj_name,
+            expected=[str],
+            path=path + '.name')  # type: Optional[str]
+    else:
+        name_from_obj = None
+
+    obj_updated = obj.get('updated', None)
+    if obj_updated is not None:
+        updated_from_obj = from_obj(
+            obj_updated,
+            expected=[str],
+            path=path + '.updated')  # type: Optional[str]
+    else:
+        updated_from_obj = None
+
+    obj_url = obj.get('url', None)
+    if obj_url is not None:
+        url_from_obj = from_obj(
+            obj_url,
+            expected=[str],
+            path=path + '.url')  # type: Optional[str]
+    else:
+        url_from_obj = None
+
+    return ModelsCalendarICalendar(
+        auth_account_id=auth_account_id_from_obj,
+        auth_household_id=auth_household_id_from_obj,
+        created=created_from_obj,
+        ics=ics_from_obj,
+        id=id_from_obj,
+        name=name_from_obj,
+        updated=updated_from_obj,
+        url=url_from_obj)
+
+
+def models_calendar_i_calendar_to_jsonable(
+        models_calendar_i_calendar: ModelsCalendarICalendar,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of ModelsCalendarICalendar.
+
+    :param models_calendar_i_calendar: instance of ModelsCalendarICalendar to be JSON-ized
+    :param path: path to the models_calendar_i_calendar used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if models_calendar_i_calendar.auth_account_id is not None:
+        res['authAccountID'] = models_calendar_i_calendar.auth_account_id
+
+    if models_calendar_i_calendar.auth_household_id is not None:
+        res['authHouseholdID'] = models_calendar_i_calendar.auth_household_id
+
+    if models_calendar_i_calendar.created is not None:
+        res['created'] = models_calendar_i_calendar.created
+
+    if models_calendar_i_calendar.ics is not None:
+        res['ics'] = models_calendar_i_calendar.ics
+
+    if models_calendar_i_calendar.id is not None:
+        res['id'] = models_calendar_i_calendar.id
+
+    if models_calendar_i_calendar.name is not None:
+        res['name'] = models_calendar_i_calendar.name
+
+    if models_calendar_i_calendar.updated is not None:
+        res['updated'] = models_calendar_i_calendar.updated
+
+    if models_calendar_i_calendar.url is not None:
+        res['url'] = models_calendar_i_calendar.url
 
     return res
 
@@ -10796,6 +11875,41 @@ class RemoteCaller:
             self.url_prefix,
             '/api/v1/auth/accounts/',
             str(id)])
+
+        data = to_jsonable(
+            body,
+            expected=[AuthAccount])
+
+
+        resp = self.session.request(
+            method='put',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def auth_account_keys_update(
+            self,
+            body: 'AuthAccount',
+            id: str) -> Any:
+        """
+        Send a put request to /api/v1/auth/accounts/{id}/keys.
+
+        :param body: AuthAccount
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/auth/accounts/',
+            str(id),
+            '/keys'])
 
         data = to_jsonable(
             body,
@@ -12489,6 +13603,137 @@ class RemoteCaller:
                 obj=resp.json(),
                 expected=[Any])
 
+    def calendar_i_calendars_read(self) -> Any:
+        """
+        Send a get request to /api/v1/calendar/icalendars.
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/calendar/icalendars'
+
+        resp = self.session.request(method='get', url=url)
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def calendar_i_calendar_create(
+            self,
+            body: 'ModelsCalendarICalendar') -> Any:
+        """
+        Send a post request to /api/v1/calendar/icalendars.
+
+        :param body: CalendarICalendar
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/calendar/icalendars'
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsCalendarICalendar])
+
+
+        resp = self.session.request(
+            method='post',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def calendar_i_calendar_delete(
+            self,
+            id: str) -> 'Response':
+        """
+        Send a delete request to /api/v1/calendar/icalendars/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/calendar/icalendars/',
+            str(id)])
+
+        resp = self.session.request(
+            method='delete',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Response])
+
+    def calendar_i_calendar_read(
+            self,
+            id: str) -> Any:
+        """
+        Send a get request to /api/v1/calendar/icalendars/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/calendar/icalendars/',
+            str(id)])
+
+        resp = self.session.request(
+            method='get',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def calendar_i_calendar_update(
+            self,
+            body: 'ModelsCalendarICalendar',
+            id: str) -> Any:
+        """
+        Send a put request to /api/v1/calendar/icalendars/{id}.
+
+        :param body: CalendarICalendar
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/calendar/icalendars/',
+            str(id)])
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsCalendarICalendar])
+
+
+        resp = self.session.request(
+            method='put',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
     def changes_read(self) -> Any:
         """
         Send a get request to /api/v1/changes.
@@ -14071,6 +15316,268 @@ class RemoteCaller:
         data = to_jsonable(
             body,
             expected=[RewardCard])
+
+
+        resp = self.session.request(
+            method='put',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_values_read(self) -> Any:
+        """
+        Send a get request to /api/v1/secrets/values.
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/secrets/values'
+
+        resp = self.session.request(method='get', url=url)
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_value_create(
+            self,
+            body: 'SecretsValue') -> Any:
+        """
+        Send a post request to /api/v1/secrets/values.
+
+        :param body: SecretsValue
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/secrets/values'
+
+        data = to_jsonable(
+            body,
+            expected=[SecretsValue])
+
+
+        resp = self.session.request(
+            method='post',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_value_delete(
+            self,
+            id: str) -> 'Response':
+        """
+        Send a delete request to /api/v1/secrets/values/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/secrets/values/',
+            str(id)])
+
+        resp = self.session.request(
+            method='delete',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Response])
+
+    def secrets_value_read(
+            self,
+            id: str) -> Any:
+        """
+        Send a get request to /api/v1/secrets/values/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/secrets/values/',
+            str(id)])
+
+        resp = self.session.request(
+            method='get',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_value_update(
+            self,
+            body: 'SecretsValue',
+            id: str) -> Any:
+        """
+        Send a put request to /api/v1/secrets/values/{id}.
+
+        :param body: SecretsValue
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/secrets/values/',
+            str(id)])
+
+        data = to_jsonable(
+            body,
+            expected=[SecretsValue])
+
+
+        resp = self.session.request(
+            method='put',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_vaults_read(self) -> Any:
+        """
+        Send a get request to /api/v1/secrets/vaults.
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/secrets/vaults'
+
+        resp = self.session.request(method='get', url=url)
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_vault_create(
+            self,
+            body: 'SecretsVault') -> Any:
+        """
+        Send a post request to /api/v1/secrets/vaults.
+
+        :param body: SecretsVault
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/secrets/vaults'
+
+        data = to_jsonable(
+            body,
+            expected=[SecretsVault])
+
+
+        resp = self.session.request(
+            method='post',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_vault_delete(
+            self,
+            id: str) -> 'Response':
+        """
+        Send a delete request to /api/v1/secrets/vaults/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/secrets/vaults/',
+            str(id)])
+
+        resp = self.session.request(
+            method='delete',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Response])
+
+    def secrets_vault_read(
+            self,
+            id: str) -> Any:
+        """
+        Send a get request to /api/v1/secrets/vaults/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/secrets/vaults/',
+            str(id)])
+
+        resp = self.session.request(
+            method='get',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[Any])
+
+    def secrets_vault_update(
+            self,
+            body: 'SecretsVault',
+            id: str) -> Any:
+        """
+        Send a put request to /api/v1/secrets/vaults/{id}.
+
+        :param body: SecretsVault
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/secrets/vaults/',
+            str(id)])
+
+        data = to_jsonable(
+            body,
+            expected=[SecretsVault])
 
 
         resp = self.session.request(
