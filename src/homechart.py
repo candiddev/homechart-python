@@ -157,11 +157,14 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == HttplibJsonResponseModelsBudgetTransactions:
         return httplib_json_response_models_budget_transactions_from_obj(obj, path=path)
 
+    if exp == HttplibJsonResponseModelsCalendar:
+        return httplib_json_response_models_calendar_from_obj(obj, path=path)
+
     if exp == HttplibJsonResponseModelsCalendarEvents:
         return httplib_json_response_models_calendar_events_from_obj(obj, path=path)
 
-    if exp == HttplibJsonResponseModelsCalendarICalendars:
-        return httplib_json_response_models_calendar_i_calendars_from_obj(obj, path=path)
+    if exp == HttplibJsonResponseModelsCalendars:
+        return httplib_json_response_models_calendars_from_obj(obj, path=path)
 
     if exp == HttplibJsonResponseModelsChanges:
         return httplib_json_response_models_changes_from_obj(obj, path=path)
@@ -280,11 +283,14 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == HttplibJsonResponseDataModelsBudgetTransactions:
         return httplib_json_response_data_models_budget_transactions_from_obj(obj, path=path)
 
+    if exp == HttplibJsonResponseDataModelsCalendar:
+        return httplib_json_response_data_models_calendar_from_obj(obj, path=path)
+
     if exp == HttplibJsonResponseDataModelsCalendarEvents:
         return httplib_json_response_data_models_calendar_events_from_obj(obj, path=path)
 
-    if exp == HttplibJsonResponseDataModelsCalendarICalendars:
-        return httplib_json_response_data_models_calendar_i_calendars_from_obj(obj, path=path)
+    if exp == HttplibJsonResponseDataModelsCalendars:
+        return httplib_json_response_data_models_calendars_from_obj(obj, path=path)
 
     if exp == HttplibJsonResponseDataModelsChanges:
         return httplib_json_response_data_models_changes_from_obj(obj, path=path)
@@ -436,11 +442,11 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == ModelsBudgetTransactionCategory:
         return models_budget_transaction_category_from_obj(obj, path=path)
 
+    if exp == ModelsCalendar:
+        return models_calendar_from_obj(obj, path=path)
+
     if exp == ModelsCalendarEvent:
         return models_calendar_event_from_obj(obj, path=path)
-
-    if exp == ModelsCalendarICalendar:
-        return models_calendar_i_calendar_from_obj(obj, path=path)
 
     if exp == ModelsChange:
         return models_change_from_obj(obj, path=path)
@@ -770,13 +776,17 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
         assert isinstance(obj, HttplibJsonResponseModelsBudgetTransactions)
         return httplib_json_response_models_budget_transactions_to_jsonable(obj, path=path)
 
+    if exp == HttplibJsonResponseModelsCalendar:
+        assert isinstance(obj, HttplibJsonResponseModelsCalendar)
+        return httplib_json_response_models_calendar_to_jsonable(obj, path=path)
+
     if exp == HttplibJsonResponseModelsCalendarEvents:
         assert isinstance(obj, HttplibJsonResponseModelsCalendarEvents)
         return httplib_json_response_models_calendar_events_to_jsonable(obj, path=path)
 
-    if exp == HttplibJsonResponseModelsCalendarICalendars:
-        assert isinstance(obj, HttplibJsonResponseModelsCalendarICalendars)
-        return httplib_json_response_models_calendar_i_calendars_to_jsonable(obj, path=path)
+    if exp == HttplibJsonResponseModelsCalendars:
+        assert isinstance(obj, HttplibJsonResponseModelsCalendars)
+        return httplib_json_response_models_calendars_to_jsonable(obj, path=path)
 
     if exp == HttplibJsonResponseModelsChanges:
         assert isinstance(obj, HttplibJsonResponseModelsChanges)
@@ -934,13 +944,17 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
         assert isinstance(obj, HttplibJsonResponseDataModelsBudgetTransactions)
         return httplib_json_response_data_models_budget_transactions_to_jsonable(obj, path=path)
 
+    if exp == HttplibJsonResponseDataModelsCalendar:
+        assert isinstance(obj, HttplibJsonResponseDataModelsCalendar)
+        return httplib_json_response_data_models_calendar_to_jsonable(obj, path=path)
+
     if exp == HttplibJsonResponseDataModelsCalendarEvents:
         assert isinstance(obj, HttplibJsonResponseDataModelsCalendarEvents)
         return httplib_json_response_data_models_calendar_events_to_jsonable(obj, path=path)
 
-    if exp == HttplibJsonResponseDataModelsCalendarICalendars:
-        assert isinstance(obj, HttplibJsonResponseDataModelsCalendarICalendars)
-        return httplib_json_response_data_models_calendar_i_calendars_to_jsonable(obj, path=path)
+    if exp == HttplibJsonResponseDataModelsCalendars:
+        assert isinstance(obj, HttplibJsonResponseDataModelsCalendars)
+        return httplib_json_response_data_models_calendars_to_jsonable(obj, path=path)
 
     if exp == HttplibJsonResponseDataModelsChanges:
         assert isinstance(obj, HttplibJsonResponseDataModelsChanges)
@@ -1142,13 +1156,13 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
         assert isinstance(obj, ModelsBudgetTransactionCategory)
         return models_budget_transaction_category_to_jsonable(obj, path=path)
 
+    if exp == ModelsCalendar:
+        assert isinstance(obj, ModelsCalendar)
+        return models_calendar_to_jsonable(obj, path=path)
+
     if exp == ModelsCalendarEvent:
         assert isinstance(obj, ModelsCalendarEvent)
         return models_calendar_event_to_jsonable(obj, path=path)
-
-    if exp == ModelsCalendarICalendar:
-        assert isinstance(obj, ModelsCalendarICalendar)
-        return models_calendar_i_calendar_to_jsonable(obj, path=path)
 
     if exp == ModelsChange:
         assert isinstance(obj, ModelsChange)
@@ -1907,6 +1921,7 @@ class ConfigApp:
             enable_demo: Optional[bool] = None,
             ignore_payment_failures: Optional[bool] = None,
             keep_calendar_event_days: Optional[int] = None,
+            keep_change_days: Optional[int] = None,
             keep_cook_meal_plan_days: Optional[int] = None,
             keep_deleted_days: Optional[int] = None,
             keep_expired_auth_household_days: Optional[int] = None,
@@ -1981,6 +1996,8 @@ class ConfigApp:
         self.ignore_payment_failures = ignore_payment_failures
 
         self.keep_calendar_event_days = keep_calendar_event_days
+
+        self.keep_change_days = keep_change_days
 
         self.keep_cook_meal_plan_days = keep_cook_meal_plan_days
 
@@ -2242,6 +2259,15 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
             path=path + '.keepCalendarEventDays')  # type: Optional[int]
     else:
         keep_calendar_event_days_from_obj = None
+
+    obj_keep_change_days = obj.get('keepChangeDays', None)
+    if obj_keep_change_days is not None:
+        keep_change_days_from_obj = from_obj(
+            obj_keep_change_days,
+            expected=[int],
+            path=path + '.keepChangeDays')  # type: Optional[int]
+    else:
+        keep_change_days_from_obj = None
 
     obj_keep_cook_meal_plan_days = obj.get('keepCookMealPlanDays', None)
     if obj_keep_cook_meal_plan_days is not None:
@@ -2525,6 +2551,7 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
         enable_demo=enable_demo_from_obj,
         ignore_payment_failures=ignore_payment_failures_from_obj,
         keep_calendar_event_days=keep_calendar_event_days_from_obj,
+        keep_change_days=keep_change_days_from_obj,
         keep_cook_meal_plan_days=keep_cook_meal_plan_days_from_obj,
         keep_deleted_days=keep_deleted_days_from_obj,
         keep_expired_auth_household_days=keep_expired_auth_household_days_from_obj,
@@ -2633,6 +2660,9 @@ def config_app_to_jsonable(
 
     if config_app.keep_calendar_event_days is not None:
         res['keepCalendarEventDays'] = config_app.keep_calendar_event_days
+
+    if config_app.keep_change_days is not None:
+        res['keepChangeDays'] = config_app.keep_change_days
 
     if config_app.keep_cook_meal_plan_days is not None:
         res['keepCookMealPlanDays'] = config_app.keep_cook_meal_plan_days
@@ -5795,6 +5825,112 @@ def httplib_json_response_models_budget_transactions_to_jsonable(
     return res
 
 
+class HttplibJsonResponseModelsCalendar:
+    def __init__(
+            self,
+            data: Optional['HttplibJsonResponseDataModelsCalendar'] = None,
+            error: Optional['HttplibJsonResponseError'] = None,
+            id: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.data = data
+
+        self.error = error
+
+        self.id = id
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to httplib_json_response_models_calendar_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return httplib_json_response_models_calendar_to_jsonable(self)
+
+
+def new_httplib_json_response_models_calendar() -> HttplibJsonResponseModelsCalendar:
+    """Generates an instance of HttplibJsonResponseModelsCalendar with default values."""
+    return HttplibJsonResponseModelsCalendar()
+
+
+def httplib_json_response_models_calendar_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseModelsCalendar:
+    """
+    Generates an instance of HttplibJsonResponseModelsCalendar from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseModelsCalendar
+    :param path: path to the object used for debugging
+    :return: parsed instance of HttplibJsonResponseModelsCalendar
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_data = obj.get('data', None)
+    if obj_data is not None:
+        data_from_obj = from_obj(
+            obj_data,
+            expected=[HttplibJsonResponseDataModelsCalendar],
+            path=path + '.data')  # type: Optional['HttplibJsonResponseDataModelsCalendar']
+    else:
+        data_from_obj = None
+
+    obj_error = obj.get('error', None)
+    if obj_error is not None:
+        error_from_obj = from_obj(
+            obj_error,
+            expected=[HttplibJsonResponseError],
+            path=path + '.error')  # type: Optional['HttplibJsonResponseError']
+    else:
+        error_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    return HttplibJsonResponseModelsCalendar(
+        data=data_from_obj,
+        error=error_from_obj,
+        id=id_from_obj)
+
+
+def httplib_json_response_models_calendar_to_jsonable(
+        httplib_json_response_models_calendar: HttplibJsonResponseModelsCalendar,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseModelsCalendar.
+
+    :param httplib_json_response_models_calendar: instance of HttplibJsonResponseModelsCalendar to be JSON-ized
+    :param path: path to the httplib_json_response_models_calendar used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if httplib_json_response_models_calendar.data is not None:
+        res['data'] = to_jsonable(
+        httplib_json_response_models_calendar.data,
+        expected=[HttplibJsonResponseDataModelsCalendar],
+        path='{}.data'.format(path))
+
+    if httplib_json_response_models_calendar.error is not None:
+        res['error'] = to_jsonable(
+        httplib_json_response_models_calendar.error,
+        expected=[HttplibJsonResponseError],
+        path='{}.error'.format(path))
+
+    if httplib_json_response_models_calendar.id is not None:
+        res['id'] = httplib_json_response_models_calendar.id
+
+    return res
+
+
 class HttplibJsonResponseModelsCalendarEvents:
     def __init__(
             self,
@@ -5901,10 +6037,10 @@ def httplib_json_response_models_calendar_events_to_jsonable(
     return res
 
 
-class HttplibJsonResponseModelsCalendarICalendars:
+class HttplibJsonResponseModelsCalendars:
     def __init__(
             self,
-            data: Optional['HttplibJsonResponseDataModelsCalendarICalendars'] = None,
+            data: Optional['HttplibJsonResponseDataModelsCalendars'] = None,
             error: Optional['HttplibJsonResponseError'] = None,
             id: Optional[str] = None) -> None:
         """Initializes with the given values."""
@@ -5916,25 +6052,25 @@ class HttplibJsonResponseModelsCalendarICalendars:
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
-        Dispatches the conversion to httplib_json_response_models_calendar_i_calendars_to_jsonable.
+        Dispatches the conversion to httplib_json_response_models_calendars_to_jsonable.
 
         :return: JSON-able representation
         """
-        return httplib_json_response_models_calendar_i_calendars_to_jsonable(self)
+        return httplib_json_response_models_calendars_to_jsonable(self)
 
 
-def new_httplib_json_response_models_calendar_i_calendars() -> HttplibJsonResponseModelsCalendarICalendars:
-    """Generates an instance of HttplibJsonResponseModelsCalendarICalendars with default values."""
-    return HttplibJsonResponseModelsCalendarICalendars()
+def new_httplib_json_response_models_calendars() -> HttplibJsonResponseModelsCalendars:
+    """Generates an instance of HttplibJsonResponseModelsCalendars with default values."""
+    return HttplibJsonResponseModelsCalendars()
 
 
-def httplib_json_response_models_calendar_i_calendars_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseModelsCalendarICalendars:
+def httplib_json_response_models_calendars_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseModelsCalendars:
     """
-    Generates an instance of HttplibJsonResponseModelsCalendarICalendars from a dictionary object.
+    Generates an instance of HttplibJsonResponseModelsCalendars from a dictionary object.
 
-    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseModelsCalendarICalendars
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseModelsCalendars
     :param path: path to the object used for debugging
-    :return: parsed instance of HttplibJsonResponseModelsCalendarICalendars
+    :return: parsed instance of HttplibJsonResponseModelsCalendars
     """
     if not isinstance(obj, dict):
         raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
@@ -5948,8 +6084,8 @@ def httplib_json_response_models_calendar_i_calendars_from_obj(obj: Any, path: s
     if obj_data is not None:
         data_from_obj = from_obj(
             obj_data,
-            expected=[HttplibJsonResponseDataModelsCalendarICalendars],
-            path=path + '.data')  # type: Optional['HttplibJsonResponseDataModelsCalendarICalendars']
+            expected=[HttplibJsonResponseDataModelsCalendars],
+            path=path + '.data')  # type: Optional['HttplibJsonResponseDataModelsCalendars']
     else:
         data_from_obj = None
 
@@ -5971,38 +6107,38 @@ def httplib_json_response_models_calendar_i_calendars_from_obj(obj: Any, path: s
     else:
         id_from_obj = None
 
-    return HttplibJsonResponseModelsCalendarICalendars(
+    return HttplibJsonResponseModelsCalendars(
         data=data_from_obj,
         error=error_from_obj,
         id=id_from_obj)
 
 
-def httplib_json_response_models_calendar_i_calendars_to_jsonable(
-        httplib_json_response_models_calendar_i_calendars: HttplibJsonResponseModelsCalendarICalendars,
+def httplib_json_response_models_calendars_to_jsonable(
+        httplib_json_response_models_calendars: HttplibJsonResponseModelsCalendars,
         path: str = "") -> MutableMapping[str, Any]:
     """
-    Generates a JSON-able mapping from an instance of HttplibJsonResponseModelsCalendarICalendars.
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseModelsCalendars.
 
-    :param httplib_json_response_models_calendar_i_calendars: instance of HttplibJsonResponseModelsCalendarICalendars to be JSON-ized
-    :param path: path to the httplib_json_response_models_calendar_i_calendars used for debugging
+    :param httplib_json_response_models_calendars: instance of HttplibJsonResponseModelsCalendars to be JSON-ized
+    :param path: path to the httplib_json_response_models_calendars used for debugging
     :return: a JSON-able representation
     """
     res = dict()  # type: Dict[str, Any]
 
-    if httplib_json_response_models_calendar_i_calendars.data is not None:
+    if httplib_json_response_models_calendars.data is not None:
         res['data'] = to_jsonable(
-        httplib_json_response_models_calendar_i_calendars.data,
-        expected=[HttplibJsonResponseDataModelsCalendarICalendars],
+        httplib_json_response_models_calendars.data,
+        expected=[HttplibJsonResponseDataModelsCalendars],
         path='{}.data'.format(path))
 
-    if httplib_json_response_models_calendar_i_calendars.error is not None:
+    if httplib_json_response_models_calendars.error is not None:
         res['error'] = to_jsonable(
-        httplib_json_response_models_calendar_i_calendars.error,
+        httplib_json_response_models_calendars.error,
         expected=[HttplibJsonResponseError],
         path='{}.error'.format(path))
 
-    if httplib_json_response_models_calendar_i_calendars.id is not None:
-        res['id'] = httplib_json_response_models_calendar_i_calendars.id
+    if httplib_json_response_models_calendars.id is not None:
+        res['id'] = httplib_json_response_models_calendars.id
 
     return res
 
@@ -10599,6 +10735,144 @@ def httplib_json_response_data_models_budget_transactions_to_jsonable(
     return res
 
 
+class HttplibJsonResponseDataModelsCalendar:
+    def __init__(
+            self,
+            hash: Optional[str] = None,
+            ids: Optional[List['HttplibJsonResponseCacheID']] = None,
+            total: Optional[int] = None,
+            type: Optional[str] = None,
+            value: Optional['ModelsCalendar'] = None) -> None:
+        """Initializes with the given values."""
+        self.hash = hash
+
+        self.ids = ids
+
+        self.total = total
+
+        self.type = type
+
+        self.value = value
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to httplib_json_response_data_models_calendar_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return httplib_json_response_data_models_calendar_to_jsonable(self)
+
+
+def new_httplib_json_response_data_models_calendar() -> HttplibJsonResponseDataModelsCalendar:
+    """Generates an instance of HttplibJsonResponseDataModelsCalendar with default values."""
+    return HttplibJsonResponseDataModelsCalendar()
+
+
+def httplib_json_response_data_models_calendar_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseDataModelsCalendar:
+    """
+    Generates an instance of HttplibJsonResponseDataModelsCalendar from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseDataModelsCalendar
+    :param path: path to the object used for debugging
+    :return: parsed instance of HttplibJsonResponseDataModelsCalendar
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_hash = obj.get('hash', None)
+    if obj_hash is not None:
+        hash_from_obj = from_obj(
+            obj_hash,
+            expected=[str],
+            path=path + '.hash')  # type: Optional[str]
+    else:
+        hash_from_obj = None
+
+    obj_ids = obj.get('ids', None)
+    if obj_ids is not None:
+        ids_from_obj = from_obj(
+            obj_ids,
+            expected=[list, HttplibJsonResponseCacheID],
+            path=path + '.ids')  # type: Optional[List['HttplibJsonResponseCacheID']]
+    else:
+        ids_from_obj = None
+
+    obj_total = obj.get('total', None)
+    if obj_total is not None:
+        total_from_obj = from_obj(
+            obj_total,
+            expected=[int],
+            path=path + '.total')  # type: Optional[int]
+    else:
+        total_from_obj = None
+
+    obj_type = obj.get('type', None)
+    if obj_type is not None:
+        type_from_obj = from_obj(
+            obj_type,
+            expected=[str],
+            path=path + '.type')  # type: Optional[str]
+    else:
+        type_from_obj = None
+
+    obj_value = obj.get('value', None)
+    if obj_value is not None:
+        value_from_obj = from_obj(
+            obj_value,
+            expected=[ModelsCalendar],
+            path=path + '.value')  # type: Optional['ModelsCalendar']
+    else:
+        value_from_obj = None
+
+    return HttplibJsonResponseDataModelsCalendar(
+        hash=hash_from_obj,
+        ids=ids_from_obj,
+        total=total_from_obj,
+        type=type_from_obj,
+        value=value_from_obj)
+
+
+def httplib_json_response_data_models_calendar_to_jsonable(
+        httplib_json_response_data_models_calendar: HttplibJsonResponseDataModelsCalendar,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseDataModelsCalendar.
+
+    :param httplib_json_response_data_models_calendar: instance of HttplibJsonResponseDataModelsCalendar to be JSON-ized
+    :param path: path to the httplib_json_response_data_models_calendar used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if httplib_json_response_data_models_calendar.hash is not None:
+        res['hash'] = httplib_json_response_data_models_calendar.hash
+
+    if httplib_json_response_data_models_calendar.ids is not None:
+        res['ids'] = to_jsonable(
+        httplib_json_response_data_models_calendar.ids,
+        expected=[list, HttplibJsonResponseCacheID],
+        path='{}.ids'.format(path))
+
+    if httplib_json_response_data_models_calendar.total is not None:
+        res['total'] = httplib_json_response_data_models_calendar.total
+
+    if httplib_json_response_data_models_calendar.type is not None:
+        res['type'] = httplib_json_response_data_models_calendar.type
+
+    if httplib_json_response_data_models_calendar.value is not None:
+        res['value'] = to_jsonable(
+        httplib_json_response_data_models_calendar.value,
+        expected=[ModelsCalendar],
+        path='{}.value'.format(path))
+
+    return res
+
+
 class HttplibJsonResponseDataModelsCalendarEvents:
     def __init__(
             self,
@@ -10737,14 +11011,14 @@ def httplib_json_response_data_models_calendar_events_to_jsonable(
     return res
 
 
-class HttplibJsonResponseDataModelsCalendarICalendars:
+class HttplibJsonResponseDataModelsCalendars:
     def __init__(
             self,
             hash: Optional[str] = None,
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsCalendarICalendar']] = None) -> None:
+            value: Optional[List['ModelsCalendar']] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10758,25 +11032,25 @@ class HttplibJsonResponseDataModelsCalendarICalendars:
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
-        Dispatches the conversion to httplib_json_response_data_models_calendar_i_calendars_to_jsonable.
+        Dispatches the conversion to httplib_json_response_data_models_calendars_to_jsonable.
 
         :return: JSON-able representation
         """
-        return httplib_json_response_data_models_calendar_i_calendars_to_jsonable(self)
+        return httplib_json_response_data_models_calendars_to_jsonable(self)
 
 
-def new_httplib_json_response_data_models_calendar_i_calendars() -> HttplibJsonResponseDataModelsCalendarICalendars:
-    """Generates an instance of HttplibJsonResponseDataModelsCalendarICalendars with default values."""
-    return HttplibJsonResponseDataModelsCalendarICalendars()
+def new_httplib_json_response_data_models_calendars() -> HttplibJsonResponseDataModelsCalendars:
+    """Generates an instance of HttplibJsonResponseDataModelsCalendars with default values."""
+    return HttplibJsonResponseDataModelsCalendars()
 
 
-def httplib_json_response_data_models_calendar_i_calendars_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseDataModelsCalendarICalendars:
+def httplib_json_response_data_models_calendars_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseDataModelsCalendars:
     """
-    Generates an instance of HttplibJsonResponseDataModelsCalendarICalendars from a dictionary object.
+    Generates an instance of HttplibJsonResponseDataModelsCalendars from a dictionary object.
 
-    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseDataModelsCalendarICalendars
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseDataModelsCalendars
     :param path: path to the object used for debugging
-    :return: parsed instance of HttplibJsonResponseDataModelsCalendarICalendars
+    :return: parsed instance of HttplibJsonResponseDataModelsCalendars
     """
     if not isinstance(obj, dict):
         raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
@@ -10826,12 +11100,12 @@ def httplib_json_response_data_models_calendar_i_calendars_from_obj(obj: Any, pa
     if obj_value is not None:
         value_from_obj = from_obj(
             obj_value,
-            expected=[list, ModelsCalendarICalendar],
-            path=path + '.value')  # type: Optional[List['ModelsCalendarICalendar']]
+            expected=[list, ModelsCalendar],
+            path=path + '.value')  # type: Optional[List['ModelsCalendar']]
     else:
         value_from_obj = None
 
-    return HttplibJsonResponseDataModelsCalendarICalendars(
+    return HttplibJsonResponseDataModelsCalendars(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
@@ -10839,37 +11113,37 @@ def httplib_json_response_data_models_calendar_i_calendars_from_obj(obj: Any, pa
         value=value_from_obj)
 
 
-def httplib_json_response_data_models_calendar_i_calendars_to_jsonable(
-        httplib_json_response_data_models_calendar_i_calendars: HttplibJsonResponseDataModelsCalendarICalendars,
+def httplib_json_response_data_models_calendars_to_jsonable(
+        httplib_json_response_data_models_calendars: HttplibJsonResponseDataModelsCalendars,
         path: str = "") -> MutableMapping[str, Any]:
     """
-    Generates a JSON-able mapping from an instance of HttplibJsonResponseDataModelsCalendarICalendars.
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseDataModelsCalendars.
 
-    :param httplib_json_response_data_models_calendar_i_calendars: instance of HttplibJsonResponseDataModelsCalendarICalendars to be JSON-ized
-    :param path: path to the httplib_json_response_data_models_calendar_i_calendars used for debugging
+    :param httplib_json_response_data_models_calendars: instance of HttplibJsonResponseDataModelsCalendars to be JSON-ized
+    :param path: path to the httplib_json_response_data_models_calendars used for debugging
     :return: a JSON-able representation
     """
     res = dict()  # type: Dict[str, Any]
 
-    if httplib_json_response_data_models_calendar_i_calendars.hash is not None:
-        res['hash'] = httplib_json_response_data_models_calendar_i_calendars.hash
+    if httplib_json_response_data_models_calendars.hash is not None:
+        res['hash'] = httplib_json_response_data_models_calendars.hash
 
-    if httplib_json_response_data_models_calendar_i_calendars.ids is not None:
+    if httplib_json_response_data_models_calendars.ids is not None:
         res['ids'] = to_jsonable(
-        httplib_json_response_data_models_calendar_i_calendars.ids,
+        httplib_json_response_data_models_calendars.ids,
         expected=[list, HttplibJsonResponseCacheID],
         path='{}.ids'.format(path))
 
-    if httplib_json_response_data_models_calendar_i_calendars.total is not None:
-        res['total'] = httplib_json_response_data_models_calendar_i_calendars.total
+    if httplib_json_response_data_models_calendars.total is not None:
+        res['total'] = httplib_json_response_data_models_calendars.total
 
-    if httplib_json_response_data_models_calendar_i_calendars.type is not None:
-        res['type'] = httplib_json_response_data_models_calendar_i_calendars.type
+    if httplib_json_response_data_models_calendars.type is not None:
+        res['type'] = httplib_json_response_data_models_calendars.type
 
-    if httplib_json_response_data_models_calendar_i_calendars.value is not None:
+    if httplib_json_response_data_models_calendars.value is not None:
         res['value'] = to_jsonable(
-        httplib_json_response_data_models_calendar_i_calendars.value,
-        expected=[list, ModelsCalendarICalendar],
+        httplib_json_response_data_models_calendars.value,
+        expected=[list, ModelsCalendar],
         path='{}.value'.format(path))
 
     return res
@@ -14152,7 +14426,9 @@ def httplib_json_response_error_to_jsonable(
 class HttplibServer:
     def __init__(
             self,
+            disable_compression: Optional[bool] = None,
             listen_address: Optional[str] = None,
+            log_requests: Optional[List[str]] = None,
             rate_limit_key: Optional[str] = None,
             rate_limit_patterns: Optional[Dict[str, str]] = None,
             timeout_read: Optional[int] = None,
@@ -14166,7 +14442,11 @@ class HttplibServer:
             tls_key_path: Optional[str] = None,
             x_forwarded_trusted_c_id_rs: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
+        self.disable_compression = disable_compression
+
         self.listen_address = listen_address
+
+        self.log_requests = log_requests
 
         self.rate_limit_key = rate_limit_key
 
@@ -14222,6 +14502,15 @@ def httplib_server_from_obj(obj: Any, path: str = "") -> HttplibServer:
             raise ValueError(
                 'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
 
+    obj_disable_compression = obj.get('disableCompression', None)
+    if obj_disable_compression is not None:
+        disable_compression_from_obj = from_obj(
+            obj_disable_compression,
+            expected=[bool],
+            path=path + '.disableCompression')  # type: Optional[bool]
+    else:
+        disable_compression_from_obj = None
+
     obj_listen_address = obj.get('listenAddress', None)
     if obj_listen_address is not None:
         listen_address_from_obj = from_obj(
@@ -14230,6 +14519,15 @@ def httplib_server_from_obj(obj: Any, path: str = "") -> HttplibServer:
             path=path + '.listenAddress')  # type: Optional[str]
     else:
         listen_address_from_obj = None
+
+    obj_log_requests = obj.get('logRequests', None)
+    if obj_log_requests is not None:
+        log_requests_from_obj = from_obj(
+            obj_log_requests,
+            expected=[list, str],
+            path=path + '.logRequests')  # type: Optional[List[str]]
+    else:
+        log_requests_from_obj = None
 
     obj_rate_limit_key = obj.get('rateLimitKey', None)
     if obj_rate_limit_key is not None:
@@ -14340,7 +14638,9 @@ def httplib_server_from_obj(obj: Any, path: str = "") -> HttplibServer:
         x_forwarded_trusted_c_id_rs_from_obj = None
 
     return HttplibServer(
+        disable_compression=disable_compression_from_obj,
         listen_address=listen_address_from_obj,
+        log_requests=log_requests_from_obj,
         rate_limit_key=rate_limit_key_from_obj,
         rate_limit_patterns=rate_limit_patterns_from_obj,
         timeout_read=timeout_read_from_obj,
@@ -14367,8 +14667,17 @@ def httplib_server_to_jsonable(
     """
     res = dict()  # type: Dict[str, Any]
 
+    if httplib_server.disable_compression is not None:
+        res['disableCompression'] = httplib_server.disable_compression
+
     if httplib_server.listen_address is not None:
         res['listenAddress'] = httplib_server.listen_address
+
+    if httplib_server.log_requests is not None:
+        res['logRequests'] = to_jsonable(
+        httplib_server.log_requests,
+        expected=[list, str],
+        path='{}.logRequests'.format(path))
 
     if httplib_server.rate_limit_key is not None:
         res['rateLimitKey'] = httplib_server.rate_limit_key
@@ -14841,7 +15150,6 @@ class ModelsAuthAccount:
             email_auth_disabled: Optional[bool] = None,
             email_auth_token: Optional[str] = None,
             health_item_correlation_hours: Optional[int] = None,
-            hide_calendar_i_calendars: Optional[List[str]] = None,
             icalendar_id: Optional[str] = None,
             id: Optional[str] = None,
             iso639_code: Optional[str] = None,
@@ -14910,9 +15218,6 @@ class ModelsAuthAccount:
 
         # Number of hours to associate health item outputs to inputs.
         self.health_item_correlation_hours = health_item_correlation_hours
-
-        # A list of iCalendar IDs to hide.
-        self.hide_calendar_i_calendars = hide_calendar_i_calendars
 
         # ICalendarID for the account.
         self.icalendar_id = icalendar_id
@@ -15140,15 +15445,6 @@ def models_auth_account_from_obj(obj: Any, path: str = "") -> ModelsAuthAccount:
             path=path + '.healthItemCorrelationHours')  # type: Optional[int]
     else:
         health_item_correlation_hours_from_obj = None
-
-    obj_hide_calendar_i_calendars = obj.get('hideCalendarICalendars', None)
-    if obj_hide_calendar_i_calendars is not None:
-        hide_calendar_i_calendars_from_obj = from_obj(
-            obj_hide_calendar_i_calendars,
-            expected=[list, str],
-            path=path + '.hideCalendarICalendars')  # type: Optional[List[str]]
-    else:
-        hide_calendar_i_calendars_from_obj = None
 
     obj_icalendar_id = obj.get('icalendarID', None)
     if obj_icalendar_id is not None:
@@ -15402,7 +15698,6 @@ def models_auth_account_from_obj(obj: Any, path: str = "") -> ModelsAuthAccount:
         email_auth_disabled=email_auth_disabled_from_obj,
         email_auth_token=email_auth_token_from_obj,
         health_item_correlation_hours=health_item_correlation_hours_from_obj,
-        hide_calendar_i_calendars=hide_calendar_i_calendars_from_obj,
         icalendar_id=icalendar_id_from_obj,
         id=id_from_obj,
         iso639_code=iso639_code_from_obj,
@@ -15496,12 +15791,6 @@ def models_auth_account_to_jsonable(
 
     if models_auth_account.health_item_correlation_hours is not None:
         res['healthItemCorrelationHours'] = models_auth_account.health_item_correlation_hours
-
-    if models_auth_account.hide_calendar_i_calendars is not None:
-        res['hideCalendarICalendars'] = to_jsonable(
-        models_auth_account.hide_calendar_i_calendars,
-        expected=[list, str],
-        path='{}.hideCalendarICalendars'.format(path))
 
     if models_auth_account.icalendar_id is not None:
         res['icalendarID'] = models_auth_account.icalendar_id
@@ -15827,7 +16116,9 @@ class ModelsAuthAccountPreferences:
             format_week8601: Optional[bool] = None,
             hide_calendar_budget_recurrences: Optional[bool] = None,
             hide_calendar_cook_meal_plans: Optional[bool] = None,
-            hide_calendar_events: Optional[bool] = None,
+            hide_calendar_events_calendars: Optional[List[str]] = None,
+            hide_calendar_events_households: Optional[List[str]] = None,
+            hide_calendar_events_personal: Optional[bool] = None,
             hide_calendar_health_logs: Optional[List[str]] = None,
             hide_calendar_plan_tasks: Optional[bool] = None,
             hide_components: Optional[List[str]] = None,
@@ -15866,7 +16157,11 @@ class ModelsAuthAccountPreferences:
 
         self.hide_calendar_cook_meal_plans = hide_calendar_cook_meal_plans
 
-        self.hide_calendar_events = hide_calendar_events
+        self.hide_calendar_events_calendars = hide_calendar_events_calendars
+
+        self.hide_calendar_events_households = hide_calendar_events_households
+
+        self.hide_calendar_events_personal = hide_calendar_events_personal
 
         self.hide_calendar_health_logs = hide_calendar_health_logs
 
@@ -16037,14 +16332,32 @@ def models_auth_account_preferences_from_obj(obj: Any, path: str = "") -> Models
     else:
         hide_calendar_cook_meal_plans_from_obj = None
 
-    obj_hide_calendar_events = obj.get('hideCalendarEvents', None)
-    if obj_hide_calendar_events is not None:
-        hide_calendar_events_from_obj = from_obj(
-            obj_hide_calendar_events,
-            expected=[bool],
-            path=path + '.hideCalendarEvents')  # type: Optional[bool]
+    obj_hide_calendar_events_calendars = obj.get('hideCalendarEventsCalendars', None)
+    if obj_hide_calendar_events_calendars is not None:
+        hide_calendar_events_calendars_from_obj = from_obj(
+            obj_hide_calendar_events_calendars,
+            expected=[list, str],
+            path=path + '.hideCalendarEventsCalendars')  # type: Optional[List[str]]
     else:
-        hide_calendar_events_from_obj = None
+        hide_calendar_events_calendars_from_obj = None
+
+    obj_hide_calendar_events_households = obj.get('hideCalendarEventsHouseholds', None)
+    if obj_hide_calendar_events_households is not None:
+        hide_calendar_events_households_from_obj = from_obj(
+            obj_hide_calendar_events_households,
+            expected=[list, str],
+            path=path + '.hideCalendarEventsHouseholds')  # type: Optional[List[str]]
+    else:
+        hide_calendar_events_households_from_obj = None
+
+    obj_hide_calendar_events_personal = obj.get('hideCalendarEventsPersonal', None)
+    if obj_hide_calendar_events_personal is not None:
+        hide_calendar_events_personal_from_obj = from_obj(
+            obj_hide_calendar_events_personal,
+            expected=[bool],
+            path=path + '.hideCalendarEventsPersonal')  # type: Optional[bool]
+    else:
+        hide_calendar_events_personal_from_obj = None
 
     obj_hide_calendar_health_logs = obj.get('hideCalendarHealthLogs', None)
     if obj_hide_calendar_health_logs is not None:
@@ -16159,7 +16472,9 @@ def models_auth_account_preferences_from_obj(obj: Any, path: str = "") -> Models
         format_week8601=format_week8601_from_obj,
         hide_calendar_budget_recurrences=hide_calendar_budget_recurrences_from_obj,
         hide_calendar_cook_meal_plans=hide_calendar_cook_meal_plans_from_obj,
-        hide_calendar_events=hide_calendar_events_from_obj,
+        hide_calendar_events_calendars=hide_calendar_events_calendars_from_obj,
+        hide_calendar_events_households=hide_calendar_events_households_from_obj,
+        hide_calendar_events_personal=hide_calendar_events_personal_from_obj,
         hide_calendar_health_logs=hide_calendar_health_logs_from_obj,
         hide_calendar_plan_tasks=hide_calendar_plan_tasks_from_obj,
         hide_components=hide_components_from_obj,
@@ -16227,8 +16542,20 @@ def models_auth_account_preferences_to_jsonable(
     if models_auth_account_preferences.hide_calendar_cook_meal_plans is not None:
         res['hideCalendarCookMealPlans'] = models_auth_account_preferences.hide_calendar_cook_meal_plans
 
-    if models_auth_account_preferences.hide_calendar_events is not None:
-        res['hideCalendarEvents'] = models_auth_account_preferences.hide_calendar_events
+    if models_auth_account_preferences.hide_calendar_events_calendars is not None:
+        res['hideCalendarEventsCalendars'] = to_jsonable(
+        models_auth_account_preferences.hide_calendar_events_calendars,
+        expected=[list, str],
+        path='{}.hideCalendarEventsCalendars'.format(path))
+
+    if models_auth_account_preferences.hide_calendar_events_households is not None:
+        res['hideCalendarEventsHouseholds'] = to_jsonable(
+        models_auth_account_preferences.hide_calendar_events_households,
+        expected=[list, str],
+        path='{}.hideCalendarEventsHouseholds'.format(path))
+
+    if models_auth_account_preferences.hide_calendar_events_personal is not None:
+        res['hideCalendarEventsPersonal'] = models_auth_account_preferences.hide_calendar_events_personal
 
     if models_auth_account_preferences.hide_calendar_health_logs is not None:
         res['hideCalendarHealthLogs'] = to_jsonable(
@@ -17826,7 +18153,7 @@ class ModelsAuthSession:
             self,
             admin: Optional[bool] = None,
             auth_account_id: Optional[str] = None,
-            auth_households_permissions: Optional[Dict[str, 'ModelsPermissions']] = None,
+            auth_households_permissions: Optional[Any] = None,
             auth_households_permissions_labels: Optional[Dict[str, Dict[str, int]]] = None,
             created: Optional[str] = None,
             delegations: Optional[List['ModelsAuthAccountDelegation']] = None,
@@ -17845,6 +18172,7 @@ class ModelsAuthSession:
 
         self.auth_account_id = auth_account_id
 
+        # Permissions derived from auth_household_member, cannot be changed by user.
         self.auth_households_permissions = auth_households_permissions
 
         self.auth_households_permissions_labels = auth_households_permissions_labels
@@ -17921,14 +18249,7 @@ def models_auth_session_from_obj(obj: Any, path: str = "") -> ModelsAuthSession:
     else:
         auth_account_id_from_obj = None
 
-    obj_auth_households_permissions = obj.get('authHouseholdsPermissions', None)
-    if obj_auth_households_permissions is not None:
-        auth_households_permissions_from_obj = from_obj(
-            obj_auth_households_permissions,
-            expected=[dict, ModelsPermissions],
-            path=path + '.authHouseholdsPermissions')  # type: Optional[Dict[str, 'ModelsPermissions']]
-    else:
-        auth_households_permissions_from_obj = None
+    auth_households_permissions_from_obj = obj.get('authHouseholdsPermissions', None)
 
     obj_auth_households_permissions_labels = obj.get('authHouseholdsPermissionsLabels', None)
     if obj_auth_households_permissions_labels is not None:
@@ -18085,10 +18406,7 @@ def models_auth_session_to_jsonable(
         res['authAccountID'] = models_auth_session.auth_account_id
 
     if models_auth_session.auth_households_permissions is not None:
-        res['authHouseholdsPermissions'] = to_jsonable(
-        models_auth_session.auth_households_permissions,
-        expected=[dict, ModelsPermissions],
-        path='{}.authHouseholdsPermissions'.format(path))
+        res['authHouseholdsPermissions'] = models_auth_session.auth_households_permissions
 
     if models_auth_session.auth_households_permissions_labels is not None:
         res['authHouseholdsPermissionsLabels'] = to_jsonable(
@@ -20681,12 +20999,261 @@ def models_budget_transaction_category_to_jsonable(
     return res
 
 
+class ModelsCalendar:
+    def __init__(
+            self,
+            auth_account_id: Optional[str] = None,
+            auth_household_id: Optional[str] = None,
+            color: Optional[str] = None,
+            created: Optional[str] = None,
+            etag: Optional[str] = None,
+            ics: Optional[str] = None,
+            id: Optional[str] = None,
+            labels_values_ids: Optional[List[str]] = None,
+            name: Optional[str] = None,
+            short_id: Optional[str] = None,
+            updated: Optional[str] = None,
+            url: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.auth_account_id = auth_account_id
+
+        self.auth_household_id = auth_household_id
+
+        self.color = color
+
+        self.created = created
+
+        self.etag = etag
+
+        self.ics = ics
+
+        self.id = id
+
+        self.labels_values_ids = labels_values_ids
+
+        # If name is not specified, the ICS will be parsed, CalendarEvents created, but no Calendar will be created/associated with them.
+        self.name = name
+
+        self.short_id = short_id
+
+        self.updated = updated
+
+        self.url = url
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to models_calendar_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return models_calendar_to_jsonable(self)
+
+
+def new_models_calendar() -> ModelsCalendar:
+    """Generates an instance of ModelsCalendar with default values."""
+    return ModelsCalendar()
+
+
+def models_calendar_from_obj(obj: Any, path: str = "") -> ModelsCalendar:
+    """
+    Generates an instance of ModelsCalendar from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of ModelsCalendar
+    :param path: path to the object used for debugging
+    :return: parsed instance of ModelsCalendar
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_auth_account_id = obj.get('authAccountID', None)
+    if obj_auth_account_id is not None:
+        auth_account_id_from_obj = from_obj(
+            obj_auth_account_id,
+            expected=[str],
+            path=path + '.authAccountID')  # type: Optional[str]
+    else:
+        auth_account_id_from_obj = None
+
+    obj_auth_household_id = obj.get('authHouseholdID', None)
+    if obj_auth_household_id is not None:
+        auth_household_id_from_obj = from_obj(
+            obj_auth_household_id,
+            expected=[str],
+            path=path + '.authHouseholdID')  # type: Optional[str]
+    else:
+        auth_household_id_from_obj = None
+
+    obj_color = obj.get('color', None)
+    if obj_color is not None:
+        color_from_obj = from_obj(
+            obj_color,
+            expected=[str],
+            path=path + '.color')  # type: Optional[str]
+    else:
+        color_from_obj = None
+
+    obj_created = obj.get('created', None)
+    if obj_created is not None:
+        created_from_obj = from_obj(
+            obj_created,
+            expected=[str],
+            path=path + '.created')  # type: Optional[str]
+    else:
+        created_from_obj = None
+
+    obj_etag = obj.get('etag', None)
+    if obj_etag is not None:
+        etag_from_obj = from_obj(
+            obj_etag,
+            expected=[str],
+            path=path + '.etag')  # type: Optional[str]
+    else:
+        etag_from_obj = None
+
+    obj_ics = obj.get('ics', None)
+    if obj_ics is not None:
+        ics_from_obj = from_obj(
+            obj_ics,
+            expected=[str],
+            path=path + '.ics')  # type: Optional[str]
+    else:
+        ics_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    obj_labels_values_ids = obj.get('labelsValuesIDs', None)
+    if obj_labels_values_ids is not None:
+        labels_values_ids_from_obj = from_obj(
+            obj_labels_values_ids,
+            expected=[list, str],
+            path=path + '.labelsValuesIDs')  # type: Optional[List[str]]
+    else:
+        labels_values_ids_from_obj = None
+
+    obj_name = obj.get('name', None)
+    if obj_name is not None:
+        name_from_obj = from_obj(
+            obj_name,
+            expected=[str],
+            path=path + '.name')  # type: Optional[str]
+    else:
+        name_from_obj = None
+
+    obj_short_id = obj.get('shortID', None)
+    if obj_short_id is not None:
+        short_id_from_obj = from_obj(
+            obj_short_id,
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
+    else:
+        short_id_from_obj = None
+
+    obj_updated = obj.get('updated', None)
+    if obj_updated is not None:
+        updated_from_obj = from_obj(
+            obj_updated,
+            expected=[str],
+            path=path + '.updated')  # type: Optional[str]
+    else:
+        updated_from_obj = None
+
+    obj_url = obj.get('url', None)
+    if obj_url is not None:
+        url_from_obj = from_obj(
+            obj_url,
+            expected=[str],
+            path=path + '.url')  # type: Optional[str]
+    else:
+        url_from_obj = None
+
+    return ModelsCalendar(
+        auth_account_id=auth_account_id_from_obj,
+        auth_household_id=auth_household_id_from_obj,
+        color=color_from_obj,
+        created=created_from_obj,
+        etag=etag_from_obj,
+        ics=ics_from_obj,
+        id=id_from_obj,
+        labels_values_ids=labels_values_ids_from_obj,
+        name=name_from_obj,
+        short_id=short_id_from_obj,
+        updated=updated_from_obj,
+        url=url_from_obj)
+
+
+def models_calendar_to_jsonable(
+        models_calendar: ModelsCalendar,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of ModelsCalendar.
+
+    :param models_calendar: instance of ModelsCalendar to be JSON-ized
+    :param path: path to the models_calendar used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if models_calendar.auth_account_id is not None:
+        res['authAccountID'] = models_calendar.auth_account_id
+
+    if models_calendar.auth_household_id is not None:
+        res['authHouseholdID'] = models_calendar.auth_household_id
+
+    if models_calendar.color is not None:
+        res['color'] = models_calendar.color
+
+    if models_calendar.created is not None:
+        res['created'] = models_calendar.created
+
+    if models_calendar.etag is not None:
+        res['etag'] = models_calendar.etag
+
+    if models_calendar.ics is not None:
+        res['ics'] = models_calendar.ics
+
+    if models_calendar.id is not None:
+        res['id'] = models_calendar.id
+
+    if models_calendar.labels_values_ids is not None:
+        res['labelsValuesIDs'] = to_jsonable(
+        models_calendar.labels_values_ids,
+        expected=[list, str],
+        path='{}.labelsValuesIDs'.format(path))
+
+    if models_calendar.name is not None:
+        res['name'] = models_calendar.name
+
+    if models_calendar.short_id is not None:
+        res['shortID'] = models_calendar.short_id
+
+    if models_calendar.updated is not None:
+        res['updated'] = models_calendar.updated
+
+    if models_calendar.url is not None:
+        res['url'] = models_calendar.url
+
+    return res
+
+
 class ModelsCalendarEvent:
     def __init__(
             self,
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
             calendar_i_calendar_id: Optional[str] = None,
+            calendar_id: Optional[str] = None,
             color: Optional[str] = None,
             created: Optional[str] = None,
             date_end: Optional[str] = None,
@@ -20714,7 +21281,12 @@ class ModelsCalendarEvent:
 
         self.auth_household_id = auth_household_id
 
+        # Deprecated: use CalendarID
+        #
+        # TODO remove 2026-06-03
         self.calendar_i_calendar_id = calendar_i_calendar_id
+
+        self.calendar_id = calendar_id
 
         self.color = color
 
@@ -20823,6 +21395,15 @@ def models_calendar_event_from_obj(obj: Any, path: str = "") -> ModelsCalendarEv
             path=path + '.calendarICalendarID')  # type: Optional[str]
     else:
         calendar_i_calendar_id_from_obj = None
+
+    obj_calendar_id = obj.get('calendarID', None)
+    if obj_calendar_id is not None:
+        calendar_id_from_obj = from_obj(
+            obj_calendar_id,
+            expected=[str],
+            path=path + '.calendarID')  # type: Optional[str]
+    else:
+        calendar_id_from_obj = None
 
     obj_color = obj.get('color', None)
     if obj_color is not None:
@@ -21026,6 +21607,7 @@ def models_calendar_event_from_obj(obj: Any, path: str = "") -> ModelsCalendarEv
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
         calendar_i_calendar_id=calendar_i_calendar_id_from_obj,
+        calendar_id=calendar_id_from_obj,
         color=color_from_obj,
         created=created_from_obj,
         date_end=date_end_from_obj,
@@ -21070,6 +21652,9 @@ def models_calendar_event_to_jsonable(
 
     if models_calendar_event.calendar_i_calendar_id is not None:
         res['calendarICalendarID'] = models_calendar_event.calendar_i_calendar_id
+
+    if models_calendar_event.calendar_id is not None:
+        res['calendarID'] = models_calendar_event.calendar_id
 
     if models_calendar_event.color is not None:
         res['color'] = models_calendar_event.color
@@ -21155,218 +21740,26 @@ def models_calendar_event_to_jsonable(
     return res
 
 
-class ModelsCalendarICalendar:
-    def __init__(
-            self,
-            auth_account_id: Optional[str] = None,
-            auth_household_id: Optional[str] = None,
-            color: Optional[str] = None,
-            created: Optional[str] = None,
-            ics: Optional[str] = None,
-            id: Optional[str] = None,
-            name: Optional[str] = None,
-            updated: Optional[str] = None,
-            url: Optional[str] = None) -> None:
-        """Initializes with the given values."""
-        self.auth_account_id = auth_account_id
-
-        self.auth_household_id = auth_household_id
-
-        self.color = color
-
-        self.created = created
-
-        self.ics = ics
-
-        self.id = id
-
-        # If name is not specified, the ICS will be parsed, CalendarEvents created, but no CalendarICalendar will be created/associated with them.
-        self.name = name
-
-        self.updated = updated
-
-        self.url = url
-
-    def to_jsonable(self) -> MutableMapping[str, Any]:
-        """
-        Dispatches the conversion to models_calendar_i_calendar_to_jsonable.
-
-        :return: JSON-able representation
-        """
-        return models_calendar_i_calendar_to_jsonable(self)
-
-
-def new_models_calendar_i_calendar() -> ModelsCalendarICalendar:
-    """Generates an instance of ModelsCalendarICalendar with default values."""
-    return ModelsCalendarICalendar()
-
-
-def models_calendar_i_calendar_from_obj(obj: Any, path: str = "") -> ModelsCalendarICalendar:
-    """
-    Generates an instance of ModelsCalendarICalendar from a dictionary object.
-
-    :param obj: a JSON-ed dictionary object representing an instance of ModelsCalendarICalendar
-    :param path: path to the object used for debugging
-    :return: parsed instance of ModelsCalendarICalendar
-    """
-    if not isinstance(obj, dict):
-        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
-
-    for key in obj:
-        if not isinstance(key, str):
-            raise ValueError(
-                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
-
-    obj_auth_account_id = obj.get('authAccountID', None)
-    if obj_auth_account_id is not None:
-        auth_account_id_from_obj = from_obj(
-            obj_auth_account_id,
-            expected=[str],
-            path=path + '.authAccountID')  # type: Optional[str]
-    else:
-        auth_account_id_from_obj = None
-
-    obj_auth_household_id = obj.get('authHouseholdID', None)
-    if obj_auth_household_id is not None:
-        auth_household_id_from_obj = from_obj(
-            obj_auth_household_id,
-            expected=[str],
-            path=path + '.authHouseholdID')  # type: Optional[str]
-    else:
-        auth_household_id_from_obj = None
-
-    obj_color = obj.get('color', None)
-    if obj_color is not None:
-        color_from_obj = from_obj(
-            obj_color,
-            expected=[str],
-            path=path + '.color')  # type: Optional[str]
-    else:
-        color_from_obj = None
-
-    obj_created = obj.get('created', None)
-    if obj_created is not None:
-        created_from_obj = from_obj(
-            obj_created,
-            expected=[str],
-            path=path + '.created')  # type: Optional[str]
-    else:
-        created_from_obj = None
-
-    obj_ics = obj.get('ics', None)
-    if obj_ics is not None:
-        ics_from_obj = from_obj(
-            obj_ics,
-            expected=[str],
-            path=path + '.ics')  # type: Optional[str]
-    else:
-        ics_from_obj = None
-
-    obj_id = obj.get('id', None)
-    if obj_id is not None:
-        id_from_obj = from_obj(
-            obj_id,
-            expected=[str],
-            path=path + '.id')  # type: Optional[str]
-    else:
-        id_from_obj = None
-
-    obj_name = obj.get('name', None)
-    if obj_name is not None:
-        name_from_obj = from_obj(
-            obj_name,
-            expected=[str],
-            path=path + '.name')  # type: Optional[str]
-    else:
-        name_from_obj = None
-
-    obj_updated = obj.get('updated', None)
-    if obj_updated is not None:
-        updated_from_obj = from_obj(
-            obj_updated,
-            expected=[str],
-            path=path + '.updated')  # type: Optional[str]
-    else:
-        updated_from_obj = None
-
-    obj_url = obj.get('url', None)
-    if obj_url is not None:
-        url_from_obj = from_obj(
-            obj_url,
-            expected=[str],
-            path=path + '.url')  # type: Optional[str]
-    else:
-        url_from_obj = None
-
-    return ModelsCalendarICalendar(
-        auth_account_id=auth_account_id_from_obj,
-        auth_household_id=auth_household_id_from_obj,
-        color=color_from_obj,
-        created=created_from_obj,
-        ics=ics_from_obj,
-        id=id_from_obj,
-        name=name_from_obj,
-        updated=updated_from_obj,
-        url=url_from_obj)
-
-
-def models_calendar_i_calendar_to_jsonable(
-        models_calendar_i_calendar: ModelsCalendarICalendar,
-        path: str = "") -> MutableMapping[str, Any]:
-    """
-    Generates a JSON-able mapping from an instance of ModelsCalendarICalendar.
-
-    :param models_calendar_i_calendar: instance of ModelsCalendarICalendar to be JSON-ized
-    :param path: path to the models_calendar_i_calendar used for debugging
-    :return: a JSON-able representation
-    """
-    res = dict()  # type: Dict[str, Any]
-
-    if models_calendar_i_calendar.auth_account_id is not None:
-        res['authAccountID'] = models_calendar_i_calendar.auth_account_id
-
-    if models_calendar_i_calendar.auth_household_id is not None:
-        res['authHouseholdID'] = models_calendar_i_calendar.auth_household_id
-
-    if models_calendar_i_calendar.color is not None:
-        res['color'] = models_calendar_i_calendar.color
-
-    if models_calendar_i_calendar.created is not None:
-        res['created'] = models_calendar_i_calendar.created
-
-    if models_calendar_i_calendar.ics is not None:
-        res['ics'] = models_calendar_i_calendar.ics
-
-    if models_calendar_i_calendar.id is not None:
-        res['id'] = models_calendar_i_calendar.id
-
-    if models_calendar_i_calendar.name is not None:
-        res['name'] = models_calendar_i_calendar.name
-
-    if models_calendar_i_calendar.updated is not None:
-        res['updated'] = models_calendar_i_calendar.updated
-
-    if models_calendar_i_calendar.url is not None:
-        res['url'] = models_calendar_i_calendar.url
-
-    return res
-
-
 class ModelsChange:
     def __init__(
             self,
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
+            auth_household_member_id: Optional[str] = None,
             created: Optional[str] = None,
             id: Optional[str] = None,
             name: Optional[str] = None,
             operation: Optional[int] = None,
+            parent_id: Optional[str] = None,
+            table_id: Optional[str] = None,
             table_name: Optional[str] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
         self.auth_account_id = auth_account_id
 
         self.auth_household_id = auth_household_id
+
+        self.auth_household_member_id = auth_household_member_id
 
         self.created = created
 
@@ -21375,6 +21768,10 @@ class ModelsChange:
         self.name = name
 
         self.operation = operation
+
+        self.parent_id = parent_id
+
+        self.table_id = table_id
 
         self.table_name = table_name
 
@@ -21428,6 +21825,15 @@ def models_change_from_obj(obj: Any, path: str = "") -> ModelsChange:
     else:
         auth_household_id_from_obj = None
 
+    obj_auth_household_member_id = obj.get('authHouseholdMemberID', None)
+    if obj_auth_household_member_id is not None:
+        auth_household_member_id_from_obj = from_obj(
+            obj_auth_household_member_id,
+            expected=[str],
+            path=path + '.authHouseholdMemberID')  # type: Optional[str]
+    else:
+        auth_household_member_id_from_obj = None
+
     obj_created = obj.get('created', None)
     if obj_created is not None:
         created_from_obj = from_obj(
@@ -21464,6 +21870,24 @@ def models_change_from_obj(obj: Any, path: str = "") -> ModelsChange:
     else:
         operation_from_obj = None
 
+    obj_parent_id = obj.get('parentID', None)
+    if obj_parent_id is not None:
+        parent_id_from_obj = from_obj(
+            obj_parent_id,
+            expected=[str],
+            path=path + '.parentID')  # type: Optional[str]
+    else:
+        parent_id_from_obj = None
+
+    obj_table_id = obj.get('tableID', None)
+    if obj_table_id is not None:
+        table_id_from_obj = from_obj(
+            obj_table_id,
+            expected=[str],
+            path=path + '.tableID')  # type: Optional[str]
+    else:
+        table_id_from_obj = None
+
     obj_table_name = obj.get('tableName', None)
     if obj_table_name is not None:
         table_name_from_obj = from_obj(
@@ -21485,10 +21909,13 @@ def models_change_from_obj(obj: Any, path: str = "") -> ModelsChange:
     return ModelsChange(
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
+        auth_household_member_id=auth_household_member_id_from_obj,
         created=created_from_obj,
         id=id_from_obj,
         name=name_from_obj,
         operation=operation_from_obj,
+        parent_id=parent_id_from_obj,
+        table_id=table_id_from_obj,
         table_name=table_name_from_obj,
         updated=updated_from_obj)
 
@@ -21511,6 +21938,9 @@ def models_change_to_jsonable(
     if models_change.auth_household_id is not None:
         res['authHouseholdID'] = models_change.auth_household_id
 
+    if models_change.auth_household_member_id is not None:
+        res['authHouseholdMemberID'] = models_change.auth_household_member_id
+
     if models_change.created is not None:
         res['created'] = models_change.created
 
@@ -21522,6 +21952,12 @@ def models_change_to_jsonable(
 
     if models_change.operation is not None:
         res['operation'] = models_change.operation
+
+    if models_change.parent_id is not None:
+        res['parentID'] = models_change.parent_id
+
+    if models_change.table_id is not None:
+        res['tableID'] = models_change.table_id
 
     if models_change.table_name is not None:
         res['tableName'] = models_change.table_name
@@ -28721,6 +29157,7 @@ def types_filter_to_jsonable(
 class TypesRecurrence:
     def __init__(
             self,
+            count: Optional[int] = None,
             day: Optional[int] = None,
             end: Optional['TypesCivilDate'] = None,
             month: Optional[int] = None,
@@ -28729,6 +29166,8 @@ class TypesRecurrence:
             weekday: Optional[int] = None,
             weekdays: Optional[List[int]] = None) -> None:
         """Initializes with the given values."""
+        self.count = count
+
         self.day = day
 
         self.end = end
@@ -28772,6 +29211,15 @@ def types_recurrence_from_obj(obj: Any, path: str = "") -> TypesRecurrence:
         if not isinstance(key, str):
             raise ValueError(
                 'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_count = obj.get('count', None)
+    if obj_count is not None:
+        count_from_obj = from_obj(
+            obj_count,
+            expected=[int],
+            path=path + '.count')  # type: Optional[int]
+    else:
+        count_from_obj = None
 
     obj_day = obj.get('day', None)
     if obj_day is not None:
@@ -28837,6 +29285,7 @@ def types_recurrence_from_obj(obj: Any, path: str = "") -> TypesRecurrence:
         weekdays_from_obj = None
 
     return TypesRecurrence(
+        count=count_from_obj,
         day=day_from_obj,
         end=end_from_obj,
         month=month_from_obj,
@@ -28857,6 +29306,9 @@ def types_recurrence_to_jsonable(
     :return: a JSON-able representation
     """
     res = dict()  # type: Dict[str, Any]
+
+    if types_recurrence.count is not None:
+        res['count'] = types_recurrence.count
 
     if types_recurrence.day is not None:
         res['day'] = types_recurrence.day
@@ -31928,6 +32380,137 @@ class RemoteCaller:
                 obj=resp.json(),
                 expected=[HttplibJsonResponseModelsBudgetTransactions])
 
+    def calendars_read(self) -> 'HttplibJsonResponseModelsCalendars':
+        """
+        Send a get request to /api/v1/calendar/calendars.
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/calendar/calendars'
+
+        resp = self.session.request(method='get', url=url)
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsCalendars])
+
+    def calendar_create(
+            self,
+            body: 'ModelsCalendar') -> 'HttplibJsonResponseModelsCalendars':
+        """
+        Send a post request to /api/v1/calendar/calendars.
+
+        :param body: Calendar
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/calendar/calendars'
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsCalendar])
+
+
+        resp = self.session.request(
+            method='post',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsCalendars])
+
+    def calendar_delete(
+            self,
+            id: str) -> 'HttplibJsonResponseModelsCalendar':
+        """
+        Send a delete request to /api/v1/calendar/calendars/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/calendar/calendars/',
+            str(id)])
+
+        resp = self.session.request(
+            method='delete',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsCalendar])
+
+    def calendar_read(
+            self,
+            id: str) -> 'HttplibJsonResponseModelsCalendar':
+        """
+        Send a get request to /api/v1/calendar/calendars/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/calendar/calendars/',
+            str(id)])
+
+        resp = self.session.request(
+            method='get',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsCalendar])
+
+    def calendar_update(
+            self,
+            body: 'ModelsCalendar',
+            id: str) -> 'HttplibJsonResponseModelsCalendar':
+        """
+        Send a put request to /api/v1/calendar/calendars/{id}.
+
+        :param body: Calendar
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/calendar/calendars/',
+            str(id)])
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsCalendar])
+
+
+        resp = self.session.request(
+            method='put',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsCalendar])
+
     def calendar_events_read(self) -> 'HttplibJsonResponseModelsCalendarEvents':
         """
         Send a get request to /api/v1/calendar/events.
@@ -32058,137 +32641,6 @@ class RemoteCaller:
             return from_obj(
                 obj=resp.json(),
                 expected=[HttplibJsonResponseModelsCalendarEvents])
-
-    def calendar_i_calendars_read(self) -> 'HttplibJsonResponseModelsCalendarICalendars':
-        """
-        Send a get request to /api/v1/calendar/icalendars.
-
-        :return: OK
-        """
-        url = self.url_prefix + '/api/v1/calendar/icalendars'
-
-        resp = self.session.request(method='get', url=url)
-
-        with contextlib.closing(resp):
-            resp.raise_for_status()
-            return from_obj(
-                obj=resp.json(),
-                expected=[HttplibJsonResponseModelsCalendarICalendars])
-
-    def calendar_i_calendar_create(
-            self,
-            body: 'ModelsCalendarICalendar') -> 'HttplibJsonResponseModelsCalendarICalendars':
-        """
-        Send a post request to /api/v1/calendar/icalendars.
-
-        :param body: CalendarICalendar
-
-        :return: OK
-        """
-        url = self.url_prefix + '/api/v1/calendar/icalendars'
-
-        data = to_jsonable(
-            body,
-            expected=[ModelsCalendarICalendar])
-
-
-        resp = self.session.request(
-            method='post',
-            url=url,
-            json=data,
-        )
-
-        with contextlib.closing(resp):
-            resp.raise_for_status()
-            return from_obj(
-                obj=resp.json(),
-                expected=[HttplibJsonResponseModelsCalendarICalendars])
-
-    def calendar_i_calendar_delete(
-            self,
-            id: str) -> 'HttplibJsonResponseModelsCalendarICalendars':
-        """
-        Send a delete request to /api/v1/calendar/icalendars/{id}.
-
-        :param id: ID
-
-        :return: OK
-        """
-        url = "".join([
-            self.url_prefix,
-            '/api/v1/calendar/icalendars/',
-            str(id)])
-
-        resp = self.session.request(
-            method='delete',
-            url=url,
-        )
-
-        with contextlib.closing(resp):
-            resp.raise_for_status()
-            return from_obj(
-                obj=resp.json(),
-                expected=[HttplibJsonResponseModelsCalendarICalendars])
-
-    def calendar_i_calendar_read(
-            self,
-            id: str) -> 'HttplibJsonResponseModelsCalendarICalendars':
-        """
-        Send a get request to /api/v1/calendar/icalendars/{id}.
-
-        :param id: ID
-
-        :return: OK
-        """
-        url = "".join([
-            self.url_prefix,
-            '/api/v1/calendar/icalendars/',
-            str(id)])
-
-        resp = self.session.request(
-            method='get',
-            url=url,
-        )
-
-        with contextlib.closing(resp):
-            resp.raise_for_status()
-            return from_obj(
-                obj=resp.json(),
-                expected=[HttplibJsonResponseModelsCalendarICalendars])
-
-    def calendar_i_calendar_update(
-            self,
-            body: 'ModelsCalendarICalendar',
-            id: str) -> 'HttplibJsonResponseModelsCalendarICalendars':
-        """
-        Send a put request to /api/v1/calendar/icalendars/{id}.
-
-        :param body: CalendarICalendar
-        :param id: ID
-
-        :return: OK
-        """
-        url = "".join([
-            self.url_prefix,
-            '/api/v1/calendar/icalendars/',
-            str(id)])
-
-        data = to_jsonable(
-            body,
-            expected=[ModelsCalendarICalendar])
-
-
-        resp = self.session.request(
-            method='put',
-            url=url,
-            json=data,
-        )
-
-        with contextlib.closing(resp):
-            resp.raise_for_status()
-            return from_obj(
-                obj=resp.json(),
-                expected=[HttplibJsonResponseModelsCalendarICalendars])
 
     def changes_read(self) -> 'HttplibJsonResponseModelsChanges':
         """
