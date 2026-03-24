@@ -1358,20 +1358,35 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
 class AppCLI:
     def __init__(
             self,
+            color_debug: Optional[str] = None,
+            color_error: Optional[str] = None,
+            color_primary: Optional[str] = None,
+            color_secondary: Optional[str] = None,
             config_path: Optional[str] = None,
             config_reload: Optional[int] = None,
             config_watch: Optional[bool] = None,
+            is_terminal: Optional[bool] = None,
             log_format: Optional[str] = None,
             log_level: Optional[str] = None,
             log_min_status: Optional[int] = None,
             macros: Optional[Dict[str, 'AppMacro']] = None,
             no_paging: Optional[bool] = None) -> None:
         """Initializes with the given values."""
+        self.color_debug = color_debug
+
+        self.color_error = color_error
+
+        self.color_primary = color_primary
+
+        self.color_secondary = color_secondary
+
         self.config_path = config_path
 
         self.config_reload = config_reload
 
         self.config_watch = config_watch
+
+        self.is_terminal = is_terminal
 
         self.log_format = log_format
 
@@ -1413,6 +1428,42 @@ def app_c_l_i_from_obj(obj: Any, path: str = "") -> AppCLI:
             raise ValueError(
                 'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
 
+    obj_color_debug = obj.get('colorDebug', None)
+    if obj_color_debug is not None:
+        color_debug_from_obj = from_obj(
+            obj_color_debug,
+            expected=[str],
+            path=path + '.colorDebug')  # type: Optional[str]
+    else:
+        color_debug_from_obj = None
+
+    obj_color_error = obj.get('colorError', None)
+    if obj_color_error is not None:
+        color_error_from_obj = from_obj(
+            obj_color_error,
+            expected=[str],
+            path=path + '.colorError')  # type: Optional[str]
+    else:
+        color_error_from_obj = None
+
+    obj_color_primary = obj.get('colorPrimary', None)
+    if obj_color_primary is not None:
+        color_primary_from_obj = from_obj(
+            obj_color_primary,
+            expected=[str],
+            path=path + '.colorPrimary')  # type: Optional[str]
+    else:
+        color_primary_from_obj = None
+
+    obj_color_secondary = obj.get('colorSecondary', None)
+    if obj_color_secondary is not None:
+        color_secondary_from_obj = from_obj(
+            obj_color_secondary,
+            expected=[str],
+            path=path + '.colorSecondary')  # type: Optional[str]
+    else:
+        color_secondary_from_obj = None
+
     obj_config_path = obj.get('configPath', None)
     if obj_config_path is not None:
         config_path_from_obj = from_obj(
@@ -1439,6 +1490,15 @@ def app_c_l_i_from_obj(obj: Any, path: str = "") -> AppCLI:
             path=path + '.configWatch')  # type: Optional[bool]
     else:
         config_watch_from_obj = None
+
+    obj_is_terminal = obj.get('isTerminal', None)
+    if obj_is_terminal is not None:
+        is_terminal_from_obj = from_obj(
+            obj_is_terminal,
+            expected=[bool],
+            path=path + '.isTerminal')  # type: Optional[bool]
+    else:
+        is_terminal_from_obj = None
 
     obj_log_format = obj.get('logFormat', None)
     if obj_log_format is not None:
@@ -1486,9 +1546,14 @@ def app_c_l_i_from_obj(obj: Any, path: str = "") -> AppCLI:
         no_paging_from_obj = None
 
     return AppCLI(
+        color_debug=color_debug_from_obj,
+        color_error=color_error_from_obj,
+        color_primary=color_primary_from_obj,
+        color_secondary=color_secondary_from_obj,
         config_path=config_path_from_obj,
         config_reload=config_reload_from_obj,
         config_watch=config_watch_from_obj,
+        is_terminal=is_terminal_from_obj,
         log_format=log_format_from_obj,
         log_level=log_level_from_obj,
         log_min_status=log_min_status_from_obj,
@@ -1508,6 +1573,18 @@ def app_c_l_i_to_jsonable(
     """
     res = dict()  # type: Dict[str, Any]
 
+    if app_c_l_i.color_debug is not None:
+        res['colorDebug'] = app_c_l_i.color_debug
+
+    if app_c_l_i.color_error is not None:
+        res['colorError'] = app_c_l_i.color_error
+
+    if app_c_l_i.color_primary is not None:
+        res['colorPrimary'] = app_c_l_i.color_primary
+
+    if app_c_l_i.color_secondary is not None:
+        res['colorSecondary'] = app_c_l_i.color_secondary
+
     if app_c_l_i.config_path is not None:
         res['configPath'] = app_c_l_i.config_path
 
@@ -1516,6 +1593,9 @@ def app_c_l_i_to_jsonable(
 
     if app_c_l_i.config_watch is not None:
         res['configWatch'] = app_c_l_i.config_watch
+
+    if app_c_l_i.is_terminal is not None:
+        res['isTerminal'] = app_c_l_i.is_terminal
 
     if app_c_l_i.log_format is not None:
         res['logFormat'] = app_c_l_i.log_format
