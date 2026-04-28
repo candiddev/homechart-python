@@ -172,6 +172,12 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == HttplibJsonResponseModelsConfigKeys:
         return httplib_json_response_models_config_keys_from_obj(obj, path=path)
 
+    if exp == HttplibJsonResponseModelsContactsAddressBooks:
+        return httplib_json_response_models_contacts_address_books_from_obj(obj, path=path)
+
+    if exp == HttplibJsonResponseModelsContactsContacts:
+        return httplib_json_response_models_contacts_contacts_from_obj(obj, path=path)
+
     if exp == HttplibJsonResponseModelsCookMealPlans:
         return httplib_json_response_models_cook_meal_plans_from_obj(obj, path=path)
 
@@ -297,6 +303,12 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
 
     if exp == HttplibJsonResponseDataModelsConfigKeys:
         return httplib_json_response_data_models_config_keys_from_obj(obj, path=path)
+
+    if exp == HttplibJsonResponseDataModelsContactsAddressBooks:
+        return httplib_json_response_data_models_contacts_address_books_from_obj(obj, path=path)
+
+    if exp == HttplibJsonResponseDataModelsContactsContacts:
+        return httplib_json_response_data_models_contacts_contacts_from_obj(obj, path=path)
 
     if exp == HttplibJsonResponseDataModelsCookMealPlans:
         return httplib_json_response_data_models_cook_meal_plans_from_obj(obj, path=path)
@@ -457,6 +469,12 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == ModelsConfigKey:
         return models_config_key_from_obj(obj, path=path)
 
+    if exp == ModelsContactsAddressBook:
+        return models_contacts_address_book_from_obj(obj, path=path)
+
+    if exp == ModelsContactsContact:
+        return models_contacts_contact_from_obj(obj, path=path)
+
     if exp == ModelsCookMealPlan:
         return models_cook_meal_plan_from_obj(obj, path=path)
 
@@ -567,6 +585,18 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
 
     if exp == TypesRecurrence:
         return types_recurrence_from_obj(obj, path=path)
+
+    if exp == VcardADR:
+        return vcard_a_d_r_from_obj(obj, path=path)
+
+    if exp == VcardCard:
+        return vcard_card_from_obj(obj, path=path)
+
+    if exp == VcardCommunication:
+        return vcard_communication_from_obj(obj, path=path)
+
+    if exp == VcardN:
+        return vcard_n_from_obj(obj, path=path)
 
     if exp == WebauthnCredential:
         return webauthn_credential_from_obj(obj, path=path)
@@ -796,6 +826,14 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
         assert isinstance(obj, HttplibJsonResponseModelsConfigKeys)
         return httplib_json_response_models_config_keys_to_jsonable(obj, path=path)
 
+    if exp == HttplibJsonResponseModelsContactsAddressBooks:
+        assert isinstance(obj, HttplibJsonResponseModelsContactsAddressBooks)
+        return httplib_json_response_models_contacts_address_books_to_jsonable(obj, path=path)
+
+    if exp == HttplibJsonResponseModelsContactsContacts:
+        assert isinstance(obj, HttplibJsonResponseModelsContactsContacts)
+        return httplib_json_response_models_contacts_contacts_to_jsonable(obj, path=path)
+
     if exp == HttplibJsonResponseModelsCookMealPlans:
         assert isinstance(obj, HttplibJsonResponseModelsCookMealPlans)
         return httplib_json_response_models_cook_meal_plans_to_jsonable(obj, path=path)
@@ -963,6 +1001,14 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
     if exp == HttplibJsonResponseDataModelsConfigKeys:
         assert isinstance(obj, HttplibJsonResponseDataModelsConfigKeys)
         return httplib_json_response_data_models_config_keys_to_jsonable(obj, path=path)
+
+    if exp == HttplibJsonResponseDataModelsContactsAddressBooks:
+        assert isinstance(obj, HttplibJsonResponseDataModelsContactsAddressBooks)
+        return httplib_json_response_data_models_contacts_address_books_to_jsonable(obj, path=path)
+
+    if exp == HttplibJsonResponseDataModelsContactsContacts:
+        assert isinstance(obj, HttplibJsonResponseDataModelsContactsContacts)
+        return httplib_json_response_data_models_contacts_contacts_to_jsonable(obj, path=path)
 
     if exp == HttplibJsonResponseDataModelsCookMealPlans:
         assert isinstance(obj, HttplibJsonResponseDataModelsCookMealPlans)
@@ -1176,6 +1222,14 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
         assert isinstance(obj, ModelsConfigKey)
         return models_config_key_to_jsonable(obj, path=path)
 
+    if exp == ModelsContactsAddressBook:
+        assert isinstance(obj, ModelsContactsAddressBook)
+        return models_contacts_address_book_to_jsonable(obj, path=path)
+
+    if exp == ModelsContactsContact:
+        assert isinstance(obj, ModelsContactsContact)
+        return models_contacts_contact_to_jsonable(obj, path=path)
+
     if exp == ModelsCookMealPlan:
         assert isinstance(obj, ModelsCookMealPlan)
         return models_cook_meal_plan_to_jsonable(obj, path=path)
@@ -1323,6 +1377,22 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
     if exp == TypesRecurrence:
         assert isinstance(obj, TypesRecurrence)
         return types_recurrence_to_jsonable(obj, path=path)
+
+    if exp == VcardADR:
+        assert isinstance(obj, VcardADR)
+        return vcard_a_d_r_to_jsonable(obj, path=path)
+
+    if exp == VcardCard:
+        assert isinstance(obj, VcardCard)
+        return vcard_card_to_jsonable(obj, path=path)
+
+    if exp == VcardCommunication:
+        assert isinstance(obj, VcardCommunication)
+        return vcard_communication_to_jsonable(obj, path=path)
+
+    if exp == VcardN:
+        assert isinstance(obj, VcardN)
+        return vcard_n_to_jsonable(obj, path=path)
 
     if exp == WebauthnCredential:
         assert isinstance(obj, WebauthnCredential)
@@ -1992,7 +2062,6 @@ class ConfigApp:
             contact_feedback: Optional[str] = None,
             contact_support: Optional[str] = None,
             counter_time_zone: Optional[str] = None,
-            demo: Optional[bool] = None,
             disable_notifications: Optional[bool] = None,
             disable_signup: Optional[bool] = None,
             disable_tasks: Optional[bool] = None,
@@ -2010,6 +2079,7 @@ class ConfigApp:
             keep_inactive_auth_account_days: Optional[int] = None,
             keep_notes_page_versions: Optional[int] = None,
             keep_plan_task_days: Optional[int] = None,
+            max_image_size_pixels: Optional[int] = None,
             motd: Optional[str] = None,
             private_keys: Optional[List['CryptolibKeyCryptolibKeyProviderPrivate']] = None,
             proxy_address: Optional[str] = None,
@@ -2056,11 +2126,6 @@ class ConfigApp:
 
         self.counter_time_zone = counter_time_zone
 
-        # TODO remove 2026-02-27
-        #
-        # Deprecated: use EnableDemo
-        self.demo = demo
-
         self.disable_notifications = disable_notifications
 
         self.disable_signup = disable_signup
@@ -2094,6 +2159,8 @@ class ConfigApp:
         self.keep_notes_page_versions = keep_notes_page_versions
 
         self.keep_plan_task_days = keep_plan_task_days
+
+        self.max_image_size_pixels = max_image_size_pixels
 
         self.motd = motd
 
@@ -2259,15 +2326,6 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
     else:
         counter_time_zone_from_obj = None
 
-    obj_demo = obj.get('demo', None)
-    if obj_demo is not None:
-        demo_from_obj = from_obj(
-            obj_demo,
-            expected=[bool],
-            path=path + '.demo')  # type: Optional[bool]
-    else:
-        demo_from_obj = None
-
     obj_disable_notifications = obj.get('disableNotifications', None)
     if obj_disable_notifications is not None:
         disable_notifications_from_obj = from_obj(
@@ -2420,6 +2478,15 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
             path=path + '.keepPlanTaskDays')  # type: Optional[int]
     else:
         keep_plan_task_days_from_obj = None
+
+    obj_max_image_size_pixels = obj.get('maxImageSizePixels', None)
+    if obj_max_image_size_pixels is not None:
+        max_image_size_pixels_from_obj = from_obj(
+            obj_max_image_size_pixels,
+            expected=[int],
+            path=path + '.maxImageSizePixels')  # type: Optional[int]
+    else:
+        max_image_size_pixels_from_obj = None
 
     obj_motd = obj.get('motd', None)
     if obj_motd is not None:
@@ -2622,7 +2689,6 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
         contact_feedback=contact_feedback_from_obj,
         contact_support=contact_support_from_obj,
         counter_time_zone=counter_time_zone_from_obj,
-        demo=demo_from_obj,
         disable_notifications=disable_notifications_from_obj,
         disable_signup=disable_signup_from_obj,
         disable_tasks=disable_tasks_from_obj,
@@ -2640,6 +2706,7 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
         keep_inactive_auth_account_days=keep_inactive_auth_account_days_from_obj,
         keep_notes_page_versions=keep_notes_page_versions_from_obj,
         keep_plan_task_days=keep_plan_task_days_from_obj,
+        max_image_size_pixels=max_image_size_pixels_from_obj,
         motd=motd_from_obj,
         private_keys=private_keys_from_obj,
         proxy_address=proxy_address_from_obj,
@@ -2714,9 +2781,6 @@ def config_app_to_jsonable(
     if config_app.counter_time_zone is not None:
         res['counterTimeZone'] = config_app.counter_time_zone
 
-    if config_app.demo is not None:
-        res['demo'] = config_app.demo
-
     if config_app.disable_notifications is not None:
         res['disableNotifications'] = config_app.disable_notifications
 
@@ -2767,6 +2831,9 @@ def config_app_to_jsonable(
 
     if config_app.keep_plan_task_days is not None:
         res['keepPlanTaskDays'] = config_app.keep_plan_task_days
+
+    if config_app.max_image_size_pixels is not None:
+        res['maxImageSizePixels'] = config_app.max_image_size_pixels
 
     if config_app.motd is not None:
         res['motd'] = config_app.motd
@@ -6435,6 +6502,218 @@ def httplib_json_response_models_config_keys_to_jsonable(
     return res
 
 
+class HttplibJsonResponseModelsContactsAddressBooks:
+    def __init__(
+            self,
+            data: Optional['HttplibJsonResponseDataModelsContactsAddressBooks'] = None,
+            error: Optional['HttplibJsonResponseError'] = None,
+            id: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.data = data
+
+        self.error = error
+
+        self.id = id
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to httplib_json_response_models_contacts_address_books_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return httplib_json_response_models_contacts_address_books_to_jsonable(self)
+
+
+def new_httplib_json_response_models_contacts_address_books() -> HttplibJsonResponseModelsContactsAddressBooks:
+    """Generates an instance of HttplibJsonResponseModelsContactsAddressBooks with default values."""
+    return HttplibJsonResponseModelsContactsAddressBooks()
+
+
+def httplib_json_response_models_contacts_address_books_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseModelsContactsAddressBooks:
+    """
+    Generates an instance of HttplibJsonResponseModelsContactsAddressBooks from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseModelsContactsAddressBooks
+    :param path: path to the object used for debugging
+    :return: parsed instance of HttplibJsonResponseModelsContactsAddressBooks
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_data = obj.get('data', None)
+    if obj_data is not None:
+        data_from_obj = from_obj(
+            obj_data,
+            expected=[HttplibJsonResponseDataModelsContactsAddressBooks],
+            path=path + '.data')  # type: Optional['HttplibJsonResponseDataModelsContactsAddressBooks']
+    else:
+        data_from_obj = None
+
+    obj_error = obj.get('error', None)
+    if obj_error is not None:
+        error_from_obj = from_obj(
+            obj_error,
+            expected=[HttplibJsonResponseError],
+            path=path + '.error')  # type: Optional['HttplibJsonResponseError']
+    else:
+        error_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    return HttplibJsonResponseModelsContactsAddressBooks(
+        data=data_from_obj,
+        error=error_from_obj,
+        id=id_from_obj)
+
+
+def httplib_json_response_models_contacts_address_books_to_jsonable(
+        httplib_json_response_models_contacts_address_books: HttplibJsonResponseModelsContactsAddressBooks,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseModelsContactsAddressBooks.
+
+    :param httplib_json_response_models_contacts_address_books: instance of HttplibJsonResponseModelsContactsAddressBooks to be JSON-ized
+    :param path: path to the httplib_json_response_models_contacts_address_books used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if httplib_json_response_models_contacts_address_books.data is not None:
+        res['data'] = to_jsonable(
+        httplib_json_response_models_contacts_address_books.data,
+        expected=[HttplibJsonResponseDataModelsContactsAddressBooks],
+        path='{}.data'.format(path))
+
+    if httplib_json_response_models_contacts_address_books.error is not None:
+        res['error'] = to_jsonable(
+        httplib_json_response_models_contacts_address_books.error,
+        expected=[HttplibJsonResponseError],
+        path='{}.error'.format(path))
+
+    if httplib_json_response_models_contacts_address_books.id is not None:
+        res['id'] = httplib_json_response_models_contacts_address_books.id
+
+    return res
+
+
+class HttplibJsonResponseModelsContactsContacts:
+    def __init__(
+            self,
+            data: Optional['HttplibJsonResponseDataModelsContactsContacts'] = None,
+            error: Optional['HttplibJsonResponseError'] = None,
+            id: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.data = data
+
+        self.error = error
+
+        self.id = id
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to httplib_json_response_models_contacts_contacts_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return httplib_json_response_models_contacts_contacts_to_jsonable(self)
+
+
+def new_httplib_json_response_models_contacts_contacts() -> HttplibJsonResponseModelsContactsContacts:
+    """Generates an instance of HttplibJsonResponseModelsContactsContacts with default values."""
+    return HttplibJsonResponseModelsContactsContacts()
+
+
+def httplib_json_response_models_contacts_contacts_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseModelsContactsContacts:
+    """
+    Generates an instance of HttplibJsonResponseModelsContactsContacts from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseModelsContactsContacts
+    :param path: path to the object used for debugging
+    :return: parsed instance of HttplibJsonResponseModelsContactsContacts
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_data = obj.get('data', None)
+    if obj_data is not None:
+        data_from_obj = from_obj(
+            obj_data,
+            expected=[HttplibJsonResponseDataModelsContactsContacts],
+            path=path + '.data')  # type: Optional['HttplibJsonResponseDataModelsContactsContacts']
+    else:
+        data_from_obj = None
+
+    obj_error = obj.get('error', None)
+    if obj_error is not None:
+        error_from_obj = from_obj(
+            obj_error,
+            expected=[HttplibJsonResponseError],
+            path=path + '.error')  # type: Optional['HttplibJsonResponseError']
+    else:
+        error_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    return HttplibJsonResponseModelsContactsContacts(
+        data=data_from_obj,
+        error=error_from_obj,
+        id=id_from_obj)
+
+
+def httplib_json_response_models_contacts_contacts_to_jsonable(
+        httplib_json_response_models_contacts_contacts: HttplibJsonResponseModelsContactsContacts,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseModelsContactsContacts.
+
+    :param httplib_json_response_models_contacts_contacts: instance of HttplibJsonResponseModelsContactsContacts to be JSON-ized
+    :param path: path to the httplib_json_response_models_contacts_contacts used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if httplib_json_response_models_contacts_contacts.data is not None:
+        res['data'] = to_jsonable(
+        httplib_json_response_models_contacts_contacts.data,
+        expected=[HttplibJsonResponseDataModelsContactsContacts],
+        path='{}.data'.format(path))
+
+    if httplib_json_response_models_contacts_contacts.error is not None:
+        res['error'] = to_jsonable(
+        httplib_json_response_models_contacts_contacts.error,
+        expected=[HttplibJsonResponseError],
+        path='{}.error'.format(path))
+
+    if httplib_json_response_models_contacts_contacts.id is not None:
+        res['id'] = httplib_json_response_models_contacts_contacts.id
+
+    return res
+
+
 class HttplibJsonResponseModelsCookMealPlans:
     def __init__(
             self,
@@ -8752,7 +9031,8 @@ class HttplibJsonResponseDataConfigConfig:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional['ConfigConfig'] = None) -> None:
+            value: Optional['ConfigConfig'] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -8763,6 +9043,8 @@ class HttplibJsonResponseDataConfigConfig:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -8839,12 +9121,22 @@ def httplib_json_response_data_config_config_from_obj(obj: Any, path: str = "") 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataConfigConfig(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_config_config_to_jsonable(
@@ -8880,6 +9172,12 @@ def httplib_json_response_data_config_config_to_jsonable(
         expected=[ConfigConfig],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_config_config.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_config_config.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -8890,7 +9188,8 @@ class HttplibJsonResponseDataModelsAuthAccountDelegations:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsAuthAccountDelegation']] = None) -> None:
+            value: Optional[List['ModelsAuthAccountDelegation']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -8901,6 +9200,8 @@ class HttplibJsonResponseDataModelsAuthAccountDelegations:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -8977,12 +9278,22 @@ def httplib_json_response_data_models_auth_account_delegations_from_obj(obj: Any
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsAuthAccountDelegations(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_auth_account_delegations_to_jsonable(
@@ -9018,6 +9329,12 @@ def httplib_json_response_data_models_auth_account_delegations_to_jsonable(
         expected=[list, ModelsAuthAccountDelegation],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_auth_account_delegations.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_auth_account_delegations.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9028,7 +9345,8 @@ class HttplibJsonResponseDataModelsAuthAccounts:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsAuthAccount']] = None) -> None:
+            value: Optional[List['ModelsAuthAccount']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -9039,6 +9357,8 @@ class HttplibJsonResponseDataModelsAuthAccounts:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -9115,12 +9435,22 @@ def httplib_json_response_data_models_auth_accounts_from_obj(obj: Any, path: str
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsAuthAccounts(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_auth_accounts_to_jsonable(
@@ -9156,6 +9486,12 @@ def httplib_json_response_data_models_auth_accounts_to_jsonable(
         expected=[list, ModelsAuthAccount],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_auth_accounts.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_auth_accounts.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9166,7 +9502,8 @@ class HttplibJsonResponseDataModelsAuthHouseholds:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsAuthHousehold']] = None) -> None:
+            value: Optional[List['ModelsAuthHousehold']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -9177,6 +9514,8 @@ class HttplibJsonResponseDataModelsAuthHouseholds:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -9253,12 +9592,22 @@ def httplib_json_response_data_models_auth_households_from_obj(obj: Any, path: s
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsAuthHouseholds(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_auth_households_to_jsonable(
@@ -9294,6 +9643,12 @@ def httplib_json_response_data_models_auth_households_to_jsonable(
         expected=[list, ModelsAuthHousehold],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_auth_households.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_auth_households.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9304,7 +9659,8 @@ class HttplibJsonResponseDataModelsAuthOIDCClients:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsAuthOIDCClient']] = None) -> None:
+            value: Optional[List['ModelsAuthOIDCClient']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -9315,6 +9671,8 @@ class HttplibJsonResponseDataModelsAuthOIDCClients:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -9391,12 +9749,22 @@ def httplib_json_response_data_models_auth_o_id_c_clients_from_obj(obj: Any, pat
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsAuthOIDCClients(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_auth_o_id_c_clients_to_jsonable(
@@ -9432,6 +9800,12 @@ def httplib_json_response_data_models_auth_o_id_c_clients_to_jsonable(
         expected=[list, ModelsAuthOIDCClient],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_auth_o_id_c_clients.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_auth_o_id_c_clients.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9442,7 +9816,8 @@ class HttplibJsonResponseDataModelsAuthOIDCCodes:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsAuthOIDCCode']] = None) -> None:
+            value: Optional[List['ModelsAuthOIDCCode']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -9453,6 +9828,8 @@ class HttplibJsonResponseDataModelsAuthOIDCCodes:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -9529,12 +9906,22 @@ def httplib_json_response_data_models_auth_o_id_c_codes_from_obj(obj: Any, path:
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsAuthOIDCCodes(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_auth_o_id_c_codes_to_jsonable(
@@ -9570,6 +9957,12 @@ def httplib_json_response_data_models_auth_o_id_c_codes_to_jsonable(
         expected=[list, ModelsAuthOIDCCode],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_auth_o_id_c_codes.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_auth_o_id_c_codes.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9580,7 +9973,8 @@ class HttplibJsonResponseDataModelsAuthSessions:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsAuthSession']] = None) -> None:
+            value: Optional[List['ModelsAuthSession']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -9591,6 +9985,8 @@ class HttplibJsonResponseDataModelsAuthSessions:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -9667,12 +10063,22 @@ def httplib_json_response_data_models_auth_sessions_from_obj(obj: Any, path: str
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsAuthSessions(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_auth_sessions_to_jsonable(
@@ -9708,6 +10114,12 @@ def httplib_json_response_data_models_auth_sessions_to_jsonable(
         expected=[list, ModelsAuthSession],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_auth_sessions.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_auth_sessions.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9718,7 +10130,8 @@ class HttplibJsonResponseDataModelsBookmarks:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBookmark']] = None) -> None:
+            value: Optional[List['ModelsBookmark']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -9729,6 +10142,8 @@ class HttplibJsonResponseDataModelsBookmarks:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -9805,12 +10220,22 @@ def httplib_json_response_data_models_bookmarks_from_obj(obj: Any, path: str = "
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBookmarks(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_bookmarks_to_jsonable(
@@ -9846,6 +10271,12 @@ def httplib_json_response_data_models_bookmarks_to_jsonable(
         expected=[list, ModelsBookmark],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_bookmarks.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_bookmarks.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9856,7 +10287,8 @@ class HttplibJsonResponseDataModelsBudgetAccounts:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBudgetAccount']] = None) -> None:
+            value: Optional[List['ModelsBudgetAccount']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -9867,6 +10299,8 @@ class HttplibJsonResponseDataModelsBudgetAccounts:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -9943,12 +10377,22 @@ def httplib_json_response_data_models_budget_accounts_from_obj(obj: Any, path: s
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBudgetAccounts(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_budget_accounts_to_jsonable(
@@ -9984,6 +10428,12 @@ def httplib_json_response_data_models_budget_accounts_to_jsonable(
         expected=[list, ModelsBudgetAccount],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_budget_accounts.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_budget_accounts.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -9994,7 +10444,8 @@ class HttplibJsonResponseDataModelsBudgetCategories:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBudgetCategory']] = None) -> None:
+            value: Optional[List['ModelsBudgetCategory']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10005,6 +10456,8 @@ class HttplibJsonResponseDataModelsBudgetCategories:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -10081,12 +10534,22 @@ def httplib_json_response_data_models_budget_categories_from_obj(obj: Any, path:
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBudgetCategories(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_budget_categories_to_jsonable(
@@ -10122,6 +10585,12 @@ def httplib_json_response_data_models_budget_categories_to_jsonable(
         expected=[list, ModelsBudgetCategory],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_budget_categories.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_budget_categories.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -10132,7 +10601,8 @@ class HttplibJsonResponseDataModelsBudgetMonthCategories:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBudgetMonthCategory']] = None) -> None:
+            value: Optional[List['ModelsBudgetMonthCategory']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10143,6 +10613,8 @@ class HttplibJsonResponseDataModelsBudgetMonthCategories:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -10219,12 +10691,22 @@ def httplib_json_response_data_models_budget_month_categories_from_obj(obj: Any,
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBudgetMonthCategories(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_budget_month_categories_to_jsonable(
@@ -10260,6 +10742,12 @@ def httplib_json_response_data_models_budget_month_categories_to_jsonable(
         expected=[list, ModelsBudgetMonthCategory],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_budget_month_categories.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_budget_month_categories.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -10270,7 +10758,8 @@ class HttplibJsonResponseDataModelsBudgetMonths:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBudgetMonth']] = None) -> None:
+            value: Optional[List['ModelsBudgetMonth']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10281,6 +10770,8 @@ class HttplibJsonResponseDataModelsBudgetMonths:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -10357,12 +10848,22 @@ def httplib_json_response_data_models_budget_months_from_obj(obj: Any, path: str
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBudgetMonths(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_budget_months_to_jsonable(
@@ -10398,6 +10899,12 @@ def httplib_json_response_data_models_budget_months_to_jsonable(
         expected=[list, ModelsBudgetMonth],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_budget_months.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_budget_months.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -10408,7 +10915,8 @@ class HttplibJsonResponseDataModelsBudgetPayees:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBudgetPayee']] = None) -> None:
+            value: Optional[List['ModelsBudgetPayee']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10419,6 +10927,8 @@ class HttplibJsonResponseDataModelsBudgetPayees:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -10495,12 +11005,22 @@ def httplib_json_response_data_models_budget_payees_from_obj(obj: Any, path: str
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBudgetPayees(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_budget_payees_to_jsonable(
@@ -10536,6 +11056,12 @@ def httplib_json_response_data_models_budget_payees_to_jsonable(
         expected=[list, ModelsBudgetPayee],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_budget_payees.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_budget_payees.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -10546,7 +11072,8 @@ class HttplibJsonResponseDataModelsBudgetRecurrences:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBudgetRecurrence']] = None) -> None:
+            value: Optional[List['ModelsBudgetRecurrence']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10557,6 +11084,8 @@ class HttplibJsonResponseDataModelsBudgetRecurrences:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -10633,12 +11162,22 @@ def httplib_json_response_data_models_budget_recurrences_from_obj(obj: Any, path
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBudgetRecurrences(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_budget_recurrences_to_jsonable(
@@ -10674,6 +11213,12 @@ def httplib_json_response_data_models_budget_recurrences_to_jsonable(
         expected=[list, ModelsBudgetRecurrence],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_budget_recurrences.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_budget_recurrences.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -10684,7 +11229,8 @@ class HttplibJsonResponseDataModelsBudgetTransactions:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsBudgetTransaction']] = None) -> None:
+            value: Optional[List['ModelsBudgetTransaction']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10695,6 +11241,8 @@ class HttplibJsonResponseDataModelsBudgetTransactions:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -10771,12 +11319,22 @@ def httplib_json_response_data_models_budget_transactions_from_obj(obj: Any, pat
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsBudgetTransactions(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_budget_transactions_to_jsonable(
@@ -10812,6 +11370,12 @@ def httplib_json_response_data_models_budget_transactions_to_jsonable(
         expected=[list, ModelsBudgetTransaction],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_budget_transactions.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_budget_transactions.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -10822,7 +11386,8 @@ class HttplibJsonResponseDataModelsCalendar:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional['ModelsCalendar'] = None) -> None:
+            value: Optional['ModelsCalendar'] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10833,6 +11398,8 @@ class HttplibJsonResponseDataModelsCalendar:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -10909,12 +11476,22 @@ def httplib_json_response_data_models_calendar_from_obj(obj: Any, path: str = ""
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsCalendar(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_calendar_to_jsonable(
@@ -10950,6 +11527,12 @@ def httplib_json_response_data_models_calendar_to_jsonable(
         expected=[ModelsCalendar],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_calendar.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_calendar.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -10960,7 +11543,8 @@ class HttplibJsonResponseDataModelsCalendarEvents:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsCalendarEvent']] = None) -> None:
+            value: Optional[List['ModelsCalendarEvent']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -10971,6 +11555,8 @@ class HttplibJsonResponseDataModelsCalendarEvents:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -11047,12 +11633,22 @@ def httplib_json_response_data_models_calendar_events_from_obj(obj: Any, path: s
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsCalendarEvents(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_calendar_events_to_jsonable(
@@ -11088,6 +11684,12 @@ def httplib_json_response_data_models_calendar_events_to_jsonable(
         expected=[list, ModelsCalendarEvent],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_calendar_events.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_calendar_events.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -11098,7 +11700,8 @@ class HttplibJsonResponseDataModelsCalendars:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsCalendar']] = None) -> None:
+            value: Optional[List['ModelsCalendar']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -11109,6 +11712,8 @@ class HttplibJsonResponseDataModelsCalendars:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -11185,12 +11790,22 @@ def httplib_json_response_data_models_calendars_from_obj(obj: Any, path: str = "
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsCalendars(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_calendars_to_jsonable(
@@ -11226,6 +11841,12 @@ def httplib_json_response_data_models_calendars_to_jsonable(
         expected=[list, ModelsCalendar],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_calendars.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_calendars.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -11236,7 +11857,8 @@ class HttplibJsonResponseDataModelsChanges:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsChange']] = None) -> None:
+            value: Optional[List['ModelsChange']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -11247,6 +11869,8 @@ class HttplibJsonResponseDataModelsChanges:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -11323,12 +11947,22 @@ def httplib_json_response_data_models_changes_from_obj(obj: Any, path: str = "")
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsChanges(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_changes_to_jsonable(
@@ -11364,6 +11998,12 @@ def httplib_json_response_data_models_changes_to_jsonable(
         expected=[list, ModelsChange],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_changes.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_changes.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -11374,7 +12014,8 @@ class HttplibJsonResponseDataModelsConfigKeys:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsConfigKey']] = None) -> None:
+            value: Optional[List['ModelsConfigKey']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -11385,6 +12026,8 @@ class HttplibJsonResponseDataModelsConfigKeys:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -11461,12 +12104,22 @@ def httplib_json_response_data_models_config_keys_from_obj(obj: Any, path: str =
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsConfigKeys(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_config_keys_to_jsonable(
@@ -11502,17 +12155,24 @@ def httplib_json_response_data_models_config_keys_to_jsonable(
         expected=[list, ModelsConfigKey],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_config_keys.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_config_keys.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
-class HttplibJsonResponseDataModelsCookMealPlans:
+class HttplibJsonResponseDataModelsContactsAddressBooks:
     def __init__(
             self,
             hash: Optional[str] = None,
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsCookMealPlan']] = None) -> None:
+            value: Optional[List['ModelsContactsAddressBook']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -11523,6 +12183,322 @@ class HttplibJsonResponseDataModelsCookMealPlans:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to httplib_json_response_data_models_contacts_address_books_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return httplib_json_response_data_models_contacts_address_books_to_jsonable(self)
+
+
+def new_httplib_json_response_data_models_contacts_address_books() -> HttplibJsonResponseDataModelsContactsAddressBooks:
+    """Generates an instance of HttplibJsonResponseDataModelsContactsAddressBooks with default values."""
+    return HttplibJsonResponseDataModelsContactsAddressBooks()
+
+
+def httplib_json_response_data_models_contacts_address_books_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseDataModelsContactsAddressBooks:
+    """
+    Generates an instance of HttplibJsonResponseDataModelsContactsAddressBooks from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseDataModelsContactsAddressBooks
+    :param path: path to the object used for debugging
+    :return: parsed instance of HttplibJsonResponseDataModelsContactsAddressBooks
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_hash = obj.get('hash', None)
+    if obj_hash is not None:
+        hash_from_obj = from_obj(
+            obj_hash,
+            expected=[str],
+            path=path + '.hash')  # type: Optional[str]
+    else:
+        hash_from_obj = None
+
+    obj_ids = obj.get('ids', None)
+    if obj_ids is not None:
+        ids_from_obj = from_obj(
+            obj_ids,
+            expected=[list, HttplibJsonResponseCacheID],
+            path=path + '.ids')  # type: Optional[List['HttplibJsonResponseCacheID']]
+    else:
+        ids_from_obj = None
+
+    obj_total = obj.get('total', None)
+    if obj_total is not None:
+        total_from_obj = from_obj(
+            obj_total,
+            expected=[int],
+            path=path + '.total')  # type: Optional[int]
+    else:
+        total_from_obj = None
+
+    obj_type = obj.get('type', None)
+    if obj_type is not None:
+        type_from_obj = from_obj(
+            obj_type,
+            expected=[str],
+            path=path + '.type')  # type: Optional[str]
+    else:
+        type_from_obj = None
+
+    obj_value = obj.get('value', None)
+    if obj_value is not None:
+        value_from_obj = from_obj(
+            obj_value,
+            expected=[list, ModelsContactsAddressBook],
+            path=path + '.value')  # type: Optional[List['ModelsContactsAddressBook']]
+    else:
+        value_from_obj = None
+
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
+    return HttplibJsonResponseDataModelsContactsAddressBooks(
+        hash=hash_from_obj,
+        ids=ids_from_obj,
+        total=total_from_obj,
+        type=type_from_obj,
+        value=value_from_obj,
+        warnings=warnings_from_obj)
+
+
+def httplib_json_response_data_models_contacts_address_books_to_jsonable(
+        httplib_json_response_data_models_contacts_address_books: HttplibJsonResponseDataModelsContactsAddressBooks,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseDataModelsContactsAddressBooks.
+
+    :param httplib_json_response_data_models_contacts_address_books: instance of HttplibJsonResponseDataModelsContactsAddressBooks to be JSON-ized
+    :param path: path to the httplib_json_response_data_models_contacts_address_books used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if httplib_json_response_data_models_contacts_address_books.hash is not None:
+        res['hash'] = httplib_json_response_data_models_contacts_address_books.hash
+
+    if httplib_json_response_data_models_contacts_address_books.ids is not None:
+        res['ids'] = to_jsonable(
+        httplib_json_response_data_models_contacts_address_books.ids,
+        expected=[list, HttplibJsonResponseCacheID],
+        path='{}.ids'.format(path))
+
+    if httplib_json_response_data_models_contacts_address_books.total is not None:
+        res['total'] = httplib_json_response_data_models_contacts_address_books.total
+
+    if httplib_json_response_data_models_contacts_address_books.type is not None:
+        res['type'] = httplib_json_response_data_models_contacts_address_books.type
+
+    if httplib_json_response_data_models_contacts_address_books.value is not None:
+        res['value'] = to_jsonable(
+        httplib_json_response_data_models_contacts_address_books.value,
+        expected=[list, ModelsContactsAddressBook],
+        path='{}.value'.format(path))
+
+    if httplib_json_response_data_models_contacts_address_books.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_contacts_address_books.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
+    return res
+
+
+class HttplibJsonResponseDataModelsContactsContacts:
+    def __init__(
+            self,
+            hash: Optional[str] = None,
+            ids: Optional[List['HttplibJsonResponseCacheID']] = None,
+            total: Optional[int] = None,
+            type: Optional[str] = None,
+            value: Optional[List['ModelsContactsContact']] = None,
+            warnings: Optional[List[str]] = None) -> None:
+        """Initializes with the given values."""
+        self.hash = hash
+
+        self.ids = ids
+
+        self.total = total
+
+        self.type = type
+
+        self.value = value
+
+        self.warnings = warnings
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to httplib_json_response_data_models_contacts_contacts_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return httplib_json_response_data_models_contacts_contacts_to_jsonable(self)
+
+
+def new_httplib_json_response_data_models_contacts_contacts() -> HttplibJsonResponseDataModelsContactsContacts:
+    """Generates an instance of HttplibJsonResponseDataModelsContactsContacts with default values."""
+    return HttplibJsonResponseDataModelsContactsContacts()
+
+
+def httplib_json_response_data_models_contacts_contacts_from_obj(obj: Any, path: str = "") -> HttplibJsonResponseDataModelsContactsContacts:
+    """
+    Generates an instance of HttplibJsonResponseDataModelsContactsContacts from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of HttplibJsonResponseDataModelsContactsContacts
+    :param path: path to the object used for debugging
+    :return: parsed instance of HttplibJsonResponseDataModelsContactsContacts
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_hash = obj.get('hash', None)
+    if obj_hash is not None:
+        hash_from_obj = from_obj(
+            obj_hash,
+            expected=[str],
+            path=path + '.hash')  # type: Optional[str]
+    else:
+        hash_from_obj = None
+
+    obj_ids = obj.get('ids', None)
+    if obj_ids is not None:
+        ids_from_obj = from_obj(
+            obj_ids,
+            expected=[list, HttplibJsonResponseCacheID],
+            path=path + '.ids')  # type: Optional[List['HttplibJsonResponseCacheID']]
+    else:
+        ids_from_obj = None
+
+    obj_total = obj.get('total', None)
+    if obj_total is not None:
+        total_from_obj = from_obj(
+            obj_total,
+            expected=[int],
+            path=path + '.total')  # type: Optional[int]
+    else:
+        total_from_obj = None
+
+    obj_type = obj.get('type', None)
+    if obj_type is not None:
+        type_from_obj = from_obj(
+            obj_type,
+            expected=[str],
+            path=path + '.type')  # type: Optional[str]
+    else:
+        type_from_obj = None
+
+    obj_value = obj.get('value', None)
+    if obj_value is not None:
+        value_from_obj = from_obj(
+            obj_value,
+            expected=[list, ModelsContactsContact],
+            path=path + '.value')  # type: Optional[List['ModelsContactsContact']]
+    else:
+        value_from_obj = None
+
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
+    return HttplibJsonResponseDataModelsContactsContacts(
+        hash=hash_from_obj,
+        ids=ids_from_obj,
+        total=total_from_obj,
+        type=type_from_obj,
+        value=value_from_obj,
+        warnings=warnings_from_obj)
+
+
+def httplib_json_response_data_models_contacts_contacts_to_jsonable(
+        httplib_json_response_data_models_contacts_contacts: HttplibJsonResponseDataModelsContactsContacts,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of HttplibJsonResponseDataModelsContactsContacts.
+
+    :param httplib_json_response_data_models_contacts_contacts: instance of HttplibJsonResponseDataModelsContactsContacts to be JSON-ized
+    :param path: path to the httplib_json_response_data_models_contacts_contacts used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if httplib_json_response_data_models_contacts_contacts.hash is not None:
+        res['hash'] = httplib_json_response_data_models_contacts_contacts.hash
+
+    if httplib_json_response_data_models_contacts_contacts.ids is not None:
+        res['ids'] = to_jsonable(
+        httplib_json_response_data_models_contacts_contacts.ids,
+        expected=[list, HttplibJsonResponseCacheID],
+        path='{}.ids'.format(path))
+
+    if httplib_json_response_data_models_contacts_contacts.total is not None:
+        res['total'] = httplib_json_response_data_models_contacts_contacts.total
+
+    if httplib_json_response_data_models_contacts_contacts.type is not None:
+        res['type'] = httplib_json_response_data_models_contacts_contacts.type
+
+    if httplib_json_response_data_models_contacts_contacts.value is not None:
+        res['value'] = to_jsonable(
+        httplib_json_response_data_models_contacts_contacts.value,
+        expected=[list, ModelsContactsContact],
+        path='{}.value'.format(path))
+
+    if httplib_json_response_data_models_contacts_contacts.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_contacts_contacts.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
+    return res
+
+
+class HttplibJsonResponseDataModelsCookMealPlans:
+    def __init__(
+            self,
+            hash: Optional[str] = None,
+            ids: Optional[List['HttplibJsonResponseCacheID']] = None,
+            total: Optional[int] = None,
+            type: Optional[str] = None,
+            value: Optional[List['ModelsCookMealPlan']] = None,
+            warnings: Optional[List[str]] = None) -> None:
+        """Initializes with the given values."""
+        self.hash = hash
+
+        self.ids = ids
+
+        self.total = total
+
+        self.type = type
+
+        self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -11599,12 +12575,22 @@ def httplib_json_response_data_models_cook_meal_plans_from_obj(obj: Any, path: s
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsCookMealPlans(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_cook_meal_plans_to_jsonable(
@@ -11640,6 +12626,12 @@ def httplib_json_response_data_models_cook_meal_plans_to_jsonable(
         expected=[list, ModelsCookMealPlan],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_cook_meal_plans.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_cook_meal_plans.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -11650,7 +12642,8 @@ class HttplibJsonResponseDataModelsCookMealTimes:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsCookMealTime']] = None) -> None:
+            value: Optional[List['ModelsCookMealTime']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -11661,6 +12654,8 @@ class HttplibJsonResponseDataModelsCookMealTimes:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -11737,12 +12732,22 @@ def httplib_json_response_data_models_cook_meal_times_from_obj(obj: Any, path: s
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsCookMealTimes(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_cook_meal_times_to_jsonable(
@@ -11778,6 +12783,12 @@ def httplib_json_response_data_models_cook_meal_times_to_jsonable(
         expected=[list, ModelsCookMealTime],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_cook_meal_times.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_cook_meal_times.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -11788,7 +12799,8 @@ class HttplibJsonResponseDataModelsCookRecipes:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsCookRecipe']] = None) -> None:
+            value: Optional[List['ModelsCookRecipe']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -11799,6 +12811,8 @@ class HttplibJsonResponseDataModelsCookRecipes:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -11875,12 +12889,22 @@ def httplib_json_response_data_models_cook_recipes_from_obj(obj: Any, path: str 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsCookRecipes(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_cook_recipes_to_jsonable(
@@ -11916,6 +12940,12 @@ def httplib_json_response_data_models_cook_recipes_to_jsonable(
         expected=[list, ModelsCookRecipe],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_cook_recipes.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_cook_recipes.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -11926,7 +12956,8 @@ class HttplibJsonResponseDataModelsFeatureCandidates:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsFeatureCandidate']] = None) -> None:
+            value: Optional[List['ModelsFeatureCandidate']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -11937,6 +12968,8 @@ class HttplibJsonResponseDataModelsFeatureCandidates:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12013,12 +13046,22 @@ def httplib_json_response_data_models_feature_candidates_from_obj(obj: Any, path
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsFeatureCandidates(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_feature_candidates_to_jsonable(
@@ -12054,6 +13097,12 @@ def httplib_json_response_data_models_feature_candidates_to_jsonable(
         expected=[list, ModelsFeatureCandidate],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_feature_candidates.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_feature_candidates.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -12064,7 +13113,8 @@ class HttplibJsonResponseDataModelsFeatureVotes:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsFeatureVote']] = None) -> None:
+            value: Optional[List['ModelsFeatureVote']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -12075,6 +13125,8 @@ class HttplibJsonResponseDataModelsFeatureVotes:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12151,12 +13203,22 @@ def httplib_json_response_data_models_feature_votes_from_obj(obj: Any, path: str
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsFeatureVotes(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_feature_votes_to_jsonable(
@@ -12192,6 +13254,12 @@ def httplib_json_response_data_models_feature_votes_to_jsonable(
         expected=[list, ModelsFeatureVote],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_feature_votes.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_feature_votes.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -12202,7 +13270,8 @@ class HttplibJsonResponseDataModelsHealthItems:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsHealthItem']] = None) -> None:
+            value: Optional[List['ModelsHealthItem']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -12213,6 +13282,8 @@ class HttplibJsonResponseDataModelsHealthItems:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12289,12 +13360,22 @@ def httplib_json_response_data_models_health_items_from_obj(obj: Any, path: str 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsHealthItems(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_health_items_to_jsonable(
@@ -12330,6 +13411,12 @@ def httplib_json_response_data_models_health_items_to_jsonable(
         expected=[list, ModelsHealthItem],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_health_items.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_health_items.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -12340,7 +13427,8 @@ class HttplibJsonResponseDataModelsHealthLogItems:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsHealthLogItem']] = None) -> None:
+            value: Optional[List['ModelsHealthLogItem']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -12351,6 +13439,8 @@ class HttplibJsonResponseDataModelsHealthLogItems:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12427,12 +13517,22 @@ def httplib_json_response_data_models_health_log_items_from_obj(obj: Any, path: 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsHealthLogItems(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_health_log_items_to_jsonable(
@@ -12468,6 +13568,12 @@ def httplib_json_response_data_models_health_log_items_to_jsonable(
         expected=[list, ModelsHealthLogItem],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_health_log_items.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_health_log_items.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -12478,7 +13584,8 @@ class HttplibJsonResponseDataModelsInventoryCollections:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsInventoryCollection']] = None) -> None:
+            value: Optional[List['ModelsInventoryCollection']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -12489,6 +13596,8 @@ class HttplibJsonResponseDataModelsInventoryCollections:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12565,12 +13674,22 @@ def httplib_json_response_data_models_inventory_collections_from_obj(obj: Any, p
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsInventoryCollections(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_inventory_collections_to_jsonable(
@@ -12606,6 +13725,12 @@ def httplib_json_response_data_models_inventory_collections_to_jsonable(
         expected=[list, ModelsInventoryCollection],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_inventory_collections.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_inventory_collections.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -12616,7 +13741,8 @@ class HttplibJsonResponseDataModelsInventoryItems:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsInventoryItem']] = None) -> None:
+            value: Optional[List['ModelsInventoryItem']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -12627,6 +13753,8 @@ class HttplibJsonResponseDataModelsInventoryItems:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12703,12 +13831,22 @@ def httplib_json_response_data_models_inventory_items_from_obj(obj: Any, path: s
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsInventoryItems(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_inventory_items_to_jsonable(
@@ -12744,6 +13882,12 @@ def httplib_json_response_data_models_inventory_items_to_jsonable(
         expected=[list, ModelsInventoryItem],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_inventory_items.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_inventory_items.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -12754,7 +13898,8 @@ class HttplibJsonResponseDataModelsLabelsValues:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsLabelsValue']] = None) -> None:
+            value: Optional[List['ModelsLabelsValue']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -12765,6 +13910,8 @@ class HttplibJsonResponseDataModelsLabelsValues:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12841,12 +13988,22 @@ def httplib_json_response_data_models_labels_values_from_obj(obj: Any, path: str
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsLabelsValues(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_labels_values_to_jsonable(
@@ -12882,6 +14039,12 @@ def httplib_json_response_data_models_labels_values_to_jsonable(
         expected=[list, ModelsLabelsValue],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_labels_values.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_labels_values.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -12892,7 +14055,8 @@ class HttplibJsonResponseDataModelsNotesPageVersions:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsNotesPageVersion']] = None) -> None:
+            value: Optional[List['ModelsNotesPageVersion']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -12903,6 +14067,8 @@ class HttplibJsonResponseDataModelsNotesPageVersions:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -12979,12 +14145,22 @@ def httplib_json_response_data_models_notes_page_versions_from_obj(obj: Any, pat
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsNotesPageVersions(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_notes_page_versions_to_jsonable(
@@ -13020,6 +14196,12 @@ def httplib_json_response_data_models_notes_page_versions_to_jsonable(
         expected=[list, ModelsNotesPageVersion],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_notes_page_versions.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_notes_page_versions.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13030,7 +14212,8 @@ class HttplibJsonResponseDataModelsNotesPages:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsNotesPage']] = None) -> None:
+            value: Optional[List['ModelsNotesPage']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -13041,6 +14224,8 @@ class HttplibJsonResponseDataModelsNotesPages:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -13117,12 +14302,22 @@ def httplib_json_response_data_models_notes_pages_from_obj(obj: Any, path: str =
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsNotesPages(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_notes_pages_to_jsonable(
@@ -13158,6 +14353,12 @@ def httplib_json_response_data_models_notes_pages_to_jsonable(
         expected=[list, ModelsNotesPage],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_notes_pages.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_notes_pages.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13168,7 +14369,8 @@ class HttplibJsonResponseDataModelsPlanProjects:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsPlanProject']] = None) -> None:
+            value: Optional[List['ModelsPlanProject']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -13179,6 +14381,8 @@ class HttplibJsonResponseDataModelsPlanProjects:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -13255,12 +14459,22 @@ def httplib_json_response_data_models_plan_projects_from_obj(obj: Any, path: str
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsPlanProjects(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_plan_projects_to_jsonable(
@@ -13296,6 +14510,12 @@ def httplib_json_response_data_models_plan_projects_to_jsonable(
         expected=[list, ModelsPlanProject],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_plan_projects.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_plan_projects.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13306,7 +14526,8 @@ class HttplibJsonResponseDataModelsPlanTasks:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsPlanTask']] = None) -> None:
+            value: Optional[List['ModelsPlanTask']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -13317,6 +14538,8 @@ class HttplibJsonResponseDataModelsPlanTasks:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -13393,12 +14616,22 @@ def httplib_json_response_data_models_plan_tasks_from_obj(obj: Any, path: str = 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsPlanTasks(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_plan_tasks_to_jsonable(
@@ -13434,6 +14667,12 @@ def httplib_json_response_data_models_plan_tasks_to_jsonable(
         expected=[list, ModelsPlanTask],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_plan_tasks.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_plan_tasks.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13444,7 +14683,8 @@ class HttplibJsonResponseDataModelsRewardCards:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsRewardCard']] = None) -> None:
+            value: Optional[List['ModelsRewardCard']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -13455,6 +14695,8 @@ class HttplibJsonResponseDataModelsRewardCards:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -13531,12 +14773,22 @@ def httplib_json_response_data_models_reward_cards_from_obj(obj: Any, path: str 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsRewardCards(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_reward_cards_to_jsonable(
@@ -13572,6 +14824,12 @@ def httplib_json_response_data_models_reward_cards_to_jsonable(
         expected=[list, ModelsRewardCard],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_reward_cards.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_reward_cards.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13582,7 +14840,8 @@ class HttplibJsonResponseDataModelsSecretsValues:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsSecretsValue']] = None) -> None:
+            value: Optional[List['ModelsSecretsValue']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -13593,6 +14852,8 @@ class HttplibJsonResponseDataModelsSecretsValues:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -13669,12 +14930,22 @@ def httplib_json_response_data_models_secrets_values_from_obj(obj: Any, path: st
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsSecretsValues(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_secrets_values_to_jsonable(
@@ -13710,6 +14981,12 @@ def httplib_json_response_data_models_secrets_values_to_jsonable(
         expected=[list, ModelsSecretsValue],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_secrets_values.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_secrets_values.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13720,7 +14997,8 @@ class HttplibJsonResponseDataModelsSecretsVaults:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsSecretsVault']] = None) -> None:
+            value: Optional[List['ModelsSecretsVault']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -13731,6 +15009,8 @@ class HttplibJsonResponseDataModelsSecretsVaults:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -13807,12 +15087,22 @@ def httplib_json_response_data_models_secrets_vaults_from_obj(obj: Any, path: st
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsSecretsVaults(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_secrets_vaults_to_jsonable(
@@ -13848,6 +15138,12 @@ def httplib_json_response_data_models_secrets_vaults_to_jsonable(
         expected=[list, ModelsSecretsVault],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_secrets_vaults.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_secrets_vaults.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13858,7 +15154,8 @@ class HttplibJsonResponseDataModelsShopCategories:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsShopCategory']] = None) -> None:
+            value: Optional[List['ModelsShopCategory']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -13869,6 +15166,8 @@ class HttplibJsonResponseDataModelsShopCategories:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -13945,12 +15244,22 @@ def httplib_json_response_data_models_shop_categories_from_obj(obj: Any, path: s
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsShopCategories(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_shop_categories_to_jsonable(
@@ -13986,6 +15295,12 @@ def httplib_json_response_data_models_shop_categories_to_jsonable(
         expected=[list, ModelsShopCategory],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_shop_categories.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_shop_categories.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -13996,7 +15311,8 @@ class HttplibJsonResponseDataModelsShopItems:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsShopItem']] = None) -> None:
+            value: Optional[List['ModelsShopItem']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -14007,6 +15323,8 @@ class HttplibJsonResponseDataModelsShopItems:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -14083,12 +15401,22 @@ def httplib_json_response_data_models_shop_items_from_obj(obj: Any, path: str = 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsShopItems(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_shop_items_to_jsonable(
@@ -14124,6 +15452,12 @@ def httplib_json_response_data_models_shop_items_to_jsonable(
         expected=[list, ModelsShopItem],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_shop_items.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_shop_items.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -14134,7 +15468,8 @@ class HttplibJsonResponseDataModelsShopLists:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional[List['ModelsShopList']] = None) -> None:
+            value: Optional[List['ModelsShopList']] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -14145,6 +15480,8 @@ class HttplibJsonResponseDataModelsShopLists:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -14221,12 +15558,22 @@ def httplib_json_response_data_models_shop_lists_from_obj(obj: Any, path: str = 
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataModelsShopLists(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_models_shop_lists_to_jsonable(
@@ -14262,6 +15609,12 @@ def httplib_json_response_data_models_shop_lists_to_jsonable(
         expected=[list, ModelsShopList],
         path='{}.value'.format(path))
 
+    if httplib_json_response_data_models_shop_lists.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_models_shop_lists.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
+
     return res
 
 
@@ -14272,7 +15625,8 @@ class HttplibJsonResponseDataWebauthnCredentialCreationOpts:
             ids: Optional[List['HttplibJsonResponseCacheID']] = None,
             total: Optional[int] = None,
             type: Optional[str] = None,
-            value: Optional['WebauthnCredentialCreationOpts'] = None) -> None:
+            value: Optional['WebauthnCredentialCreationOpts'] = None,
+            warnings: Optional[List[str]] = None) -> None:
         """Initializes with the given values."""
         self.hash = hash
 
@@ -14283,6 +15637,8 @@ class HttplibJsonResponseDataWebauthnCredentialCreationOpts:
         self.type = type
 
         self.value = value
+
+        self.warnings = warnings
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -14359,12 +15715,22 @@ def httplib_json_response_data_webauthn_credential_creation_opts_from_obj(obj: A
     else:
         value_from_obj = None
 
+    obj_warnings = obj.get('warnings', None)
+    if obj_warnings is not None:
+        warnings_from_obj = from_obj(
+            obj_warnings,
+            expected=[list, str],
+            path=path + '.warnings')  # type: Optional[List[str]]
+    else:
+        warnings_from_obj = None
+
     return HttplibJsonResponseDataWebauthnCredentialCreationOpts(
         hash=hash_from_obj,
         ids=ids_from_obj,
         total=total_from_obj,
         type=type_from_obj,
-        value=value_from_obj)
+        value=value_from_obj,
+        warnings=warnings_from_obj)
 
 
 def httplib_json_response_data_webauthn_credential_creation_opts_to_jsonable(
@@ -14399,6 +15765,12 @@ def httplib_json_response_data_webauthn_credential_creation_opts_to_jsonable(
         httplib_json_response_data_webauthn_credential_creation_opts.value,
         expected=[WebauthnCredentialCreationOpts],
         path='{}.value'.format(path))
+
+    if httplib_json_response_data_webauthn_credential_creation_opts.warnings is not None:
+        res['warnings'] = to_jsonable(
+        httplib_json_response_data_webauthn_credential_creation_opts.warnings,
+        expected=[list, str],
+        path='{}.warnings'.format(path))
 
     return res
 
@@ -15258,6 +16630,7 @@ class ModelsAuthAccount:
             totp_secret: Optional[str] = None,
             updated: Optional[str] = None,
             user_agent: Optional[Any] = None,
+            vcard_id: Optional[str] = None,
             verified: Optional[bool] = None,
             web_authn_creation: Optional[Any] = None,
             web_authn_credentials: Optional[List['WebauthnCredential']] = None,
@@ -15382,6 +16755,9 @@ class ModelsAuthAccount:
 
         # Sets the UserAgent for the initial session after account creation.
         self.user_agent = user_agent
+
+        # VCardID for the account.
+        self.vcard_id = vcard_id
 
         # Accounts must be verified to receive email notifications.
         self.verified = verified
@@ -15743,6 +17119,15 @@ def models_auth_account_from_obj(obj: Any, path: str = "") -> ModelsAuthAccount:
 
     user_agent_from_obj = obj.get('userAgent', None)
 
+    obj_vcard_id = obj.get('vcardID', None)
+    if obj_vcard_id is not None:
+        vcard_id_from_obj = from_obj(
+            obj_vcard_id,
+            expected=[str],
+            path=path + '.vcardID')  # type: Optional[str]
+    else:
+        vcard_id_from_obj = None
+
     obj_verified = obj.get('verified', None)
     if obj_verified is not None:
         verified_from_obj = from_obj(
@@ -15806,6 +17191,7 @@ def models_auth_account_from_obj(obj: Any, path: str = "") -> ModelsAuthAccount:
         totp_secret=totp_secret_from_obj,
         updated=updated_from_obj,
         user_agent=user_agent_from_obj,
+        vcard_id=vcard_id_from_obj,
         verified=verified_from_obj,
         web_authn_creation=web_authn_creation_from_obj,
         web_authn_credentials=web_authn_credentials_from_obj,
@@ -15958,6 +17344,9 @@ def models_auth_account_to_jsonable(
 
     if models_auth_account.user_agent is not None:
         res['userAgent'] = models_auth_account.user_agent
+
+    if models_auth_account.vcard_id is not None:
+        res['vcardID'] = models_auth_account.vcard_id
 
     if models_auth_account.verified is not None:
         res['verified'] = models_auth_account.verified
@@ -16690,6 +18079,7 @@ class ModelsAuthAccountPreferencesNotificationsHousehold:
             ignore_device_budget_create: Optional[bool] = None,
             ignore_device_calendar_create: Optional[bool] = None,
             ignore_device_calendar_event: Optional[bool] = None,
+            ignore_device_contacts_create: Optional[bool] = None,
             ignore_device_cook_create: Optional[bool] = None,
             ignore_device_cook_meal_plan_cook: Optional[bool] = None,
             ignore_device_cook_meal_plan_leave: Optional[bool] = None,
@@ -16717,6 +18107,8 @@ class ModelsAuthAccountPreferencesNotificationsHousehold:
         self.ignore_device_calendar_create = ignore_device_calendar_create
 
         self.ignore_device_calendar_event = ignore_device_calendar_event
+
+        self.ignore_device_contacts_create = ignore_device_contacts_create
 
         self.ignore_device_cook_create = ignore_device_cook_create
 
@@ -16826,6 +18218,15 @@ def models_auth_account_preferences_notifications_household_from_obj(obj: Any, p
             path=path + '.ignoreDeviceCalendarEvent')  # type: Optional[bool]
     else:
         ignore_device_calendar_event_from_obj = None
+
+    obj_ignore_device_contacts_create = obj.get('ignoreDeviceContactsCreate', None)
+    if obj_ignore_device_contacts_create is not None:
+        ignore_device_contacts_create_from_obj = from_obj(
+            obj_ignore_device_contacts_create,
+            expected=[bool],
+            path=path + '.ignoreDeviceContactsCreate')  # type: Optional[bool]
+    else:
+        ignore_device_contacts_create_from_obj = None
 
     obj_ignore_device_cook_create = obj.get('ignoreDeviceCookCreate', None)
     if obj_ignore_device_cook_create is not None:
@@ -16986,6 +18387,7 @@ def models_auth_account_preferences_notifications_household_from_obj(obj: Any, p
         ignore_device_budget_create=ignore_device_budget_create_from_obj,
         ignore_device_calendar_create=ignore_device_calendar_create_from_obj,
         ignore_device_calendar_event=ignore_device_calendar_event_from_obj,
+        ignore_device_contacts_create=ignore_device_contacts_create_from_obj,
         ignore_device_cook_create=ignore_device_cook_create_from_obj,
         ignore_device_cook_meal_plan_cook=ignore_device_cook_meal_plan_cook_from_obj,
         ignore_device_cook_meal_plan_leave=ignore_device_cook_meal_plan_leave_from_obj,
@@ -17031,6 +18433,9 @@ def models_auth_account_preferences_notifications_household_to_jsonable(
 
     if models_auth_account_preferences_notifications_household.ignore_device_calendar_event is not None:
         res['ignoreDeviceCalendarEvent'] = models_auth_account_preferences_notifications_household.ignore_device_calendar_event
+
+    if models_auth_account_preferences_notifications_household.ignore_device_contacts_create is not None:
+        res['ignoreDeviceContactsCreate'] = models_auth_account_preferences_notifications_household.ignore_device_contacts_create
 
     if models_auth_account_preferences_notifications_household.ignore_device_cook_create is not None:
         res['ignoreDeviceCookCreate'] = models_auth_account_preferences_notifications_household.ignore_device_cook_create
@@ -20293,6 +21698,8 @@ class ModelsBudgetRecurrenceTemplate:
             budget_payee_id: Optional[str] = None,
             budget_payee_name: Optional[str] = None,
             categories: Optional[List['ModelsBudgetTransactionCategory']] = None,
+            contacts_contact_id: Optional[str] = None,
+            contacts_contact_name: Optional[str] = None,
             created: Optional[str] = None,
             date: Optional[str] = None,
             id: Optional[str] = None,
@@ -20307,11 +21714,21 @@ class ModelsBudgetRecurrenceTemplate:
 
         self.balance = balance
 
+        # Deprecated: Use ContactsContactID
+        #
+        # TODO remove 2026-10-09
         self.budget_payee_id = budget_payee_id
 
+        # Deprecated: Use ContactsContactName
+        #
+        # TODO remove 2026-10-09
         self.budget_payee_name = budget_payee_name
 
         self.categories = categories
+
+        self.contacts_contact_id = contacts_contact_id
+
+        self.contacts_contact_name = contacts_contact_name
 
         self.created = created
 
@@ -20416,6 +21833,24 @@ def models_budget_recurrence_template_from_obj(obj: Any, path: str = "") -> Mode
     else:
         categories_from_obj = None
 
+    obj_contacts_contact_id = obj.get('contactsContactID', None)
+    if obj_contacts_contact_id is not None:
+        contacts_contact_id_from_obj = from_obj(
+            obj_contacts_contact_id,
+            expected=[str],
+            path=path + '.contactsContactID')  # type: Optional[str]
+    else:
+        contacts_contact_id_from_obj = None
+
+    obj_contacts_contact_name = obj.get('contactsContactName', None)
+    if obj_contacts_contact_name is not None:
+        contacts_contact_name_from_obj = from_obj(
+            obj_contacts_contact_name,
+            expected=[str],
+            path=path + '.contactsContactName')  # type: Optional[str]
+    else:
+        contacts_contact_name_from_obj = None
+
     obj_created = obj.get('created', None)
     if obj_created is not None:
         created_from_obj = from_obj(
@@ -20469,6 +21904,8 @@ def models_budget_recurrence_template_from_obj(obj: Any, path: str = "") -> Mode
         budget_payee_id=budget_payee_id_from_obj,
         budget_payee_name=budget_payee_name_from_obj,
         categories=categories_from_obj,
+        contacts_contact_id=contacts_contact_id_from_obj,
+        contacts_contact_name=contacts_contact_name_from_obj,
         created=created_from_obj,
         date=date_from_obj,
         id=id_from_obj,
@@ -20515,6 +21952,12 @@ def models_budget_recurrence_template_to_jsonable(
         expected=[list, ModelsBudgetTransactionCategory],
         path='{}.categories'.format(path))
 
+    if models_budget_recurrence_template.contacts_contact_id is not None:
+        res['contactsContactID'] = models_budget_recurrence_template.contacts_contact_id
+
+    if models_budget_recurrence_template.contacts_contact_name is not None:
+        res['contactsContactName'] = models_budget_recurrence_template.contacts_contact_name
+
     if models_budget_recurrence_template.created is not None:
         res['created'] = models_budget_recurrence_template.created
 
@@ -20543,6 +21986,8 @@ class ModelsBudgetTransaction:
             budget_payee_id: Optional[str] = None,
             budget_payee_name: Optional[str] = None,
             categories: Optional[List['ModelsBudgetTransactionCategory']] = None,
+            contacts_contact_id: Optional[str] = None,
+            contacts_contact_name: Optional[str] = None,
             created: Optional[str] = None,
             date: Optional[str] = None,
             id: Optional[str] = None,
@@ -20557,11 +22002,21 @@ class ModelsBudgetTransaction:
 
         self.balance = balance
 
+        # Deprecated: Use ContactsContactID
+        #
+        # TODO remove 2026-10-09
         self.budget_payee_id = budget_payee_id
 
+        # Deprecated: Use ContactsContactName
+        #
+        # TODO remove 2026-10-09
         self.budget_payee_name = budget_payee_name
 
         self.categories = categories
+
+        self.contacts_contact_id = contacts_contact_id
+
+        self.contacts_contact_name = contacts_contact_name
 
         self.created = created
 
@@ -20666,6 +22121,24 @@ def models_budget_transaction_from_obj(obj: Any, path: str = "") -> ModelsBudget
     else:
         categories_from_obj = None
 
+    obj_contacts_contact_id = obj.get('contactsContactID', None)
+    if obj_contacts_contact_id is not None:
+        contacts_contact_id_from_obj = from_obj(
+            obj_contacts_contact_id,
+            expected=[str],
+            path=path + '.contactsContactID')  # type: Optional[str]
+    else:
+        contacts_contact_id_from_obj = None
+
+    obj_contacts_contact_name = obj.get('contactsContactName', None)
+    if obj_contacts_contact_name is not None:
+        contacts_contact_name_from_obj = from_obj(
+            obj_contacts_contact_name,
+            expected=[str],
+            path=path + '.contactsContactName')  # type: Optional[str]
+    else:
+        contacts_contact_name_from_obj = None
+
     obj_created = obj.get('created', None)
     if obj_created is not None:
         created_from_obj = from_obj(
@@ -20719,6 +22192,8 @@ def models_budget_transaction_from_obj(obj: Any, path: str = "") -> ModelsBudget
         budget_payee_id=budget_payee_id_from_obj,
         budget_payee_name=budget_payee_name_from_obj,
         categories=categories_from_obj,
+        contacts_contact_id=contacts_contact_id_from_obj,
+        contacts_contact_name=contacts_contact_name_from_obj,
         created=created_from_obj,
         date=date_from_obj,
         id=id_from_obj,
@@ -20764,6 +22239,12 @@ def models_budget_transaction_to_jsonable(
         models_budget_transaction.categories,
         expected=[list, ModelsBudgetTransactionCategory],
         path='{}.categories'.format(path))
+
+    if models_budget_transaction.contacts_contact_id is not None:
+        res['contactsContactID'] = models_budget_transaction.contacts_contact_id
+
+    if models_budget_transaction.contacts_contact_name is not None:
+        res['contactsContactName'] = models_budget_transaction.contacts_contact_name
 
     if models_budget_transaction.created is not None:
         res['created'] = models_budget_transaction.created
@@ -22264,12 +23745,674 @@ def models_config_key_to_jsonable(
     return res
 
 
+class ModelsContactsAddressBook:
+    def __init__(
+            self,
+            auth_account_id: Optional[str] = None,
+            auth_household_id: Optional[str] = None,
+            color: Optional[str] = None,
+            created: Optional[str] = None,
+            icon: Optional[str] = None,
+            id: Optional[str] = None,
+            labels_values_ids: Optional[List[str]] = None,
+            name: Optional[str] = None,
+            short_id: Optional[str] = None,
+            updated: Optional[str] = None,
+            vcf: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.auth_account_id = auth_account_id
+
+        self.auth_household_id = auth_household_id
+
+        self.color = color
+
+        self.created = created
+
+        self.icon = icon
+
+        self.id = id
+
+        self.labels_values_ids = labels_values_ids
+
+        # If name is not specified, the ICS will be parsed, ContactsContact created, but no AddressBook will be created/associated with them.
+        self.name = name
+
+        self.short_id = short_id
+
+        self.updated = updated
+
+        self.vcf = vcf
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to models_contacts_address_book_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return models_contacts_address_book_to_jsonable(self)
+
+
+def new_models_contacts_address_book() -> ModelsContactsAddressBook:
+    """Generates an instance of ModelsContactsAddressBook with default values."""
+    return ModelsContactsAddressBook()
+
+
+def models_contacts_address_book_from_obj(obj: Any, path: str = "") -> ModelsContactsAddressBook:
+    """
+    Generates an instance of ModelsContactsAddressBook from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of ModelsContactsAddressBook
+    :param path: path to the object used for debugging
+    :return: parsed instance of ModelsContactsAddressBook
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_auth_account_id = obj.get('authAccountID', None)
+    if obj_auth_account_id is not None:
+        auth_account_id_from_obj = from_obj(
+            obj_auth_account_id,
+            expected=[str],
+            path=path + '.authAccountID')  # type: Optional[str]
+    else:
+        auth_account_id_from_obj = None
+
+    obj_auth_household_id = obj.get('authHouseholdID', None)
+    if obj_auth_household_id is not None:
+        auth_household_id_from_obj = from_obj(
+            obj_auth_household_id,
+            expected=[str],
+            path=path + '.authHouseholdID')  # type: Optional[str]
+    else:
+        auth_household_id_from_obj = None
+
+    obj_color = obj.get('color', None)
+    if obj_color is not None:
+        color_from_obj = from_obj(
+            obj_color,
+            expected=[str],
+            path=path + '.color')  # type: Optional[str]
+    else:
+        color_from_obj = None
+
+    obj_created = obj.get('created', None)
+    if obj_created is not None:
+        created_from_obj = from_obj(
+            obj_created,
+            expected=[str],
+            path=path + '.created')  # type: Optional[str]
+    else:
+        created_from_obj = None
+
+    obj_icon = obj.get('icon', None)
+    if obj_icon is not None:
+        icon_from_obj = from_obj(
+            obj_icon,
+            expected=[str],
+            path=path + '.icon')  # type: Optional[str]
+    else:
+        icon_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    obj_labels_values_ids = obj.get('labelsValuesIDs', None)
+    if obj_labels_values_ids is not None:
+        labels_values_ids_from_obj = from_obj(
+            obj_labels_values_ids,
+            expected=[list, str],
+            path=path + '.labelsValuesIDs')  # type: Optional[List[str]]
+    else:
+        labels_values_ids_from_obj = None
+
+    obj_name = obj.get('name', None)
+    if obj_name is not None:
+        name_from_obj = from_obj(
+            obj_name,
+            expected=[str],
+            path=path + '.name')  # type: Optional[str]
+    else:
+        name_from_obj = None
+
+    obj_short_id = obj.get('shortID', None)
+    if obj_short_id is not None:
+        short_id_from_obj = from_obj(
+            obj_short_id,
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
+    else:
+        short_id_from_obj = None
+
+    obj_updated = obj.get('updated', None)
+    if obj_updated is not None:
+        updated_from_obj = from_obj(
+            obj_updated,
+            expected=[str],
+            path=path + '.updated')  # type: Optional[str]
+    else:
+        updated_from_obj = None
+
+    obj_vcf = obj.get('vcf', None)
+    if obj_vcf is not None:
+        vcf_from_obj = from_obj(
+            obj_vcf,
+            expected=[str],
+            path=path + '.vcf')  # type: Optional[str]
+    else:
+        vcf_from_obj = None
+
+    return ModelsContactsAddressBook(
+        auth_account_id=auth_account_id_from_obj,
+        auth_household_id=auth_household_id_from_obj,
+        color=color_from_obj,
+        created=created_from_obj,
+        icon=icon_from_obj,
+        id=id_from_obj,
+        labels_values_ids=labels_values_ids_from_obj,
+        name=name_from_obj,
+        short_id=short_id_from_obj,
+        updated=updated_from_obj,
+        vcf=vcf_from_obj)
+
+
+def models_contacts_address_book_to_jsonable(
+        models_contacts_address_book: ModelsContactsAddressBook,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of ModelsContactsAddressBook.
+
+    :param models_contacts_address_book: instance of ModelsContactsAddressBook to be JSON-ized
+    :param path: path to the models_contacts_address_book used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if models_contacts_address_book.auth_account_id is not None:
+        res['authAccountID'] = models_contacts_address_book.auth_account_id
+
+    if models_contacts_address_book.auth_household_id is not None:
+        res['authHouseholdID'] = models_contacts_address_book.auth_household_id
+
+    if models_contacts_address_book.color is not None:
+        res['color'] = models_contacts_address_book.color
+
+    if models_contacts_address_book.created is not None:
+        res['created'] = models_contacts_address_book.created
+
+    if models_contacts_address_book.icon is not None:
+        res['icon'] = models_contacts_address_book.icon
+
+    if models_contacts_address_book.id is not None:
+        res['id'] = models_contacts_address_book.id
+
+    if models_contacts_address_book.labels_values_ids is not None:
+        res['labelsValuesIDs'] = to_jsonable(
+        models_contacts_address_book.labels_values_ids,
+        expected=[list, str],
+        path='{}.labelsValuesIDs'.format(path))
+
+    if models_contacts_address_book.name is not None:
+        res['name'] = models_contacts_address_book.name
+
+    if models_contacts_address_book.short_id is not None:
+        res['shortID'] = models_contacts_address_book.short_id
+
+    if models_contacts_address_book.updated is not None:
+        res['updated'] = models_contacts_address_book.updated
+
+    if models_contacts_address_book.vcf is not None:
+        res['vcf'] = models_contacts_address_book.vcf
+
+    return res
+
+
+class ModelsContactsContact:
+    def __init__(
+            self,
+            auth_account_id: Optional[str] = None,
+            auth_household_id: Optional[str] = None,
+            budget_category_id: Optional[str] = None,
+            budget_transaction_amount: Optional[int] = None,
+            contacts_address_book_id: Optional[str] = None,
+            cook_meal_plan_count: Optional[int] = None,
+            cook_meal_plan_last: Optional[str] = None,
+            cook_restaurant: Optional[bool] = None,
+            created: Optional[str] = None,
+            icon: Optional[str] = None,
+            id: Optional[str] = None,
+            meals_disliked: Optional[List[str]] = None,
+            meals_liked: Optional[List[str]] = None,
+            menu_link: Optional[str] = None,
+            name: Optional[str] = None,
+            price: Optional[int] = None,
+            rating: Optional[int] = None,
+            shop_store: Optional[bool] = None,
+            short_id: Optional[str] = None,
+            travel_time: Optional[int] = None,
+            updated: Optional[str] = None,
+            vcard: Optional['VcardCard'] = None,
+            vcard_u_id: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.auth_account_id = auth_account_id
+
+        self.auth_household_id = auth_household_id
+
+        self.budget_category_id = budget_category_id
+
+        self.budget_transaction_amount = budget_transaction_amount
+
+        self.contacts_address_book_id = contacts_address_book_id
+
+        self.cook_meal_plan_count = cook_meal_plan_count
+
+        self.cook_meal_plan_last = cook_meal_plan_last
+
+        self.cook_restaurant = cook_restaurant
+
+        self.created = created
+
+        self.icon = icon
+
+        self.id = id
+
+        self.meals_disliked = meals_disliked
+
+        self.meals_liked = meals_liked
+
+        self.menu_link = menu_link
+
+        self.name = name
+
+        self.price = price
+
+        self.rating = rating
+
+        self.shop_store = shop_store
+
+        self.short_id = short_id
+
+        self.travel_time = travel_time
+
+        self.updated = updated
+
+        self.vcard = vcard
+
+        self.vcard_u_id = vcard_u_id
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to models_contacts_contact_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return models_contacts_contact_to_jsonable(self)
+
+
+def new_models_contacts_contact() -> ModelsContactsContact:
+    """Generates an instance of ModelsContactsContact with default values."""
+    return ModelsContactsContact()
+
+
+def models_contacts_contact_from_obj(obj: Any, path: str = "") -> ModelsContactsContact:
+    """
+    Generates an instance of ModelsContactsContact from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of ModelsContactsContact
+    :param path: path to the object used for debugging
+    :return: parsed instance of ModelsContactsContact
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_auth_account_id = obj.get('authAccountID', None)
+    if obj_auth_account_id is not None:
+        auth_account_id_from_obj = from_obj(
+            obj_auth_account_id,
+            expected=[str],
+            path=path + '.authAccountID')  # type: Optional[str]
+    else:
+        auth_account_id_from_obj = None
+
+    obj_auth_household_id = obj.get('authHouseholdID', None)
+    if obj_auth_household_id is not None:
+        auth_household_id_from_obj = from_obj(
+            obj_auth_household_id,
+            expected=[str],
+            path=path + '.authHouseholdID')  # type: Optional[str]
+    else:
+        auth_household_id_from_obj = None
+
+    obj_budget_category_id = obj.get('budgetCategoryID', None)
+    if obj_budget_category_id is not None:
+        budget_category_id_from_obj = from_obj(
+            obj_budget_category_id,
+            expected=[str],
+            path=path + '.budgetCategoryID')  # type: Optional[str]
+    else:
+        budget_category_id_from_obj = None
+
+    obj_budget_transaction_amount = obj.get('budgetTransactionAmount', None)
+    if obj_budget_transaction_amount is not None:
+        budget_transaction_amount_from_obj = from_obj(
+            obj_budget_transaction_amount,
+            expected=[int],
+            path=path + '.budgetTransactionAmount')  # type: Optional[int]
+    else:
+        budget_transaction_amount_from_obj = None
+
+    obj_contacts_address_book_id = obj.get('contactsAddressBookID', None)
+    if obj_contacts_address_book_id is not None:
+        contacts_address_book_id_from_obj = from_obj(
+            obj_contacts_address_book_id,
+            expected=[str],
+            path=path + '.contactsAddressBookID')  # type: Optional[str]
+    else:
+        contacts_address_book_id_from_obj = None
+
+    obj_cook_meal_plan_count = obj.get('cookMealPlanCount', None)
+    if obj_cook_meal_plan_count is not None:
+        cook_meal_plan_count_from_obj = from_obj(
+            obj_cook_meal_plan_count,
+            expected=[int],
+            path=path + '.cookMealPlanCount')  # type: Optional[int]
+    else:
+        cook_meal_plan_count_from_obj = None
+
+    obj_cook_meal_plan_last = obj.get('cookMealPlanLast', None)
+    if obj_cook_meal_plan_last is not None:
+        cook_meal_plan_last_from_obj = from_obj(
+            obj_cook_meal_plan_last,
+            expected=[str],
+            path=path + '.cookMealPlanLast')  # type: Optional[str]
+    else:
+        cook_meal_plan_last_from_obj = None
+
+    obj_cook_restaurant = obj.get('cookRestaurant', None)
+    if obj_cook_restaurant is not None:
+        cook_restaurant_from_obj = from_obj(
+            obj_cook_restaurant,
+            expected=[bool],
+            path=path + '.cookRestaurant')  # type: Optional[bool]
+    else:
+        cook_restaurant_from_obj = None
+
+    obj_created = obj.get('created', None)
+    if obj_created is not None:
+        created_from_obj = from_obj(
+            obj_created,
+            expected=[str],
+            path=path + '.created')  # type: Optional[str]
+    else:
+        created_from_obj = None
+
+    obj_icon = obj.get('icon', None)
+    if obj_icon is not None:
+        icon_from_obj = from_obj(
+            obj_icon,
+            expected=[str],
+            path=path + '.icon')  # type: Optional[str]
+    else:
+        icon_from_obj = None
+
+    obj_id = obj.get('id', None)
+    if obj_id is not None:
+        id_from_obj = from_obj(
+            obj_id,
+            expected=[str],
+            path=path + '.id')  # type: Optional[str]
+    else:
+        id_from_obj = None
+
+    obj_meals_disliked = obj.get('mealsDisliked', None)
+    if obj_meals_disliked is not None:
+        meals_disliked_from_obj = from_obj(
+            obj_meals_disliked,
+            expected=[list, str],
+            path=path + '.mealsDisliked')  # type: Optional[List[str]]
+    else:
+        meals_disliked_from_obj = None
+
+    obj_meals_liked = obj.get('mealsLiked', None)
+    if obj_meals_liked is not None:
+        meals_liked_from_obj = from_obj(
+            obj_meals_liked,
+            expected=[list, str],
+            path=path + '.mealsLiked')  # type: Optional[List[str]]
+    else:
+        meals_liked_from_obj = None
+
+    obj_menu_link = obj.get('menuLink', None)
+    if obj_menu_link is not None:
+        menu_link_from_obj = from_obj(
+            obj_menu_link,
+            expected=[str],
+            path=path + '.menuLink')  # type: Optional[str]
+    else:
+        menu_link_from_obj = None
+
+    obj_name = obj.get('name', None)
+    if obj_name is not None:
+        name_from_obj = from_obj(
+            obj_name,
+            expected=[str],
+            path=path + '.name')  # type: Optional[str]
+    else:
+        name_from_obj = None
+
+    obj_price = obj.get('price', None)
+    if obj_price is not None:
+        price_from_obj = from_obj(
+            obj_price,
+            expected=[int],
+            path=path + '.price')  # type: Optional[int]
+    else:
+        price_from_obj = None
+
+    obj_rating = obj.get('rating', None)
+    if obj_rating is not None:
+        rating_from_obj = from_obj(
+            obj_rating,
+            expected=[int],
+            path=path + '.rating')  # type: Optional[int]
+    else:
+        rating_from_obj = None
+
+    obj_shop_store = obj.get('shopStore', None)
+    if obj_shop_store is not None:
+        shop_store_from_obj = from_obj(
+            obj_shop_store,
+            expected=[bool],
+            path=path + '.shopStore')  # type: Optional[bool]
+    else:
+        shop_store_from_obj = None
+
+    obj_short_id = obj.get('shortID', None)
+    if obj_short_id is not None:
+        short_id_from_obj = from_obj(
+            obj_short_id,
+            expected=[str],
+            path=path + '.shortID')  # type: Optional[str]
+    else:
+        short_id_from_obj = None
+
+    obj_travel_time = obj.get('travelTime', None)
+    if obj_travel_time is not None:
+        travel_time_from_obj = from_obj(
+            obj_travel_time,
+            expected=[int],
+            path=path + '.travelTime')  # type: Optional[int]
+    else:
+        travel_time_from_obj = None
+
+    obj_updated = obj.get('updated', None)
+    if obj_updated is not None:
+        updated_from_obj = from_obj(
+            obj_updated,
+            expected=[str],
+            path=path + '.updated')  # type: Optional[str]
+    else:
+        updated_from_obj = None
+
+    obj_vcard = obj.get('vcard', None)
+    if obj_vcard is not None:
+        vcard_from_obj = from_obj(
+            obj_vcard,
+            expected=[VcardCard],
+            path=path + '.vcard')  # type: Optional['VcardCard']
+    else:
+        vcard_from_obj = None
+
+    obj_vcard_u_id = obj.get('vcardUID', None)
+    if obj_vcard_u_id is not None:
+        vcard_u_id_from_obj = from_obj(
+            obj_vcard_u_id,
+            expected=[str],
+            path=path + '.vcardUID')  # type: Optional[str]
+    else:
+        vcard_u_id_from_obj = None
+
+    return ModelsContactsContact(
+        auth_account_id=auth_account_id_from_obj,
+        auth_household_id=auth_household_id_from_obj,
+        budget_category_id=budget_category_id_from_obj,
+        budget_transaction_amount=budget_transaction_amount_from_obj,
+        contacts_address_book_id=contacts_address_book_id_from_obj,
+        cook_meal_plan_count=cook_meal_plan_count_from_obj,
+        cook_meal_plan_last=cook_meal_plan_last_from_obj,
+        cook_restaurant=cook_restaurant_from_obj,
+        created=created_from_obj,
+        icon=icon_from_obj,
+        id=id_from_obj,
+        meals_disliked=meals_disliked_from_obj,
+        meals_liked=meals_liked_from_obj,
+        menu_link=menu_link_from_obj,
+        name=name_from_obj,
+        price=price_from_obj,
+        rating=rating_from_obj,
+        shop_store=shop_store_from_obj,
+        short_id=short_id_from_obj,
+        travel_time=travel_time_from_obj,
+        updated=updated_from_obj,
+        vcard=vcard_from_obj,
+        vcard_u_id=vcard_u_id_from_obj)
+
+
+def models_contacts_contact_to_jsonable(
+        models_contacts_contact: ModelsContactsContact,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of ModelsContactsContact.
+
+    :param models_contacts_contact: instance of ModelsContactsContact to be JSON-ized
+    :param path: path to the models_contacts_contact used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if models_contacts_contact.auth_account_id is not None:
+        res['authAccountID'] = models_contacts_contact.auth_account_id
+
+    if models_contacts_contact.auth_household_id is not None:
+        res['authHouseholdID'] = models_contacts_contact.auth_household_id
+
+    if models_contacts_contact.budget_category_id is not None:
+        res['budgetCategoryID'] = models_contacts_contact.budget_category_id
+
+    if models_contacts_contact.budget_transaction_amount is not None:
+        res['budgetTransactionAmount'] = models_contacts_contact.budget_transaction_amount
+
+    if models_contacts_contact.contacts_address_book_id is not None:
+        res['contactsAddressBookID'] = models_contacts_contact.contacts_address_book_id
+
+    if models_contacts_contact.cook_meal_plan_count is not None:
+        res['cookMealPlanCount'] = models_contacts_contact.cook_meal_plan_count
+
+    if models_contacts_contact.cook_meal_plan_last is not None:
+        res['cookMealPlanLast'] = models_contacts_contact.cook_meal_plan_last
+
+    if models_contacts_contact.cook_restaurant is not None:
+        res['cookRestaurant'] = models_contacts_contact.cook_restaurant
+
+    if models_contacts_contact.created is not None:
+        res['created'] = models_contacts_contact.created
+
+    if models_contacts_contact.icon is not None:
+        res['icon'] = models_contacts_contact.icon
+
+    if models_contacts_contact.id is not None:
+        res['id'] = models_contacts_contact.id
+
+    if models_contacts_contact.meals_disliked is not None:
+        res['mealsDisliked'] = to_jsonable(
+        models_contacts_contact.meals_disliked,
+        expected=[list, str],
+        path='{}.mealsDisliked'.format(path))
+
+    if models_contacts_contact.meals_liked is not None:
+        res['mealsLiked'] = to_jsonable(
+        models_contacts_contact.meals_liked,
+        expected=[list, str],
+        path='{}.mealsLiked'.format(path))
+
+    if models_contacts_contact.menu_link is not None:
+        res['menuLink'] = models_contacts_contact.menu_link
+
+    if models_contacts_contact.name is not None:
+        res['name'] = models_contacts_contact.name
+
+    if models_contacts_contact.price is not None:
+        res['price'] = models_contacts_contact.price
+
+    if models_contacts_contact.rating is not None:
+        res['rating'] = models_contacts_contact.rating
+
+    if models_contacts_contact.shop_store is not None:
+        res['shopStore'] = models_contacts_contact.shop_store
+
+    if models_contacts_contact.short_id is not None:
+        res['shortID'] = models_contacts_contact.short_id
+
+    if models_contacts_contact.travel_time is not None:
+        res['travelTime'] = models_contacts_contact.travel_time
+
+    if models_contacts_contact.updated is not None:
+        res['updated'] = models_contacts_contact.updated
+
+    if models_contacts_contact.vcard is not None:
+        res['vcard'] = to_jsonable(
+        models_contacts_contact.vcard,
+        expected=[VcardCard],
+        path='{}.vcard'.format(path))
+
+    if models_contacts_contact.vcard_u_id is not None:
+        res['vcardUID'] = models_contacts_contact.vcard_u_id
+
+    return res
+
+
 class ModelsCookMealPlan:
     def __init__(
             self,
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
             budget_payee_id: Optional[str] = None,
+            contacts_contact_id: Optional[str] = None,
             cook_meal_time_id: Optional[str] = None,
             cook_recipe_id: Optional[str] = None,
             cook_recipe_scale: Optional[str] = None,
@@ -22287,7 +24430,12 @@ class ModelsCookMealPlan:
 
         self.auth_household_id = auth_household_id
 
+        # Deprecated: Use ContactsContactID
+        #
+        # TODO remove 2026-10-09
         self.budget_payee_id = budget_payee_id
+
+        self.contacts_contact_id = contacts_contact_id
 
         self.cook_meal_time_id = cook_meal_time_id
 
@@ -22369,6 +24517,15 @@ def models_cook_meal_plan_from_obj(obj: Any, path: str = "") -> ModelsCookMealPl
             path=path + '.budgetPayeeID')  # type: Optional[str]
     else:
         budget_payee_id_from_obj = None
+
+    obj_contacts_contact_id = obj.get('contactsContactID', None)
+    if obj_contacts_contact_id is not None:
+        contacts_contact_id_from_obj = from_obj(
+            obj_contacts_contact_id,
+            expected=[str],
+            path=path + '.contactsContactID')  # type: Optional[str]
+    else:
+        contacts_contact_id_from_obj = None
 
     obj_cook_meal_time_id = obj.get('cookMealTimeID', None)
     if obj_cook_meal_time_id is not None:
@@ -22482,6 +24639,7 @@ def models_cook_meal_plan_from_obj(obj: Any, path: str = "") -> ModelsCookMealPl
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
         budget_payee_id=budget_payee_id_from_obj,
+        contacts_contact_id=contacts_contact_id_from_obj,
         cook_meal_time_id=cook_meal_time_id_from_obj,
         cook_recipe_id=cook_recipe_id_from_obj,
         cook_recipe_scale=cook_recipe_scale_from_obj,
@@ -22516,6 +24674,9 @@ def models_cook_meal_plan_to_jsonable(
 
     if models_cook_meal_plan.budget_payee_id is not None:
         res['budgetPayeeID'] = models_cook_meal_plan.budget_payee_id
+
+    if models_cook_meal_plan.contacts_contact_id is not None:
+        res['contactsContactID'] = models_cook_meal_plan.contacts_contact_id
 
     if models_cook_meal_plan.cook_meal_time_id is not None:
         res['cookMealTimeID'] = models_cook_meal_plan.cook_meal_time_id
@@ -23926,7 +26087,6 @@ class ModelsHealthLogItem:
             self,
             auth_account_id: Optional[str] = None,
             created: Optional[str] = None,
-            date: Optional[str] = None,
             health_item_id: Optional[str] = None,
             id: Optional[str] = None,
             timestamp: Optional[str] = None,
@@ -23935,11 +26095,6 @@ class ModelsHealthLogItem:
         self.auth_account_id = auth_account_id
 
         self.created = created
-
-        # Deprecated: use Timestamp
-        #
-        # TODO remove 2026-02-21
-        self.date = date
 
         self.health_item_id = health_item_id
 
@@ -23997,15 +26152,6 @@ def models_health_log_item_from_obj(obj: Any, path: str = "") -> ModelsHealthLog
     else:
         created_from_obj = None
 
-    obj_date = obj.get('date', None)
-    if obj_date is not None:
-        date_from_obj = from_obj(
-            obj_date,
-            expected=[str],
-            path=path + '.date')  # type: Optional[str]
-    else:
-        date_from_obj = None
-
     obj_health_item_id = obj.get('healthItemID', None)
     if obj_health_item_id is not None:
         health_item_id_from_obj = from_obj(
@@ -24045,7 +26191,6 @@ def models_health_log_item_from_obj(obj: Any, path: str = "") -> ModelsHealthLog
     return ModelsHealthLogItem(
         auth_account_id=auth_account_id_from_obj,
         created=created_from_obj,
-        date=date_from_obj,
         health_item_id=health_item_id_from_obj,
         id=id_from_obj,
         timestamp=timestamp_from_obj,
@@ -24069,9 +26214,6 @@ def models_health_log_item_to_jsonable(
 
     if models_health_log_item.created is not None:
         res['created'] = models_health_log_item.created
-
-    if models_health_log_item.date is not None:
-        res['date'] = models_health_log_item.date
 
     if models_health_log_item.health_item_id is not None:
         res['healthItemID'] = models_health_log_item.health_item_id
@@ -25245,6 +27387,7 @@ class ModelsPermissions:
             bookmarks: Optional[int] = None,
             budget: Optional[int] = None,
             calendar: Optional[int] = None,
+            contacts: Optional[int] = None,
             cook: Optional[int] = None,
             health: Optional[int] = None,
             inventory: Optional[int] = None,
@@ -25261,6 +27404,8 @@ class ModelsPermissions:
         self.budget = budget
 
         self.calendar = calendar
+
+        self.contacts = contacts
 
         self.cook = cook
 
@@ -25344,6 +27489,15 @@ def models_permissions_from_obj(obj: Any, path: str = "") -> ModelsPermissions:
     else:
         calendar_from_obj = None
 
+    obj_contacts = obj.get('contacts', None)
+    if obj_contacts is not None:
+        contacts_from_obj = from_obj(
+            obj_contacts,
+            expected=[int],
+            path=path + '.contacts')  # type: Optional[int]
+    else:
+        contacts_from_obj = None
+
     obj_cook = obj.get('cook', None)
     if obj_cook is not None:
         cook_from_obj = from_obj(
@@ -25421,6 +27575,7 @@ def models_permissions_from_obj(obj: Any, path: str = "") -> ModelsPermissions:
         bookmarks=bookmarks_from_obj,
         budget=budget_from_obj,
         calendar=calendar_from_obj,
+        contacts=contacts_from_obj,
         cook=cook_from_obj,
         health=health_from_obj,
         inventory=inventory_from_obj,
@@ -25454,6 +27609,9 @@ def models_permissions_to_jsonable(
 
     if models_permissions.calendar is not None:
         res['calendar'] = models_permissions.calendar
+
+    if models_permissions.contacts is not None:
+        res['contacts'] = models_permissions.contacts
 
     if models_permissions.cook is not None:
         res['cook'] = models_permissions.cook
@@ -27025,6 +29183,7 @@ class ModelsShopCategory:
             self,
             auth_household_id: Optional[str] = None,
             budget_payee_id: Optional[str] = None,
+            contacts_contact_id: Optional[str] = None,
             created: Optional[str] = None,
             id: Optional[str] = None,
             match: Optional[str] = None,
@@ -27033,7 +29192,12 @@ class ModelsShopCategory:
         """Initializes with the given values."""
         self.auth_household_id = auth_household_id
 
+        # Deprecated: Use ContactsContactID
+        #
+        # TODO remove 2026-10-09
         self.budget_payee_id = budget_payee_id
+
+        self.contacts_contact_id = contacts_contact_id
 
         self.created = created
 
@@ -27093,6 +29257,15 @@ def models_shop_category_from_obj(obj: Any, path: str = "") -> ModelsShopCategor
     else:
         budget_payee_id_from_obj = None
 
+    obj_contacts_contact_id = obj.get('contactsContactID', None)
+    if obj_contacts_contact_id is not None:
+        contacts_contact_id_from_obj = from_obj(
+            obj_contacts_contact_id,
+            expected=[str],
+            path=path + '.contactsContactID')  # type: Optional[str]
+    else:
+        contacts_contact_id_from_obj = None
+
     obj_created = obj.get('created', None)
     if obj_created is not None:
         created_from_obj = from_obj(
@@ -27141,6 +29314,7 @@ def models_shop_category_from_obj(obj: Any, path: str = "") -> ModelsShopCategor
     return ModelsShopCategory(
         auth_household_id=auth_household_id_from_obj,
         budget_payee_id=budget_payee_id_from_obj,
+        contacts_contact_id=contacts_contact_id_from_obj,
         created=created_from_obj,
         id=id_from_obj,
         match=match_from_obj,
@@ -27166,6 +29340,9 @@ def models_shop_category_to_jsonable(
     if models_shop_category.budget_payee_id is not None:
         res['budgetPayeeID'] = models_shop_category.budget_payee_id
 
+    if models_shop_category.contacts_contact_id is not None:
+        res['contactsContactID'] = models_shop_category.contacts_contact_id
+
     if models_shop_category.created is not None:
         res['created'] = models_shop_category.created
 
@@ -27190,6 +29367,7 @@ class ModelsShopItem:
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
             budget_payee_id: Optional[str] = None,
+            contacts_contact_id: Optional[str] = None,
             cook_meal_plan_id: Optional[str] = None,
             cook_recipe_id: Optional[str] = None,
             created: Optional[str] = None,
@@ -27209,7 +29387,12 @@ class ModelsShopItem:
 
         self.auth_household_id = auth_household_id
 
+        # Deprecated: Use ContactsContactID
+        #
+        # TODO remove 2026-10-09
         self.budget_payee_id = budget_payee_id
+
+        self.contacts_contact_id = contacts_contact_id
 
         self.cook_meal_plan_id = cook_meal_plan_id
 
@@ -27295,6 +29478,15 @@ def models_shop_item_from_obj(obj: Any, path: str = "") -> ModelsShopItem:
             path=path + '.budgetPayeeID')  # type: Optional[str]
     else:
         budget_payee_id_from_obj = None
+
+    obj_contacts_contact_id = obj.get('contactsContactID', None)
+    if obj_contacts_contact_id is not None:
+        contacts_contact_id_from_obj = from_obj(
+            obj_contacts_contact_id,
+            expected=[str],
+            path=path + '.contactsContactID')  # type: Optional[str]
+    else:
+        contacts_contact_id_from_obj = None
 
     obj_cook_meal_plan_id = obj.get('cookMealPlanID', None)
     if obj_cook_meal_plan_id is not None:
@@ -27426,6 +29618,7 @@ def models_shop_item_from_obj(obj: Any, path: str = "") -> ModelsShopItem:
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
         budget_payee_id=budget_payee_id_from_obj,
+        contacts_contact_id=contacts_contact_id_from_obj,
         cook_meal_plan_id=cook_meal_plan_id_from_obj,
         cook_recipe_id=cook_recipe_id_from_obj,
         created=created_from_obj,
@@ -27462,6 +29655,9 @@ def models_shop_item_to_jsonable(
 
     if models_shop_item.budget_payee_id is not None:
         res['budgetPayeeID'] = models_shop_item.budget_payee_id
+
+    if models_shop_item.contacts_contact_id is not None:
+        res['contactsContactID'] = models_shop_item.contacts_contact_id
 
     if models_shop_item.cook_meal_plan_id is not None:
         res['cookMealPlanID'] = models_shop_item.cook_meal_plan_id
@@ -29416,6 +31612,705 @@ def types_recurrence_to_jsonable(
         types_recurrence.weekdays,
         expected=[list, int],
         path='{}.weekdays'.format(path))
+
+    return res
+
+
+class VcardADR:
+    def __init__(
+            self,
+            city: Optional[str] = None,
+            country: Optional[str] = None,
+            postal_code: Optional[str] = None,
+            state: Optional[str] = None,
+            street: Optional[str] = None,
+            type: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.city = city
+
+        self.country = country
+
+        self.postal_code = postal_code
+
+        self.state = state
+
+        self.street = street
+
+        self.type = type
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to vcard_a_d_r_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return vcard_a_d_r_to_jsonable(self)
+
+
+def new_vcard_a_d_r() -> VcardADR:
+    """Generates an instance of VcardADR with default values."""
+    return VcardADR()
+
+
+def vcard_a_d_r_from_obj(obj: Any, path: str = "") -> VcardADR:
+    """
+    Generates an instance of VcardADR from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of VcardADR
+    :param path: path to the object used for debugging
+    :return: parsed instance of VcardADR
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_city = obj.get('city', None)
+    if obj_city is not None:
+        city_from_obj = from_obj(
+            obj_city,
+            expected=[str],
+            path=path + '.city')  # type: Optional[str]
+    else:
+        city_from_obj = None
+
+    obj_country = obj.get('country', None)
+    if obj_country is not None:
+        country_from_obj = from_obj(
+            obj_country,
+            expected=[str],
+            path=path + '.country')  # type: Optional[str]
+    else:
+        country_from_obj = None
+
+    obj_postal_code = obj.get('postalCode', None)
+    if obj_postal_code is not None:
+        postal_code_from_obj = from_obj(
+            obj_postal_code,
+            expected=[str],
+            path=path + '.postalCode')  # type: Optional[str]
+    else:
+        postal_code_from_obj = None
+
+    obj_state = obj.get('state', None)
+    if obj_state is not None:
+        state_from_obj = from_obj(
+            obj_state,
+            expected=[str],
+            path=path + '.state')  # type: Optional[str]
+    else:
+        state_from_obj = None
+
+    obj_street = obj.get('street', None)
+    if obj_street is not None:
+        street_from_obj = from_obj(
+            obj_street,
+            expected=[str],
+            path=path + '.street')  # type: Optional[str]
+    else:
+        street_from_obj = None
+
+    obj_type = obj.get('type', None)
+    if obj_type is not None:
+        type_from_obj = from_obj(
+            obj_type,
+            expected=[str],
+            path=path + '.type')  # type: Optional[str]
+    else:
+        type_from_obj = None
+
+    return VcardADR(
+        city=city_from_obj,
+        country=country_from_obj,
+        postal_code=postal_code_from_obj,
+        state=state_from_obj,
+        street=street_from_obj,
+        type=type_from_obj)
+
+
+def vcard_a_d_r_to_jsonable(
+        vcard_a_d_r: VcardADR,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of VcardADR.
+
+    :param vcard_a_d_r: instance of VcardADR to be JSON-ized
+    :param path: path to the vcard_a_d_r used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if vcard_a_d_r.city is not None:
+        res['city'] = vcard_a_d_r.city
+
+    if vcard_a_d_r.country is not None:
+        res['country'] = vcard_a_d_r.country
+
+    if vcard_a_d_r.postal_code is not None:
+        res['postalCode'] = vcard_a_d_r.postal_code
+
+    if vcard_a_d_r.state is not None:
+        res['state'] = vcard_a_d_r.state
+
+    if vcard_a_d_r.street is not None:
+        res['street'] = vcard_a_d_r.street
+
+    if vcard_a_d_r.type is not None:
+        res['type'] = vcard_a_d_r.type
+
+    return res
+
+
+class VcardCard:
+    def __init__(
+            self,
+            adr: Optional[List['VcardADR']] = None,
+            anniversary: Optional[List['TypesCivilDate']] = None,
+            bday: Optional[Any] = None,
+            categories: Optional[List[str]] = None,
+            email: Optional[List['VcardCommunication']] = None,
+            kind: Optional[Any] = None,
+            n: Optional[Any] = None,
+            nickname: Optional[str] = None,
+            note: Optional[str] = None,
+            org_departments: Optional[List[str]] = None,
+            org_name: Optional[str] = None,
+            photo: Optional[str] = None,
+            role: Optional[str] = None,
+            tel: Optional[List['VcardCommunication']] = None,
+            title: Optional[str] = None,
+            url: Optional[List['VcardCommunication']] = None) -> None:
+        """Initializes with the given values."""
+        # OPTIONAL, addresses of object.
+        self.adr = adr
+
+        # OPTIONAL, anniversary of object.
+        self.anniversary = anniversary
+
+        # OPTIONAL, birthday of object.
+        self.bday = bday
+
+        # OPTIONAL, tags for the object.
+        self.categories = categories
+
+        # OPTIONAL, email addresses for object.
+        self.email = email
+
+        # OPTIONAL, kind of vCard.  Assume individual if not provided.
+        self.kind = kind
+
+        # SHOULD BE PRESENT, the name of the object as a list of components separated by semicolons.  e.g. surname;givenname;additionalnames (comma separated);prefixes (comma separated);suffixes (comma separated)
+        self.n = n
+
+        # OPTIONAL, text nickname of object.  May specify multiple using commas.
+        self.nickname = nickname
+
+        # OPTIONAL, free text notes.
+        self.note = note
+
+        # OPTIONAL, organizational departments of object.
+        self.org_departments = org_departments
+
+        # OPTIONAL, organizational name of object.
+        self.org_name = org_name
+
+        # OPTIONAL, photo of object.
+        self.photo = photo
+
+        # OPTIONAL, function or part played in a particular situation of the object.
+        self.role = role
+
+        # OPTIONAL, telephone numbers for object.
+        self.tel = tel
+
+        # OPTIONAL, position or job of the object.
+        self.title = title
+
+        # OPTIONAL, websites associated with object.
+        self.url = url
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to vcard_card_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return vcard_card_to_jsonable(self)
+
+
+def new_vcard_card() -> VcardCard:
+    """Generates an instance of VcardCard with default values."""
+    return VcardCard()
+
+
+def vcard_card_from_obj(obj: Any, path: str = "") -> VcardCard:
+    """
+    Generates an instance of VcardCard from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of VcardCard
+    :param path: path to the object used for debugging
+    :return: parsed instance of VcardCard
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_adr = obj.get('adr', None)
+    if obj_adr is not None:
+        adr_from_obj = from_obj(
+            obj_adr,
+            expected=[list, VcardADR],
+            path=path + '.adr')  # type: Optional[List['VcardADR']]
+    else:
+        adr_from_obj = None
+
+    obj_anniversary = obj.get('anniversary', None)
+    if obj_anniversary is not None:
+        anniversary_from_obj = from_obj(
+            obj_anniversary,
+            expected=[list, TypesCivilDate],
+            path=path + '.anniversary')  # type: Optional[List['TypesCivilDate']]
+    else:
+        anniversary_from_obj = None
+
+    bday_from_obj = obj.get('bday', None)
+
+    obj_categories = obj.get('categories', None)
+    if obj_categories is not None:
+        categories_from_obj = from_obj(
+            obj_categories,
+            expected=[list, str],
+            path=path + '.categories')  # type: Optional[List[str]]
+    else:
+        categories_from_obj = None
+
+    obj_email = obj.get('email', None)
+    if obj_email is not None:
+        email_from_obj = from_obj(
+            obj_email,
+            expected=[list, VcardCommunication],
+            path=path + '.email')  # type: Optional[List['VcardCommunication']]
+    else:
+        email_from_obj = None
+
+    kind_from_obj = obj.get('kind', None)
+
+    n_from_obj = obj.get('n', None)
+
+    obj_nickname = obj.get('nickname', None)
+    if obj_nickname is not None:
+        nickname_from_obj = from_obj(
+            obj_nickname,
+            expected=[str],
+            path=path + '.nickname')  # type: Optional[str]
+    else:
+        nickname_from_obj = None
+
+    obj_note = obj.get('note', None)
+    if obj_note is not None:
+        note_from_obj = from_obj(
+            obj_note,
+            expected=[str],
+            path=path + '.note')  # type: Optional[str]
+    else:
+        note_from_obj = None
+
+    obj_org_departments = obj.get('orgDepartments', None)
+    if obj_org_departments is not None:
+        org_departments_from_obj = from_obj(
+            obj_org_departments,
+            expected=[list, str],
+            path=path + '.orgDepartments')  # type: Optional[List[str]]
+    else:
+        org_departments_from_obj = None
+
+    obj_org_name = obj.get('orgName', None)
+    if obj_org_name is not None:
+        org_name_from_obj = from_obj(
+            obj_org_name,
+            expected=[str],
+            path=path + '.orgName')  # type: Optional[str]
+    else:
+        org_name_from_obj = None
+
+    obj_photo = obj.get('photo', None)
+    if obj_photo is not None:
+        photo_from_obj = from_obj(
+            obj_photo,
+            expected=[str],
+            path=path + '.photo')  # type: Optional[str]
+    else:
+        photo_from_obj = None
+
+    obj_role = obj.get('role', None)
+    if obj_role is not None:
+        role_from_obj = from_obj(
+            obj_role,
+            expected=[str],
+            path=path + '.role')  # type: Optional[str]
+    else:
+        role_from_obj = None
+
+    obj_tel = obj.get('tel', None)
+    if obj_tel is not None:
+        tel_from_obj = from_obj(
+            obj_tel,
+            expected=[list, VcardCommunication],
+            path=path + '.tel')  # type: Optional[List['VcardCommunication']]
+    else:
+        tel_from_obj = None
+
+    obj_title = obj.get('title', None)
+    if obj_title is not None:
+        title_from_obj = from_obj(
+            obj_title,
+            expected=[str],
+            path=path + '.title')  # type: Optional[str]
+    else:
+        title_from_obj = None
+
+    obj_url = obj.get('url', None)
+    if obj_url is not None:
+        url_from_obj = from_obj(
+            obj_url,
+            expected=[list, VcardCommunication],
+            path=path + '.url')  # type: Optional[List['VcardCommunication']]
+    else:
+        url_from_obj = None
+
+    return VcardCard(
+        adr=adr_from_obj,
+        anniversary=anniversary_from_obj,
+        bday=bday_from_obj,
+        categories=categories_from_obj,
+        email=email_from_obj,
+        kind=kind_from_obj,
+        n=n_from_obj,
+        nickname=nickname_from_obj,
+        note=note_from_obj,
+        org_departments=org_departments_from_obj,
+        org_name=org_name_from_obj,
+        photo=photo_from_obj,
+        role=role_from_obj,
+        tel=tel_from_obj,
+        title=title_from_obj,
+        url=url_from_obj)
+
+
+def vcard_card_to_jsonable(
+        vcard_card: VcardCard,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of VcardCard.
+
+    :param vcard_card: instance of VcardCard to be JSON-ized
+    :param path: path to the vcard_card used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if vcard_card.adr is not None:
+        res['adr'] = to_jsonable(
+        vcard_card.adr,
+        expected=[list, VcardADR],
+        path='{}.adr'.format(path))
+
+    if vcard_card.anniversary is not None:
+        res['anniversary'] = to_jsonable(
+        vcard_card.anniversary,
+        expected=[list, TypesCivilDate],
+        path='{}.anniversary'.format(path))
+
+    if vcard_card.bday is not None:
+        res['bday'] = vcard_card.bday
+
+    if vcard_card.categories is not None:
+        res['categories'] = to_jsonable(
+        vcard_card.categories,
+        expected=[list, str],
+        path='{}.categories'.format(path))
+
+    if vcard_card.email is not None:
+        res['email'] = to_jsonable(
+        vcard_card.email,
+        expected=[list, VcardCommunication],
+        path='{}.email'.format(path))
+
+    if vcard_card.kind is not None:
+        res['kind'] = vcard_card.kind
+
+    if vcard_card.n is not None:
+        res['n'] = vcard_card.n
+
+    if vcard_card.nickname is not None:
+        res['nickname'] = vcard_card.nickname
+
+    if vcard_card.note is not None:
+        res['note'] = vcard_card.note
+
+    if vcard_card.org_departments is not None:
+        res['orgDepartments'] = to_jsonable(
+        vcard_card.org_departments,
+        expected=[list, str],
+        path='{}.orgDepartments'.format(path))
+
+    if vcard_card.org_name is not None:
+        res['orgName'] = vcard_card.org_name
+
+    if vcard_card.photo is not None:
+        res['photo'] = vcard_card.photo
+
+    if vcard_card.role is not None:
+        res['role'] = vcard_card.role
+
+    if vcard_card.tel is not None:
+        res['tel'] = to_jsonable(
+        vcard_card.tel,
+        expected=[list, VcardCommunication],
+        path='{}.tel'.format(path))
+
+    if vcard_card.title is not None:
+        res['title'] = vcard_card.title
+
+    if vcard_card.url is not None:
+        res['url'] = to_jsonable(
+        vcard_card.url,
+        expected=[list, VcardCommunication],
+        path='{}.url'.format(path))
+
+    return res
+
+
+class VcardCommunication:
+    def __init__(
+            self,
+            type: Optional[str] = None,
+            value: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.type = type
+
+        self.value = value
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to vcard_communication_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return vcard_communication_to_jsonable(self)
+
+
+def new_vcard_communication() -> VcardCommunication:
+    """Generates an instance of VcardCommunication with default values."""
+    return VcardCommunication()
+
+
+def vcard_communication_from_obj(obj: Any, path: str = "") -> VcardCommunication:
+    """
+    Generates an instance of VcardCommunication from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of VcardCommunication
+    :param path: path to the object used for debugging
+    :return: parsed instance of VcardCommunication
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_type = obj.get('type', None)
+    if obj_type is not None:
+        type_from_obj = from_obj(
+            obj_type,
+            expected=[str],
+            path=path + '.type')  # type: Optional[str]
+    else:
+        type_from_obj = None
+
+    obj_value = obj.get('value', None)
+    if obj_value is not None:
+        value_from_obj = from_obj(
+            obj_value,
+            expected=[str],
+            path=path + '.value')  # type: Optional[str]
+    else:
+        value_from_obj = None
+
+    return VcardCommunication(
+        type=type_from_obj,
+        value=value_from_obj)
+
+
+def vcard_communication_to_jsonable(
+        vcard_communication: VcardCommunication,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of VcardCommunication.
+
+    :param vcard_communication: instance of VcardCommunication to be JSON-ized
+    :param path: path to the vcard_communication used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if vcard_communication.type is not None:
+        res['type'] = vcard_communication.type
+
+    if vcard_communication.value is not None:
+        res['value'] = vcard_communication.value
+
+    return res
+
+
+class VcardN:
+    def __init__(
+            self,
+            additional_names: Optional[List[str]] = None,
+            given_name: Optional[str] = None,
+            prefixes: Optional[List[str]] = None,
+            suffixes: Optional[List[str]] = None,
+            surname: Optional[str] = None) -> None:
+        """Initializes with the given values."""
+        self.additional_names = additional_names
+
+        # First Name
+        self.given_name = given_name
+
+        self.prefixes = prefixes
+
+        self.suffixes = suffixes
+
+        # Last Name
+        self.surname = surname
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to vcard_n_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return vcard_n_to_jsonable(self)
+
+
+def new_vcard_n() -> VcardN:
+    """Generates an instance of VcardN with default values."""
+    return VcardN()
+
+
+def vcard_n_from_obj(obj: Any, path: str = "") -> VcardN:
+    """
+    Generates an instance of VcardN from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of VcardN
+    :param path: path to the object used for debugging
+    :return: parsed instance of VcardN
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_additional_names = obj.get('additionalNames', None)
+    if obj_additional_names is not None:
+        additional_names_from_obj = from_obj(
+            obj_additional_names,
+            expected=[list, str],
+            path=path + '.additionalNames')  # type: Optional[List[str]]
+    else:
+        additional_names_from_obj = None
+
+    obj_given_name = obj.get('givenName', None)
+    if obj_given_name is not None:
+        given_name_from_obj = from_obj(
+            obj_given_name,
+            expected=[str],
+            path=path + '.givenName')  # type: Optional[str]
+    else:
+        given_name_from_obj = None
+
+    obj_prefixes = obj.get('prefixes', None)
+    if obj_prefixes is not None:
+        prefixes_from_obj = from_obj(
+            obj_prefixes,
+            expected=[list, str],
+            path=path + '.prefixes')  # type: Optional[List[str]]
+    else:
+        prefixes_from_obj = None
+
+    obj_suffixes = obj.get('suffixes', None)
+    if obj_suffixes is not None:
+        suffixes_from_obj = from_obj(
+            obj_suffixes,
+            expected=[list, str],
+            path=path + '.suffixes')  # type: Optional[List[str]]
+    else:
+        suffixes_from_obj = None
+
+    obj_surname = obj.get('surname', None)
+    if obj_surname is not None:
+        surname_from_obj = from_obj(
+            obj_surname,
+            expected=[str],
+            path=path + '.surname')  # type: Optional[str]
+    else:
+        surname_from_obj = None
+
+    return VcardN(
+        additional_names=additional_names_from_obj,
+        given_name=given_name_from_obj,
+        prefixes=prefixes_from_obj,
+        suffixes=suffixes_from_obj,
+        surname=surname_from_obj)
+
+
+def vcard_n_to_jsonable(
+        vcard_n: VcardN,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of VcardN.
+
+    :param vcard_n: instance of VcardN to be JSON-ized
+    :param path: path to the vcard_n used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if vcard_n.additional_names is not None:
+        res['additionalNames'] = to_jsonable(
+        vcard_n.additional_names,
+        expected=[list, str],
+        path='{}.additionalNames'.format(path))
+
+    if vcard_n.given_name is not None:
+        res['givenName'] = vcard_n.given_name
+
+    if vcard_n.prefixes is not None:
+        res['prefixes'] = to_jsonable(
+        vcard_n.prefixes,
+        expected=[list, str],
+        path='{}.prefixes'.format(path))
+
+    if vcard_n.suffixes is not None:
+        res['suffixes'] = to_jsonable(
+        vcard_n.suffixes,
+        expected=[list, str],
+        path='{}.suffixes'.format(path))
+
+    if vcard_n.surname is not None:
+        res['surname'] = vcard_n.surname
 
     return res
 
@@ -32845,6 +35740,268 @@ class RemoteCaller:
             return from_obj(
                 obj=resp.json(),
                 expected=[HttplibJsonResponseModelsConfigKeys])
+
+    def contacts_address_books_read(self) -> 'HttplibJsonResponseModelsContactsAddressBooks':
+        """
+        Send a get request to /api/v1/contacts/address-books.
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/contacts/address-books'
+
+        resp = self.session.request(method='get', url=url)
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsAddressBooks])
+
+    def contacts_address_book_create(
+            self,
+            body: 'ModelsContactsAddressBook') -> 'HttplibJsonResponseModelsContactsAddressBooks':
+        """
+        Send a post request to /api/v1/contacts/address-books.
+
+        :param body: ContactsAddressBook
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/contacts/address-books'
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsContactsAddressBook])
+
+
+        resp = self.session.request(
+            method='post',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsAddressBooks])
+
+    def contacts_address_book_delete(
+            self,
+            id: str) -> 'HttplibJsonResponseModelsContactsAddressBooks':
+        """
+        Send a delete request to /api/v1/contacts/address-books/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/contacts/address-books/',
+            str(id)])
+
+        resp = self.session.request(
+            method='delete',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsAddressBooks])
+
+    def contacts_address_book_read(
+            self,
+            id: str) -> 'HttplibJsonResponseModelsContactsAddressBooks':
+        """
+        Send a get request to /api/v1/contacts/address-books/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/contacts/address-books/',
+            str(id)])
+
+        resp = self.session.request(
+            method='get',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsAddressBooks])
+
+    def contacts_address_book_update(
+            self,
+            body: 'ModelsContactsAddressBook',
+            id: str) -> 'HttplibJsonResponseModelsContactsAddressBooks':
+        """
+        Send a put request to /api/v1/contacts/address-books/{id}.
+
+        :param body: ContactsAddressBook
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/contacts/address-books/',
+            str(id)])
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsContactsAddressBook])
+
+
+        resp = self.session.request(
+            method='put',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsAddressBooks])
+
+    def contacts_contacts_read(self) -> 'HttplibJsonResponseModelsContactsContacts':
+        """
+        Send a get request to /api/v1/contacts/contacts.
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/contacts/contacts'
+
+        resp = self.session.request(method='get', url=url)
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsContacts])
+
+    def contacts_contact_create(
+            self,
+            body: 'ModelsContactsContact') -> 'HttplibJsonResponseModelsContactsContacts':
+        """
+        Send a post request to /api/v1/contacts/contacts.
+
+        :param body: ContactsContact
+
+        :return: OK
+        """
+        url = self.url_prefix + '/api/v1/contacts/contacts'
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsContactsContact])
+
+
+        resp = self.session.request(
+            method='post',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsContacts])
+
+    def contacts_contact_delete(
+            self,
+            id: str) -> 'HttplibJsonResponseModelsContactsContacts':
+        """
+        Send a delete request to /api/v1/contacts/contacts/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/contacts/contacts/',
+            str(id)])
+
+        resp = self.session.request(
+            method='delete',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsContacts])
+
+    def contacts_contact_read(
+            self,
+            id: str) -> 'HttplibJsonResponseModelsContactsContacts':
+        """
+        Send a get request to /api/v1/contacts/contacts/{id}.
+
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/contacts/contacts/',
+            str(id)])
+
+        resp = self.session.request(
+            method='get',
+            url=url,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsContacts])
+
+    def contacts_contact_update(
+            self,
+            body: 'ModelsContactsContact',
+            id: str) -> 'HttplibJsonResponseModelsContactsContacts':
+        """
+        Send a put request to /api/v1/contacts/contacts/{id}.
+
+        :param body: ContactsContact
+        :param id: ID
+
+        :return: OK
+        """
+        url = "".join([
+            self.url_prefix,
+            '/api/v1/contacts/contacts/',
+            str(id)])
+
+        data = to_jsonable(
+            body,
+            expected=[ModelsContactsContact])
+
+
+        resp = self.session.request(
+            method='put',
+            url=url,
+            json=data,
+        )
+
+        with contextlib.closing(resp):
+            resp.raise_for_status()
+            return from_obj(
+                obj=resp.json(),
+                expected=[HttplibJsonResponseModelsContactsContacts])
 
     def cook_meal_plans_read(self) -> 'HttplibJsonResponseModelsCookMealPlans':
         """
