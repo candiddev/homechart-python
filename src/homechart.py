@@ -574,8 +574,14 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == PaymentsPaddle:
         return payments_paddle_from_obj(obj, path=path)
 
+    if exp == RegexpRegexp:
+        return regexp_regexp_from_obj(obj, path=path)
+
     if exp == TypesCivilDate:
         return types_civil_date_from_obj(obj, path=path)
+
+    if exp == TypesFilter:
+        return types_filter_from_obj(obj, path=path)
 
     if exp == TypesRecurrence:
         return types_recurrence_from_obj(obj, path=path)
@@ -1356,9 +1362,17 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
         assert isinstance(obj, PaymentsPaddle)
         return payments_paddle_to_jsonable(obj, path=path)
 
+    if exp == RegexpRegexp:
+        assert isinstance(obj, RegexpRegexp)
+        return regexp_regexp_to_jsonable(obj, path=path)
+
     if exp == TypesCivilDate:
         assert isinstance(obj, TypesCivilDate)
         return types_civil_date_to_jsonable(obj, path=path)
+
+    if exp == TypesFilter:
+        assert isinstance(obj, TypesFilter)
+        return types_filter_to_jsonable(obj, path=path)
 
     if exp == TypesRecurrence:
         assert isinstance(obj, TypesRecurrence)
@@ -2048,6 +2062,7 @@ class ConfigApp:
             contact_feedback: Optional[str] = None,
             contact_support: Optional[str] = None,
             counter_time_zone: Optional[str] = None,
+            demo: Optional[bool] = None,
             disable_notifications: Optional[bool] = None,
             disable_signup: Optional[bool] = None,
             disable_tasks: Optional[bool] = None,
@@ -2111,6 +2126,11 @@ class ConfigApp:
         self.contact_support = contact_support
 
         self.counter_time_zone = counter_time_zone
+
+        # TODO remove 2026-02-27
+        #
+        # Deprecated: use EnableDemo
+        self.demo = demo
 
         self.disable_notifications = disable_notifications
 
@@ -2311,6 +2331,15 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
             path=path + '.counterTimeZone')  # type: Optional[str]
     else:
         counter_time_zone_from_obj = None
+
+    obj_demo = obj.get('demo', None)
+    if obj_demo is not None:
+        demo_from_obj = from_obj(
+            obj_demo,
+            expected=[bool],
+            path=path + '.demo')  # type: Optional[bool]
+    else:
+        demo_from_obj = None
 
     obj_disable_notifications = obj.get('disableNotifications', None)
     if obj_disable_notifications is not None:
@@ -2675,6 +2704,7 @@ def config_app_from_obj(obj: Any, path: str = "") -> ConfigApp:
         contact_feedback=contact_feedback_from_obj,
         contact_support=contact_support_from_obj,
         counter_time_zone=counter_time_zone_from_obj,
+        demo=demo_from_obj,
         disable_notifications=disable_notifications_from_obj,
         disable_signup=disable_signup_from_obj,
         disable_tasks=disable_tasks_from_obj,
@@ -2766,6 +2796,9 @@ def config_app_to_jsonable(
 
     if config_app.counter_time_zone is not None:
         res['counterTimeZone'] = config_app.counter_time_zone
+
+    if config_app.demo is not None:
+        res['demo'] = config_app.demo
 
     if config_app.disable_notifications is not None:
         res['disableNotifications'] = config_app.disable_notifications
@@ -21702,12 +21735,12 @@ class ModelsBudgetRecurrenceTemplate:
 
         # Deprecated: Use ContactsContactID
         #
-        # TODO remove 2026-10-09
+        # TODO remove 2026-08-09
         self.budget_payee_id = budget_payee_id
 
         # Deprecated: Use ContactsContactName
         #
-        # TODO remove 2026-10-09
+        # TODO remove 2026-08-09
         self.budget_payee_name = budget_payee_name
 
         self.categories = categories
@@ -21990,12 +22023,12 @@ class ModelsBudgetTransaction:
 
         # Deprecated: Use ContactsContactID
         #
-        # TODO remove 2026-10-09
+        # TODO remove 2026-08-09
         self.budget_payee_id = budget_payee_id
 
         # Deprecated: Use ContactsContactName
         #
-        # TODO remove 2026-10-09
+        # TODO remove 2026-08-09
         self.budget_payee_name = budget_payee_name
 
         self.categories = categories
@@ -24418,7 +24451,7 @@ class ModelsCookMealPlan:
 
         # Deprecated: Use ContactsContactID
         #
-        # TODO remove 2026-10-09
+        # TODO remove 2026-08-09
         self.budget_payee_id = budget_payee_id
 
         self.contacts_contact_id = contacts_contact_id
@@ -26073,6 +26106,7 @@ class ModelsHealthLogItem:
             self,
             auth_account_id: Optional[str] = None,
             created: Optional[str] = None,
+            date: Optional[str] = None,
             health_item_id: Optional[str] = None,
             id: Optional[str] = None,
             timestamp: Optional[str] = None,
@@ -26081,6 +26115,11 @@ class ModelsHealthLogItem:
         self.auth_account_id = auth_account_id
 
         self.created = created
+
+        # Deprecated: use Timestamp
+        #
+        # TODO remove 2026-02-21
+        self.date = date
 
         self.health_item_id = health_item_id
 
@@ -26138,6 +26177,15 @@ def models_health_log_item_from_obj(obj: Any, path: str = "") -> ModelsHealthLog
     else:
         created_from_obj = None
 
+    obj_date = obj.get('date', None)
+    if obj_date is not None:
+        date_from_obj = from_obj(
+            obj_date,
+            expected=[str],
+            path=path + '.date')  # type: Optional[str]
+    else:
+        date_from_obj = None
+
     obj_health_item_id = obj.get('healthItemID', None)
     if obj_health_item_id is not None:
         health_item_id_from_obj = from_obj(
@@ -26177,6 +26225,7 @@ def models_health_log_item_from_obj(obj: Any, path: str = "") -> ModelsHealthLog
     return ModelsHealthLogItem(
         auth_account_id=auth_account_id_from_obj,
         created=created_from_obj,
+        date=date_from_obj,
         health_item_id=health_item_id_from_obj,
         id=id_from_obj,
         timestamp=timestamp_from_obj,
@@ -26200,6 +26249,9 @@ def models_health_log_item_to_jsonable(
 
     if models_health_log_item.created is not None:
         res['created'] = models_health_log_item.created
+
+    if models_health_log_item.date is not None:
+        res['date'] = models_health_log_item.date
 
     if models_health_log_item.health_item_id is not None:
         res['healthItemID'] = models_health_log_item.health_item_id
@@ -29180,7 +29232,7 @@ class ModelsShopCategory:
 
         # Deprecated: Use ContactsContactID
         #
-        # TODO remove 2026-10-09
+        # TODO remove 2026-08-09
         self.budget_payee_id = budget_payee_id
 
         self.contacts_contact_id = contacts_contact_id
@@ -29375,7 +29427,7 @@ class ModelsShopItem:
 
         # Deprecated: Use ContactsContactID
         #
-        # TODO remove 2026-10-09
+        # TODO remove 2026-08-09
         self.budget_payee_id = budget_payee_id
 
         self.contacts_contact_id = contacts_contact_id
@@ -30404,12 +30456,12 @@ class OidcClientIssuer:
             client_secret_j_w_t_key: Optional[Any] = None,
             code_challenge_methods_supported: Optional[List[str]] = None,
             display_name: Optional[str] = None,
+            filters: Optional[List['TypesFilter']] = None,
             icon: Optional[str] = None,
             issuer_url: Optional[str] = None,
             jwks_keys: Optional[List['CryptolibKeyCryptolibKeyProviderPublic']] = None,
             jwks_u_r_i: Optional[str] = None,
             oidc_issuer_url: Optional[str] = None,
-            policy: Optional[Any] = None,
             scopes: Optional[List[str]] = None,
             token_url: Optional[str] = None,
             user_info_endpoint: Optional[str] = None) -> None:
@@ -30444,6 +30496,9 @@ class OidcClientIssuer:
         # OPTIONAL Display name of the ClientIssuer.
         self.display_name = display_name
 
+        # A list of filters to test the returned token with.
+        self.filters = filters
+
         # OPTIONAL Icon of the ClientIssuer.
         self.icon = icon
 
@@ -30458,9 +30513,6 @@ class OidcClientIssuer:
 
         # OPTIONAL URL to retrieve issuer configurations.
         self.oidc_issuer_url = oidc_issuer_url
-
-        # Policy to test the returned token with.
-        self.policy = policy
 
         # OPTIONAL List of scopes to request.  Should include openid for OIDC issuers.
         self.scopes = scopes
@@ -30577,6 +30629,15 @@ def oidc_client_issuer_from_obj(obj: Any, path: str = "") -> OidcClientIssuer:
     else:
         display_name_from_obj = None
 
+    obj_filters = obj.get('filters', None)
+    if obj_filters is not None:
+        filters_from_obj = from_obj(
+            obj_filters,
+            expected=[list, TypesFilter],
+            path=path + '.filters')  # type: Optional[List['TypesFilter']]
+    else:
+        filters_from_obj = None
+
     obj_icon = obj.get('icon', None)
     if obj_icon is not None:
         icon_from_obj = from_obj(
@@ -30622,8 +30683,6 @@ def oidc_client_issuer_from_obj(obj: Any, path: str = "") -> OidcClientIssuer:
     else:
         oidc_issuer_url_from_obj = None
 
-    policy_from_obj = obj.get('policy', None)
-
     obj_scopes = obj.get('scopes', None)
     if obj_scopes is not None:
         scopes_from_obj = from_obj(
@@ -30662,12 +30721,12 @@ def oidc_client_issuer_from_obj(obj: Any, path: str = "") -> OidcClientIssuer:
         client_secret_j_w_t_key=client_secret_j_w_t_key_from_obj,
         code_challenge_methods_supported=code_challenge_methods_supported_from_obj,
         display_name=display_name_from_obj,
+        filters=filters_from_obj,
         icon=icon_from_obj,
         issuer_url=issuer_url_from_obj,
         jwks_keys=jwks_keys_from_obj,
         jwks_u_r_i=jwks_u_r_i_from_obj,
         oidc_issuer_url=oidc_issuer_url_from_obj,
-        policy=policy_from_obj,
         scopes=scopes_from_obj,
         token_url=token_url_from_obj,
         user_info_endpoint=user_info_endpoint_from_obj)
@@ -30724,6 +30783,12 @@ def oidc_client_issuer_to_jsonable(
     if oidc_client_issuer.display_name is not None:
         res['displayName'] = oidc_client_issuer.display_name
 
+    if oidc_client_issuer.filters is not None:
+        res['filters'] = to_jsonable(
+        oidc_client_issuer.filters,
+        expected=[list, TypesFilter],
+        path='{}.filters'.format(path))
+
     if oidc_client_issuer.icon is not None:
         res['icon'] = oidc_client_issuer.icon
 
@@ -30741,9 +30806,6 @@ def oidc_client_issuer_to_jsonable(
 
     if oidc_client_issuer.oidc_issuer_url is not None:
         res['oidcIssuerURL'] = oidc_client_issuer.oidc_issuer_url
-
-    if oidc_client_issuer.policy is not None:
-        res['policy'] = oidc_client_issuer.policy
 
     if oidc_client_issuer.scopes is not None:
         res['scopes'] = to_jsonable(
@@ -31126,6 +31188,48 @@ def payments_paddle_to_jsonable(
     return res
 
 
+class RegexpRegexp:
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to regexp_regexp_to_jsonable.
+
+        :return: a JSON-able representation
+        """
+        return regexp_regexp_to_jsonable(self)
+
+
+def new_regexp_regexp() -> RegexpRegexp:
+    """Generates an instance of RegexpRegexp with default values."""
+    return RegexpRegexp()
+
+
+def regexp_regexp_from_obj(obj: Any, path: str = "") -> RegexpRegexp:
+    """
+    Generates an instance of RegexpRegexp from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of RegexpRegexp
+    :param path: path to the object used for debugging
+    :return: parsed instance of RegexpRegexp
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    return RegexpRegexp()
+
+
+def regexp_regexp_to_jsonable(
+        regexp_regexp: RegexpRegexp,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of RegexpRegexp.
+
+    :param regexp_regexp: instance of RegexpRegexp to be JSON-ized
+    :param path: path to the regexp_regexp used for debugging
+    :return: a JSON-able representation
+    """
+    return dict()
+
+
 class TypesCivilDate:
     def __init__(
             self,
@@ -31222,6 +31326,144 @@ def types_civil_date_to_jsonable(
 
     if types_civil_date.year is not None:
         res['year'] = types_civil_date.year
+
+    return res
+
+
+class TypesFilter:
+    def __init__(
+            self,
+            filters: Optional[List['TypesFilter']] = None,
+            invert: Optional[bool] = None,
+            or: Optional[bool] = None,
+            property: Optional[str] = None,
+            regexp: Optional['RegexpRegexp'] = None) -> None:
+        """Initializes with the given values."""
+        self.filters = filters
+
+        self.invert = invert
+
+        self.or = or
+
+        self.property = property
+
+        self.regexp = regexp
+
+    def to_jsonable(self) -> MutableMapping[str, Any]:
+        """
+        Dispatches the conversion to types_filter_to_jsonable.
+
+        :return: JSON-able representation
+        """
+        return types_filter_to_jsonable(self)
+
+
+def new_types_filter() -> TypesFilter:
+    """Generates an instance of TypesFilter with default values."""
+    return TypesFilter()
+
+
+def types_filter_from_obj(obj: Any, path: str = "") -> TypesFilter:
+    """
+    Generates an instance of TypesFilter from a dictionary object.
+
+    :param obj: a JSON-ed dictionary object representing an instance of TypesFilter
+    :param path: path to the object used for debugging
+    :return: parsed instance of TypesFilter
+    """
+    if not isinstance(obj, dict):
+        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
+
+    for key in obj:
+        if not isinstance(key, str):
+            raise ValueError(
+                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
+
+    obj_filters = obj.get('filters', None)
+    if obj_filters is not None:
+        filters_from_obj = from_obj(
+            obj_filters,
+            expected=[list, TypesFilter],
+            path=path + '.filters')  # type: Optional[List['TypesFilter']]
+    else:
+        filters_from_obj = None
+
+    obj_invert = obj.get('invert', None)
+    if obj_invert is not None:
+        invert_from_obj = from_obj(
+            obj_invert,
+            expected=[bool],
+            path=path + '.invert')  # type: Optional[bool]
+    else:
+        invert_from_obj = None
+
+    obj_or = obj.get('or', None)
+    if obj_or is not None:
+        or_from_obj = from_obj(
+            obj_or,
+            expected=[bool],
+            path=path + '.or')  # type: Optional[bool]
+    else:
+        or_from_obj = None
+
+    obj_property = obj.get('property', None)
+    if obj_property is not None:
+        property_from_obj = from_obj(
+            obj_property,
+            expected=[str],
+            path=path + '.property')  # type: Optional[str]
+    else:
+        property_from_obj = None
+
+    obj_regexp = obj.get('regexp', None)
+    if obj_regexp is not None:
+        regexp_from_obj = from_obj(
+            obj_regexp,
+            expected=[RegexpRegexp],
+            path=path + '.regexp')  # type: Optional['RegexpRegexp']
+    else:
+        regexp_from_obj = None
+
+    return TypesFilter(
+        filters=filters_from_obj,
+        invert=invert_from_obj,
+        or=or_from_obj,
+        property=property_from_obj,
+        regexp=regexp_from_obj)
+
+
+def types_filter_to_jsonable(
+        types_filter: TypesFilter,
+        path: str = "") -> MutableMapping[str, Any]:
+    """
+    Generates a JSON-able mapping from an instance of TypesFilter.
+
+    :param types_filter: instance of TypesFilter to be JSON-ized
+    :param path: path to the types_filter used for debugging
+    :return: a JSON-able representation
+    """
+    res = dict()  # type: Dict[str, Any]
+
+    if types_filter.filters is not None:
+        res['filters'] = to_jsonable(
+        types_filter.filters,
+        expected=[list, TypesFilter],
+        path='{}.filters'.format(path))
+
+    if types_filter.invert is not None:
+        res['invert'] = types_filter.invert
+
+    if types_filter.or is not None:
+        res['or'] = types_filter.or
+
+    if types_filter.property is not None:
+        res['property'] = types_filter.property
+
+    if types_filter.regexp is not None:
+        res['regexp'] = to_jsonable(
+        types_filter.regexp,
+        expected=[RegexpRegexp],
+        path='{}.regexp'.format(path))
 
     return res
 
