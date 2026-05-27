@@ -25525,14 +25525,23 @@ def models_event_to_jsonable(
 class ModelsFeatureCandidate:
     def __init__(
             self,
+            component: Optional[str] = None,
             created: Optional[str] = None,
+            date_complete: Optional[Any] = None,
+            date_target: Optional[Any] = None,
             feature_votes: Optional[List['ModelsFeatureVote']] = None,
             id: Optional[str] = None,
             name: Optional[str] = None,
             updated: Optional[str] = None,
             wanted: Optional[int] = None) -> None:
         """Initializes with the given values."""
+        self.component = component
+
         self.created = created
+
+        self.date_complete = date_complete
+
+        self.date_target = date_target
 
         self.feature_votes = feature_votes
 
@@ -25574,6 +25583,15 @@ def models_feature_candidate_from_obj(obj: Any, path: str = "") -> ModelsFeature
             raise ValueError(
                 'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
 
+    obj_component = obj.get('component', None)
+    if obj_component is not None:
+        component_from_obj = from_obj(
+            obj_component,
+            expected=[str],
+            path=path + '.component')  # type: Optional[str]
+    else:
+        component_from_obj = None
+
     obj_created = obj.get('created', None)
     if obj_created is not None:
         created_from_obj = from_obj(
@@ -25582,6 +25600,10 @@ def models_feature_candidate_from_obj(obj: Any, path: str = "") -> ModelsFeature
             path=path + '.created')  # type: Optional[str]
     else:
         created_from_obj = None
+
+    date_complete_from_obj = obj.get('dateComplete', None)
+
+    date_target_from_obj = obj.get('dateTarget', None)
 
     obj_feature_votes = obj.get('featureVotes', None)
     if obj_feature_votes is not None:
@@ -25629,7 +25651,10 @@ def models_feature_candidate_from_obj(obj: Any, path: str = "") -> ModelsFeature
         wanted_from_obj = None
 
     return ModelsFeatureCandidate(
+        component=component_from_obj,
         created=created_from_obj,
+        date_complete=date_complete_from_obj,
+        date_target=date_target_from_obj,
         feature_votes=feature_votes_from_obj,
         id=id_from_obj,
         name=name_from_obj,
@@ -25649,8 +25674,17 @@ def models_feature_candidate_to_jsonable(
     """
     res = dict()  # type: Dict[str, Any]
 
+    if models_feature_candidate.component is not None:
+        res['component'] = models_feature_candidate.component
+
     if models_feature_candidate.created is not None:
         res['created'] = models_feature_candidate.created
+
+    if models_feature_candidate.date_complete is not None:
+        res['dateComplete'] = models_feature_candidate.date_complete
+
+    if models_feature_candidate.date_target is not None:
+        res['dateTarget'] = models_feature_candidate.date_target
 
     if models_feature_candidate.feature_votes is not None:
         res['featureVotes'] = to_jsonable(
