@@ -18597,6 +18597,7 @@ class ModelsAuthHousehold:
             subscription_id: Optional[str] = None,
             subscription_last_transaction_id: Optional[str] = None,
             subscription_processor: Optional[int] = None,
+            time_zone: Optional[str] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
         self.backup_encryption_key = backup_encryption_key
@@ -18626,6 +18627,9 @@ class ModelsAuthHousehold:
         self.subscription_last_transaction_id = subscription_last_transaction_id
 
         self.subscription_processor = subscription_processor
+
+        # Used by notifications and UI to determine local times.
+        self.time_zone = time_zone
 
         self.updated = updated
 
@@ -18785,6 +18789,15 @@ def models_auth_household_from_obj(obj: Any, path: str = "") -> ModelsAuthHouseh
     else:
         subscription_processor_from_obj = None
 
+    obj_time_zone = obj.get('timeZone', None)
+    if obj_time_zone is not None:
+        time_zone_from_obj = from_obj(
+            obj_time_zone,
+            expected=[str],
+            path=path + '.timeZone')  # type: Optional[str]
+    else:
+        time_zone_from_obj = None
+
     obj_updated = obj.get('updated', None)
     if obj_updated is not None:
         updated_from_obj = from_obj(
@@ -18809,6 +18822,7 @@ def models_auth_household_from_obj(obj: Any, path: str = "") -> ModelsAuthHouseh
         subscription_id=subscription_id_from_obj,
         subscription_last_transaction_id=subscription_last_transaction_id_from_obj,
         subscription_processor=subscription_processor_from_obj,
+        time_zone=time_zone_from_obj,
         updated=updated_from_obj)
 
 
@@ -18871,6 +18885,9 @@ def models_auth_household_to_jsonable(
 
     if models_auth_household.subscription_processor is not None:
         res['subscriptionProcessor'] = models_auth_household.subscription_processor
+
+    if models_auth_household.time_zone is not None:
+        res['timeZone'] = models_auth_household.time_zone
 
     if models_auth_household.updated is not None:
         res['updated'] = models_auth_household.updated
@@ -24409,6 +24426,8 @@ class ModelsCookMealPlan:
             notification_time_cook: Optional[str] = None,
             notification_time_leave: Optional[str] = None,
             notification_time_prep: Optional[str] = None,
+            recurrence: Optional['TypesRecurrence'] = None,
+            skip_days: Optional[List['TypesCivilDate']] = None,
             time: Optional[str] = None,
             updated: Optional[str] = None) -> None:
         """Initializes with the given values."""
@@ -24442,6 +24461,10 @@ class ModelsCookMealPlan:
         self.notification_time_leave = notification_time_leave
 
         self.notification_time_prep = notification_time_prep
+
+        self.recurrence = recurrence
+
+        self.skip_days = skip_days
 
         self.time = time
 
@@ -24603,6 +24626,24 @@ def models_cook_meal_plan_from_obj(obj: Any, path: str = "") -> ModelsCookMealPl
     else:
         notification_time_prep_from_obj = None
 
+    obj_recurrence = obj.get('recurrence', None)
+    if obj_recurrence is not None:
+        recurrence_from_obj = from_obj(
+            obj_recurrence,
+            expected=[TypesRecurrence],
+            path=path + '.recurrence')  # type: Optional['TypesRecurrence']
+    else:
+        recurrence_from_obj = None
+
+    obj_skip_days = obj.get('skipDays', None)
+    if obj_skip_days is not None:
+        skip_days_from_obj = from_obj(
+            obj_skip_days,
+            expected=[list, TypesCivilDate],
+            path=path + '.skipDays')  # type: Optional[List['TypesCivilDate']]
+    else:
+        skip_days_from_obj = None
+
     obj_time = obj.get('time', None)
     if obj_time is not None:
         time_from_obj = from_obj(
@@ -24636,6 +24677,8 @@ def models_cook_meal_plan_from_obj(obj: Any, path: str = "") -> ModelsCookMealPl
         notification_time_cook=notification_time_cook_from_obj,
         notification_time_leave=notification_time_leave_from_obj,
         notification_time_prep=notification_time_prep_from_obj,
+        recurrence=recurrence_from_obj,
+        skip_days=skip_days_from_obj,
         time=time_from_obj,
         updated=updated_from_obj)
 
@@ -24693,6 +24736,18 @@ def models_cook_meal_plan_to_jsonable(
 
     if models_cook_meal_plan.notification_time_prep is not None:
         res['notificationTimePrep'] = models_cook_meal_plan.notification_time_prep
+
+    if models_cook_meal_plan.recurrence is not None:
+        res['recurrence'] = to_jsonable(
+        models_cook_meal_plan.recurrence,
+        expected=[TypesRecurrence],
+        path='{}.recurrence'.format(path))
+
+    if models_cook_meal_plan.skip_days is not None:
+        res['skipDays'] = to_jsonable(
+        models_cook_meal_plan.skip_days,
+        expected=[list, TypesCivilDate],
+        path='{}.skipDays'.format(path))
 
     if models_cook_meal_plan.time is not None:
         res['time'] = models_cook_meal_plan.time
