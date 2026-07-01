@@ -22816,11 +22816,9 @@ class ModelsCalendarEvent:
             self,
             auth_account_id: Optional[str] = None,
             auth_household_id: Optional[str] = None,
-            calendar_i_calendar_id: Optional[str] = None,
             calendar_id: Optional[str] = None,
             color: Optional[str] = None,
             created: Optional[str] = None,
-            date_end: Optional[str] = None,
             date_start: Optional[str] = None,
             details: Optional[str] = None,
             duration: Optional[int] = None,
@@ -22828,7 +22826,6 @@ class ModelsCalendarEvent:
             id: Optional[str] = None,
             location: Optional[str] = None,
             name: Optional[str] = None,
-            notify_offset: Optional[int] = None,
             participants: Optional[List[str]] = None,
             recurrence: Optional['TypesRecurrence'] = None,
             reminders_end: Optional[List[int]] = None,
@@ -22845,21 +22842,11 @@ class ModelsCalendarEvent:
 
         self.auth_household_id = auth_household_id
 
-        # Deprecated: use CalendarID
-        #
-        # TODO remove 2026-06-03
-        self.calendar_i_calendar_id = calendar_i_calendar_id
-
         self.calendar_id = calendar_id
 
         self.color = color
 
         self.created = created
-
-        # Deprecated: use Recurrence.End
-        #
-        # TODO remove 2026-05-06
-        self.date_end = date_end
 
         # start of event or recurrence
         self.date_start = date_start
@@ -22875,11 +22862,6 @@ class ModelsCalendarEvent:
         self.location = location
 
         self.name = name
-
-        # Deprecated: Use Reminders
-        #
-        # TODO remove 2026-05-06
-        self.notify_offset = notify_offset
 
         self.participants = participants
 
@@ -22951,15 +22933,6 @@ def models_calendar_event_from_obj(obj: Any, path: str = "") -> ModelsCalendarEv
     else:
         auth_household_id_from_obj = None
 
-    obj_calendar_i_calendar_id = obj.get('calendarICalendarID', None)
-    if obj_calendar_i_calendar_id is not None:
-        calendar_i_calendar_id_from_obj = from_obj(
-            obj_calendar_i_calendar_id,
-            expected=[str],
-            path=path + '.calendarICalendarID')  # type: Optional[str]
-    else:
-        calendar_i_calendar_id_from_obj = None
-
     obj_calendar_id = obj.get('calendarID', None)
     if obj_calendar_id is not None:
         calendar_id_from_obj = from_obj(
@@ -22986,15 +22959,6 @@ def models_calendar_event_from_obj(obj: Any, path: str = "") -> ModelsCalendarEv
             path=path + '.created')  # type: Optional[str]
     else:
         created_from_obj = None
-
-    obj_date_end = obj.get('dateEnd', None)
-    if obj_date_end is not None:
-        date_end_from_obj = from_obj(
-            obj_date_end,
-            expected=[str],
-            path=path + '.dateEnd')  # type: Optional[str]
-    else:
-        date_end_from_obj = None
 
     obj_date_start = obj.get('dateStart', None)
     if obj_date_start is not None:
@@ -23058,15 +23022,6 @@ def models_calendar_event_from_obj(obj: Any, path: str = "") -> ModelsCalendarEv
             path=path + '.name')  # type: Optional[str]
     else:
         name_from_obj = None
-
-    obj_notify_offset = obj.get('notifyOffset', None)
-    if obj_notify_offset is not None:
-        notify_offset_from_obj = from_obj(
-            obj_notify_offset,
-            expected=[int],
-            path=path + '.notifyOffset')  # type: Optional[int]
-    else:
-        notify_offset_from_obj = None
 
     obj_participants = obj.get('participants', None)
     if obj_participants is not None:
@@ -23170,11 +23125,9 @@ def models_calendar_event_from_obj(obj: Any, path: str = "") -> ModelsCalendarEv
     return ModelsCalendarEvent(
         auth_account_id=auth_account_id_from_obj,
         auth_household_id=auth_household_id_from_obj,
-        calendar_i_calendar_id=calendar_i_calendar_id_from_obj,
         calendar_id=calendar_id_from_obj,
         color=color_from_obj,
         created=created_from_obj,
-        date_end=date_end_from_obj,
         date_start=date_start_from_obj,
         details=details_from_obj,
         duration=duration_from_obj,
@@ -23182,7 +23135,6 @@ def models_calendar_event_from_obj(obj: Any, path: str = "") -> ModelsCalendarEv
         id=id_from_obj,
         location=location_from_obj,
         name=name_from_obj,
-        notify_offset=notify_offset_from_obj,
         participants=participants_from_obj,
         recurrence=recurrence_from_obj,
         reminders_end=reminders_end_from_obj,
@@ -23214,9 +23166,6 @@ def models_calendar_event_to_jsonable(
     if models_calendar_event.auth_household_id is not None:
         res['authHouseholdID'] = models_calendar_event.auth_household_id
 
-    if models_calendar_event.calendar_i_calendar_id is not None:
-        res['calendarICalendarID'] = models_calendar_event.calendar_i_calendar_id
-
     if models_calendar_event.calendar_id is not None:
         res['calendarID'] = models_calendar_event.calendar_id
 
@@ -23225,9 +23174,6 @@ def models_calendar_event_to_jsonable(
 
     if models_calendar_event.created is not None:
         res['created'] = models_calendar_event.created
-
-    if models_calendar_event.date_end is not None:
-        res['dateEnd'] = models_calendar_event.date_end
 
     if models_calendar_event.date_start is not None:
         res['dateStart'] = models_calendar_event.date_start
@@ -23249,9 +23195,6 @@ def models_calendar_event_to_jsonable(
 
     if models_calendar_event.name is not None:
         res['name'] = models_calendar_event.name
-
-    if models_calendar_event.notify_offset is not None:
-        res['notifyOffset'] = models_calendar_event.notify_offset
 
     if models_calendar_event.participants is not None:
         res['participants'] = to_jsonable(
@@ -28053,7 +27996,6 @@ class ModelsPlanTask:
             auth_household_id: Optional[str] = None,
             color: Optional[str] = None,
             created: Optional[str] = None,
-            date_end: Optional[str] = None,
             details: Optional[str] = None,
             done: Optional[bool] = None,
             due_date: Optional[str] = None,
@@ -28083,11 +28025,6 @@ class ModelsPlanTask:
         self.color = color
 
         self.created = created
-
-        # Deprecated: use Recurrence.End
-        #
-        # TODO remove 2026-05-06
-        self.date_end = date_end
 
         self.details = details
 
@@ -28201,15 +28138,6 @@ def models_plan_task_from_obj(obj: Any, path: str = "") -> ModelsPlanTask:
             path=path + '.created')  # type: Optional[str]
     else:
         created_from_obj = None
-
-    obj_date_end = obj.get('dateEnd', None)
-    if obj_date_end is not None:
-        date_end_from_obj = from_obj(
-            obj_date_end,
-            expected=[str],
-            path=path + '.dateEnd')  # type: Optional[str]
-    else:
-        date_end_from_obj = None
 
     obj_details = obj.get('details', None)
     if obj_details is not None:
@@ -28388,7 +28316,6 @@ def models_plan_task_from_obj(obj: Any, path: str = "") -> ModelsPlanTask:
         auth_household_id=auth_household_id_from_obj,
         color=color_from_obj,
         created=created_from_obj,
-        date_end=date_end_from_obj,
         details=details_from_obj,
         done=done_from_obj,
         due_date=due_date_from_obj,
@@ -28439,9 +28366,6 @@ def models_plan_task_to_jsonable(
 
     if models_plan_task.created is not None:
         res['created'] = models_plan_task.created
-
-    if models_plan_task.date_end is not None:
-        res['dateEnd'] = models_plan_task.date_end
 
     if models_plan_task.details is not None:
         res['details'] = models_plan_task.details
