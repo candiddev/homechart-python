@@ -91,9 +91,6 @@ def from_obj(obj: Any, expected: List[type], path: str = '') -> Any:
     if exp == ConfigWellKnownResponse:
         return config_well_known_response_from_obj(obj, path=path)
 
-    if exp == ControllersResponse:
-        return controllers_response_from_obj(obj, path=path)
-
     if exp == CryptolibEncryptedValue:
         return cryptolib_encrypted_value_from_obj(obj, path=path)
 
@@ -711,10 +708,6 @@ def to_jsonable(obj: Any, expected: List[type], path: str = "") -> Any:
     if exp == ConfigWellKnownResponse:
         assert isinstance(obj, ConfigWellKnownResponse)
         return config_well_known_response_to_jsonable(obj, path=path)
-
-    if exp == ControllersResponse:
-        assert isinstance(obj, ControllersResponse)
-        return controllers_response_to_jsonable(obj, path=path)
 
     if exp == CryptolibEncryptedValue:
         assert isinstance(obj, CryptolibEncryptedValue)
@@ -1680,6 +1673,7 @@ class AppMacro:
             arguments_optional: Optional[List[str]] = None,
             arguments_required: Optional[List[str]] = None,
             flags: Optional[Dict[str, 'AppMacroFlag']] = None,
+            ignore_flags: Optional[bool] = None,
             template: Optional[str] = None,
             usage: Optional[str] = None) -> None:
         """Initializes with the given values."""
@@ -1688,6 +1682,8 @@ class AppMacro:
         self.arguments_required = arguments_required
 
         self.flags = flags
+
+        self.ignore_flags = ignore_flags
 
         self.template = template
 
@@ -1750,6 +1746,15 @@ def app_macro_from_obj(obj: Any, path: str = "") -> AppMacro:
     else:
         flags_from_obj = None
 
+    obj_ignore_flags = obj.get('ignoreFlags', None)
+    if obj_ignore_flags is not None:
+        ignore_flags_from_obj = from_obj(
+            obj_ignore_flags,
+            expected=[bool],
+            path=path + '.ignoreFlags')  # type: Optional[bool]
+    else:
+        ignore_flags_from_obj = None
+
     obj_template = obj.get('template', None)
     if obj_template is not None:
         template_from_obj = from_obj(
@@ -1772,6 +1777,7 @@ def app_macro_from_obj(obj: Any, path: str = "") -> AppMacro:
         arguments_optional=arguments_optional_from_obj,
         arguments_required=arguments_required_from_obj,
         flags=flags_from_obj,
+        ignore_flags=ignore_flags_from_obj,
         template=template_from_obj,
         usage=usage_from_obj)
 
@@ -1805,6 +1811,9 @@ def app_macro_to_jsonable(
         app_macro.flags,
         expected=[dict, AppMacroFlag],
         path='{}.flags'.format(path))
+
+    if app_macro.ignore_flags is not None:
+        res['ignoreFlags'] = app_macro.ignore_flags
 
     if app_macro.template is not None:
         res['template'] = app_macro.template
@@ -3452,208 +3461,6 @@ def config_well_known_response_to_jsonable(
         config_well_known_response.headers,
         expected=[dict, str],
         path='{}.headers'.format(path))
-
-    return res
-
-
-class ControllersResponse:
-    def __init__(
-            self,
-            data_hash: Optional[str] = None,
-            data_ids: Optional[List['HttplibJsonResponseCacheID']] = None,
-            data_total: Optional[int] = None,
-            data_type: Optional[str] = None,
-            data_value: Optional[List[Any]] = None,
-            message: Optional[str] = None,
-            request_id: Optional[str] = None,
-            status: Optional[int] = None,
-            success: Optional[bool] = None) -> None:
-        """Initializes with the given values."""
-        self.data_hash = data_hash
-
-        self.data_ids = data_ids
-
-        self.data_total = data_total
-
-        self.data_type = data_type
-
-        self.data_value = data_value
-
-        self.message = message
-
-        self.request_id = request_id
-
-        self.status = status
-
-        self.success = success
-
-    def to_jsonable(self) -> MutableMapping[str, Any]:
-        """
-        Dispatches the conversion to controllers_response_to_jsonable.
-
-        :return: JSON-able representation
-        """
-        return controllers_response_to_jsonable(self)
-
-
-def new_controllers_response() -> ControllersResponse:
-    """Generates an instance of ControllersResponse with default values."""
-    return ControllersResponse()
-
-
-def controllers_response_from_obj(obj: Any, path: str = "") -> ControllersResponse:
-    """
-    Generates an instance of ControllersResponse from a dictionary object.
-
-    :param obj: a JSON-ed dictionary object representing an instance of ControllersResponse
-    :param path: path to the object used for debugging
-    :return: parsed instance of ControllersResponse
-    """
-    if not isinstance(obj, dict):
-        raise ValueError('Expected a dict at path {}, but got: {}'.format(path, type(obj)))
-
-    for key in obj:
-        if not isinstance(key, str):
-            raise ValueError(
-                'Expected a key of type str at path {}, but got: {}'.format(path, type(key)))
-
-    obj_data_hash = obj.get('dataHash', None)
-    if obj_data_hash is not None:
-        data_hash_from_obj = from_obj(
-            obj_data_hash,
-            expected=[str],
-            path=path + '.dataHash')  # type: Optional[str]
-    else:
-        data_hash_from_obj = None
-
-    obj_data_ids = obj.get('dataIDs', None)
-    if obj_data_ids is not None:
-        data_ids_from_obj = from_obj(
-            obj_data_ids,
-            expected=[list, HttplibJsonResponseCacheID],
-            path=path + '.dataIDs')  # type: Optional[List['HttplibJsonResponseCacheID']]
-    else:
-        data_ids_from_obj = None
-
-    obj_data_total = obj.get('dataTotal', None)
-    if obj_data_total is not None:
-        data_total_from_obj = from_obj(
-            obj_data_total,
-            expected=[int],
-            path=path + '.dataTotal')  # type: Optional[int]
-    else:
-        data_total_from_obj = None
-
-    obj_data_type = obj.get('dataType', None)
-    if obj_data_type is not None:
-        data_type_from_obj = from_obj(
-            obj_data_type,
-            expected=[str],
-            path=path + '.dataType')  # type: Optional[str]
-    else:
-        data_type_from_obj = None
-
-    obj_data_value = obj.get('dataValue', None)
-    if obj_data_value is not None:
-        data_value_from_obj = from_obj(
-            obj_data_value,
-            expected=[list, Any],
-            path=path + '.dataValue')  # type: Optional[List[Any]]
-    else:
-        data_value_from_obj = None
-
-    obj_message = obj.get('message', None)
-    if obj_message is not None:
-        message_from_obj = from_obj(
-            obj_message,
-            expected=[str],
-            path=path + '.message')  # type: Optional[str]
-    else:
-        message_from_obj = None
-
-    obj_request_id = obj.get('requestID', None)
-    if obj_request_id is not None:
-        request_id_from_obj = from_obj(
-            obj_request_id,
-            expected=[str],
-            path=path + '.requestID')  # type: Optional[str]
-    else:
-        request_id_from_obj = None
-
-    obj_status = obj.get('status', None)
-    if obj_status is not None:
-        status_from_obj = from_obj(
-            obj_status,
-            expected=[int],
-            path=path + '.status')  # type: Optional[int]
-    else:
-        status_from_obj = None
-
-    obj_success = obj.get('success', None)
-    if obj_success is not None:
-        success_from_obj = from_obj(
-            obj_success,
-            expected=[bool],
-            path=path + '.success')  # type: Optional[bool]
-    else:
-        success_from_obj = None
-
-    return ControllersResponse(
-        data_hash=data_hash_from_obj,
-        data_ids=data_ids_from_obj,
-        data_total=data_total_from_obj,
-        data_type=data_type_from_obj,
-        data_value=data_value_from_obj,
-        message=message_from_obj,
-        request_id=request_id_from_obj,
-        status=status_from_obj,
-        success=success_from_obj)
-
-
-def controllers_response_to_jsonable(
-        controllers_response: ControllersResponse,
-        path: str = "") -> MutableMapping[str, Any]:
-    """
-    Generates a JSON-able mapping from an instance of ControllersResponse.
-
-    :param controllers_response: instance of ControllersResponse to be JSON-ized
-    :param path: path to the controllers_response used for debugging
-    :return: a JSON-able representation
-    """
-    res = dict()  # type: Dict[str, Any]
-
-    if controllers_response.data_hash is not None:
-        res['dataHash'] = controllers_response.data_hash
-
-    if controllers_response.data_ids is not None:
-        res['dataIDs'] = to_jsonable(
-        controllers_response.data_ids,
-        expected=[list, HttplibJsonResponseCacheID],
-        path='{}.dataIDs'.format(path))
-
-    if controllers_response.data_total is not None:
-        res['dataTotal'] = controllers_response.data_total
-
-    if controllers_response.data_type is not None:
-        res['dataType'] = controllers_response.data_type
-
-    if controllers_response.data_value is not None:
-        res['dataValue'] = to_jsonable(
-        controllers_response.data_value,
-        expected=[list, Any],
-        path='{}.dataValue'.format(path))
-
-    if controllers_response.message is not None:
-        res['message'] = controllers_response.message
-
-    if controllers_response.request_id is not None:
-        res['requestID'] = controllers_response.request_id
-
-    if controllers_response.status is not None:
-        res['status'] = controllers_response.status
-
-    if controllers_response.success is not None:
-        res['success'] = controllers_response.success
 
     return res
 
@@ -35484,7 +35291,7 @@ class RemoteCaller:
                 obj=resp.json(),
                 expected=[HttplibJsonResponseConfigConfig])
 
-    def config_apply(self) -> 'ControllersResponse':
+    def config_apply(self) -> bytes:
         """
         Send a post request to /api/v1/config/apply.
 
@@ -35496,9 +35303,7 @@ class RemoteCaller:
 
         with contextlib.closing(resp):
             resp.raise_for_status()
-            return from_obj(
-                obj=resp.json(),
-                expected=[ControllersResponse])
+            return resp.content
 
     def config_keys_read(self) -> 'HttplibJsonResponseModelsCookMealPlans':
         """
