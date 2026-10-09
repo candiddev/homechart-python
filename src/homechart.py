@@ -15980,7 +15980,10 @@ class JsonnetJsonnet:
             disable_get_file_http: Optional[bool] = None,
             disable_get_o_s: Optional[bool] = None,
             disable_get_path: Optional[bool] = None,
-            disable_get_record: Optional[bool] = None) -> None:
+            disable_get_record: Optional[bool] = None,
+            disable_get_work_dir: Optional[bool] = None,
+            disable_http: Optional[bool] = None,
+            string_path: Optional[str] = None) -> None:
         """Initializes with the given values."""
         self.disable_get_arch = disable_get_arch
 
@@ -15999,6 +16002,12 @@ class JsonnetJsonnet:
         self.disable_get_path = disable_get_path
 
         self.disable_get_record = disable_get_record
+
+        self.disable_get_work_dir = disable_get_work_dir
+
+        self.disable_http = disable_http
+
+        self.string_path = string_path
 
     def to_jsonable(self) -> MutableMapping[str, Any]:
         """
@@ -16111,6 +16120,33 @@ def jsonnet_jsonnet_from_obj(obj: Any, path: str = "") -> JsonnetJsonnet:
     else:
         disable_get_record_from_obj = None
 
+    obj_disable_get_work_dir = obj.get('disableGetWorkDir', None)
+    if obj_disable_get_work_dir is not None:
+        disable_get_work_dir_from_obj = from_obj(
+            obj_disable_get_work_dir,
+            expected=[bool],
+            path=path + '.disableGetWorkDir')  # type: Optional[bool]
+    else:
+        disable_get_work_dir_from_obj = None
+
+    obj_disable_http = obj.get('disableHTTP', None)
+    if obj_disable_http is not None:
+        disable_http_from_obj = from_obj(
+            obj_disable_http,
+            expected=[bool],
+            path=path + '.disableHTTP')  # type: Optional[bool]
+    else:
+        disable_http_from_obj = None
+
+    obj_string_path = obj.get('stringPath', None)
+    if obj_string_path is not None:
+        string_path_from_obj = from_obj(
+            obj_string_path,
+            expected=[str],
+            path=path + '.stringPath')  # type: Optional[str]
+    else:
+        string_path_from_obj = None
+
     return JsonnetJsonnet(
         disable_get_arch=disable_get_arch_from_obj,
         disable_get_cmd=disable_get_cmd_from_obj,
@@ -16120,7 +16156,10 @@ def jsonnet_jsonnet_from_obj(obj: Any, path: str = "") -> JsonnetJsonnet:
         disable_get_file_http=disable_get_file_http_from_obj,
         disable_get_o_s=disable_get_o_s_from_obj,
         disable_get_path=disable_get_path_from_obj,
-        disable_get_record=disable_get_record_from_obj)
+        disable_get_record=disable_get_record_from_obj,
+        disable_get_work_dir=disable_get_work_dir_from_obj,
+        disable_http=disable_http_from_obj,
+        string_path=string_path_from_obj)
 
 
 def jsonnet_jsonnet_to_jsonable(
@@ -16161,6 +16200,15 @@ def jsonnet_jsonnet_to_jsonable(
 
     if jsonnet_jsonnet.disable_get_record is not None:
         res['disableGetRecord'] = jsonnet_jsonnet.disable_get_record
+
+    if jsonnet_jsonnet.disable_get_work_dir is not None:
+        res['disableGetWorkDir'] = jsonnet_jsonnet.disable_get_work_dir
+
+    if jsonnet_jsonnet.disable_http is not None:
+        res['disableHTTP'] = jsonnet_jsonnet.disable_http
+
+    if jsonnet_jsonnet.string_path is not None:
+        res['stringPath'] = jsonnet_jsonnet.string_path
 
     return res
 
